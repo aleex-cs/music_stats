@@ -552,7 +552,7 @@ def get_listening_summary(df, period="month"):
     elif period == "month":
         df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("ME").apply(lambda r: r.start_time.date())
     elif period == "year":
-        df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("Y").apply(lambda r: r.start_time.date())
+        df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("YE").apply(lambda r: r.start_time.date())
 
     df["Period"] = df["Period"].astype(str)
 
@@ -2116,7 +2116,7 @@ with tab4:
             df_out["Period"] = (
                 df_out["datetime"]
                 .dt.tz_convert(tz_name)
-                .dt.to_period("MES")
+                .dt.to_period("ME")
                 .apply(lambda r: r.start_time.date())
             )
         return df_out
@@ -2508,7 +2508,7 @@ with tab8:
         # generar fechas futuras según global_period
         freq_map = {"day":"D","week":"W","month":"ME","year":"YE"}
         last_date = summary_pred["PeriodDt"].iloc[-1]
-        future_dates = pd.date_range(start=last_date + pd.offsets.DateOffset(1), periods=forecast_horizon, freq=freq_map.get(global_period, "M"))
+        future_dates = pd.date_range(start=last_date + pd.offsets.DateOffset(1), periods=forecast_horizon, freq=freq_map.get(global_period, "ME"))
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=summary_pred["PeriodDt"], y=y, mode="lines+markers", name="Actual"))
         fig.add_trace(go.Scatter(x=future_dates, y=preds, mode="lines+markers", name="Forecast"))
@@ -2563,7 +2563,7 @@ with tab10:
         elif global_period == "month":
             temp["Period"] = temp["datetime"].dt.to_period("ME").apply(lambda r: r.start_time.date())
         elif global_period == "year":
-            temp["Period"] = temp["datetime"].dt.to_period("Y").apply(lambda r: r.start_time.date())
+            temp["Period"] = temp["datetime"].dt.to_period("YE").apply(lambda r: r.start_time.date())
         counts = temp.groupby(["Period","artist"]).size()
         # convertir a proporciones por periodo
         prop = counts.groupby(level=0).apply(lambda s: s / s.sum())
