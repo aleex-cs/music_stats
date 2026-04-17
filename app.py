@@ -550,9 +550,9 @@ def get_listening_summary(df, period="month"):
     elif period == "day":
         df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.date
     elif period == "month":
-        df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("ME").apply(lambda r: r.start_time.date())
+        df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("M").apply(lambda r: r.start_time.date())
     elif period == "year":
-        df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("YE").apply(lambda r: r.start_time.date())
+        df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("Y").apply(lambda r: r.start_time.date())
 
     df["Period"] = df["Period"].astype(str)
 
@@ -1315,9 +1315,9 @@ with tab1:
     elif global_period == "day":
         df_gf["Period"] = df_gf["datetime"].dt.tz_convert(LOCAL_TZ).dt.date
     elif global_period == "month":
-        df_gf["Period"] = df_gf["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("ME").apply(lambda r: r.start_time.date())
+        df_gf["Period"] = df_gf["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("M").apply(lambda r: r.start_time.date())
     elif global_period == "year":
-        df_gf["Period"] = df_gf["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("YE").apply(lambda r: r.start_time.date())
+        df_gf["Period"] = df_gf["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("Y").apply(lambda r: r.start_time.date())
 
     df_gf["Period"] = df_gf["Period"].astype(str)
 
@@ -2102,21 +2102,21 @@ with tab4:
             df_out["Period"] = (
                 df_out["datetime"]
                 .dt.tz_convert(tz_name)
-                .dt.to_period("ME")
+                .dt.to_period("M")
                 .apply(lambda r: r.start_time.date())
             )
         elif period == "year":
             df_out["Period"] = (
                 df_out["datetime"]
                 .dt.tz_convert(tz_name)
-                .dt.to_period("YE")
+                .dt.to_period("Y")
                 .apply(lambda r: r.start_time.date())
             )
         else:
             df_out["Period"] = (
                 df_out["datetime"]
                 .dt.tz_convert(tz_name)
-                .dt.to_period("ME")
+                .dt.to_period("M")
                 .apply(lambda r: r.start_time.date())
             )
         return df_out
@@ -2345,7 +2345,7 @@ with tab4:
 
 
     df_month = df_filtered.copy()
-    df_month["month"] = df_month["datetime"].dt.to_period("ME")
+    df_month["month"] = df_month["datetime"].dt.to_period("M")
 
     dominant = (
         df_month.groupby(["month","artist"])["duration"]
@@ -2506,9 +2506,9 @@ with tab8:
         forecast_idx = np.arange(len(summary_pred), len(summary_pred)+forecast_horizon).reshape(-1,1)
         preds = model.predict(forecast_idx)
         # generar fechas futuras según global_period
-        freq_map = {"day":"D","week":"W","month":"ME","year":"YE"}
+        freq_map = {"day":"D","week":"W","month":"M","year":"Y"}
         last_date = summary_pred["PeriodDt"].iloc[-1]
-        future_dates = pd.date_range(start=last_date + pd.offsets.DateOffset(1), periods=forecast_horizon, freq=freq_map.get(global_period, "ME"))
+        future_dates = pd.date_range(start=last_date + pd.offsets.DateOffset(1), periods=forecast_horizon, freq=freq_map.get(global_period, "M"))
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=summary_pred["PeriodDt"], y=y, mode="lines+markers", name="Actual"))
         fig.add_trace(go.Scatter(x=future_dates, y=preds, mode="lines+markers", name="Forecast"))
@@ -2561,9 +2561,9 @@ with tab10:
         elif global_period == "day":
             temp["Period"] = temp["datetime"].dt.date
         elif global_period == "month":
-            temp["Period"] = temp["datetime"].dt.to_period("ME").apply(lambda r: r.start_time.date())
+            temp["Period"] = temp["datetime"].dt.to_period("M").apply(lambda r: r.start_time.date())
         elif global_period == "year":
-            temp["Period"] = temp["datetime"].dt.to_period("YE").apply(lambda r: r.start_time.date())
+            temp["Period"] = temp["datetime"].dt.to_period("Y").apply(lambda r: r.start_time.date())
         counts = temp.groupby(["Period","artist"]).size()
         # convertir a proporciones por periodo
         prop = counts.groupby(level=0).apply(lambda s: s / s.sum())
