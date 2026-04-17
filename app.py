@@ -14,7 +14,14 @@ from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression
 import numpy as np
-from pmdarima import auto_arima
+
+# wordcloud is optional; si no está instalado mostramos mensaje o bar chart
+try:
+    from wordcloud import WordCloud
+    _HAS_WORDCLOUD = True
+except ImportError:
+    _HAS_WORDCLOUD = False
+    # not fatal; tab7 will handle
 
 # =========================
 # CONFIG
@@ -233,14 +240,40 @@ def normalize_genre_name(g: str) -> str:
     # --- Equivalencias manuales (ajusta las que necesites) ---
     # Usa claves en Title Case, tal como queda tras .title()
     EQUIV = {
+        # Progresivo
         "Prog Rock": "Progressive Rock",
         "Progressive": "Progressive Rock",
+        "Rock Progressif": "Progressive Rock",
+        "Progressive Metal": "Progressive Metal",
+        
+        # Alternativo / Indie
         "Alt Rock": "Alternative Rock",
+        "Alternrock": "Alternative Rock",
+        "Alternative": "Alternative Rock",
+        "Alternative & Indie": "Indie / Alternative",
+        "Alternatif Et Inde": "Indie / Alternative",
         "Indie": "Indie / Alternative",
-        "Indie/Alternative": "Indie / Alternative",  # sin espacio → con espacio
+        "Indie/Alternative": "Indie / Alternative",
         "Indie Alternative": "Indie / Alternative",
+        
+        # Psicodelia
         "Psychedelic": "Psychedelic Rock",
+        "Acid Rock": "Psychedelic Rock",
+        
+        # Blues y Rock
+        "Roots Rock Blues": "Blues Rock",
+        "Rock And Roll": "Rock & Roll",
+        "Pop Rock": "Rock Pop", # Para unificar con el que ya tienes o viceversa
+        
+        # R&B / Soul
+        "Contemporary R&B": "R&B",
+        "Jazz Funk Soul": "Soul", # O crear una categoría Jazz/Soul
+        
+        # Limpieza de "Basura"
+        "Miscellaneous": "Unknown",
+        "Art": "Unknown" # A menos que sea Art Rock, suele ser una etiqueta mal puesta
     }
+
     return EQUIV.get(s, s)
 
 def top_genre_by_minutes_full_credit(group):
@@ -280,118 +313,182 @@ def get_decade(y):
     except:
         return None
 
+def format_first_listen_table(df_new, name_col, datetime_col="datetime"):
+    df_out = df_new.copy()
+
+    # Convertimos a zona local si hace falta
+    if pd.api.types.is_datetime64_any_dtype(df_out[datetime_col]):
+        df_out[datetime_col] = df_out[datetime_col].dt.tz_convert(LOCAL_TZ)
+
+    # Ordenamos por fecha REAL (más antiguo → más nuevo)
+    df_out = df_out.sort_values(datetime_col, ascending=True)
+
+    # Formateamos después de ordenar
+    df_out["First Listen"] = df_out[datetime_col].dt.strftime("%d/%m/%Y %H:%M:%S")
+
+    df_out = df_out[[name_col, "First Listen"]]
+
+    return df_out
+
 # =========================
 # LOAD DATA
 # =========================
 
 @st.cache_data
 @st.cache_data
+@st.cache_data
 def load_data():
-    # --- Cargar scrobbles ---
-    scrobbles = pd.read_csv(DATA_PATH)
+    if not os.path.exists(DATA_PATH):
+        st.error(f"No se encuentra el archivo: {DATA_PATH}")
+        return pd.DataFrame()
+    
+    # 1. CARGA DE SCROBBLES (aleex_cs.csv) - Detección automática de separador
+    try:
+        scrobbles = pd.read_csv(DATA_PATH, sep=None, engine='python', encoding='utf-8-sig')
+    except:
+        scrobbles = pd.read_csv(DATA_PATH, encoding='utf-8-sig')
+    
+    scrobbles.columns = scrobbles.columns.str.strip()
 
-    # convertir timestamp a datetime local
-    scrobbles["datetime"] = (
-        pd.to_datetime(scrobbles["uts"], unit="s", utc=True)
-        .dt.tz_convert(LOCAL_TZ)
-    )
+    # Manejo robusto de la columna de fecha (Evita KeyError: 'date')
+    if 'uts' in scrobbles.columns:
+        scrobbles["datetime"] = pd.to_datetime(scrobbles["uts"], unit="s", utc=True).dt.tz_convert(LOCAL_TZ)
+    elif 'date' in scrobbles.columns:
+        scrobbles["datetime"] = pd.to_datetime(scrobbles["date"])
+    else:
+        # Fallback por si la columna tiene otro nombre (Date, timestamp, etc)
+        date_col = next((c for c in scrobbles.columns if 'date' in c.lower() or 'time' in c.lower()), None)
+        if date_col:
+            scrobbles["datetime"] = pd.to_datetime(scrobbles[date_col], errors='coerce')
+        else:
+            scrobbles["datetime"] = pd.to_datetime(scrobbles.iloc[:, 0], errors='coerce')
 
-    # limpiar artistas: eliminar sufijos tipo " - ..."
-    scrobbles["artist"] = scrobbles["artist"].str.replace(r" - .*", "", regex=True)
-
-    # equivalencias de artistas
+    # Unificación de artistas (Tu lógica original)
     equivalencias = pd.DataFrame({
         "original": [
-            "Smash (ESP)", "Smash", "Jim Morrison", "Robe.",
-            "I Nomadi", "Godspeed You Black Emperor!", "Fito Y Fitipaldis",
-            "Fabrizio de Andre'","Fabrizio De Andre","Fabrizio De AndrÃ©",
-            "Fabrizio De André"
+            # --- TUS ORIGINALES ---
+            "Smash (ESP)", "Smash", "Jim Morrison", "Robe.", "I Nomadi", 
+            "Godspeed You Black Emperor!", "Fito Y Fitipaldis", "Fabrizio de Andre'", 
+            "Fabrizio De Andre", "Fabrizio De AndrÃ©", "Fabrizio De André",
+            
+            # --- NUEVOS AÑADIDOS (Lote 1) ---
+            "Mark Knopfler & Emmylou Harris", "TheKnackVEVO", "joaquinsabinaVEVO",
+            "ZoeVEVO", "calle13vevo", "ojetecalormusica", "fito&fitipaldisVEVO",
+            
+            # --- Lote 2 (Limpieza) ---
+            "Fabrizio De AndrÃ¨", "Guns N’ Roses", "The Tonight Show starring Jimmy Fallon", 
+            "The Game Awards"
         ],
         "canonico": [
-            "Smash", "Smash", "The Doors", "Robe",
-            "Nomadi", "Godspeed You! Black Emperor", "Fito & Fitipaldis",
+            # --- TUS CANÓNICOS ---
+            "Smash", "Smash", "The Doors", "Robe", "Nomadi", 
+            "Godspeed You! Black Emperor", "Fito & Fitipaldis", "Fabrizio De Andre'", 
             "Fabrizio De Andre'", "Fabrizio De Andre'", "Fabrizio De Andre'",
-            "Fabrizio De Andre'"
+            
+            # --- NUEVOS CANÓNICOS (Lote 1) ---
+            "Mark Knopfler", "The Knack", "Joaquín Sabina",
+            "Zoe", "Calle 13", "Ojete Calor", "Fito & Fitipaldis",
+            
+            # --- Lote 2 (Limpieza) ---
+            "Fabrizio De Andre'", "Guns N' Roses", "Jimmy Fallon", 
+            "Various Artists"
         ]
     })
+    for i, row in equivalencias.iterrows():
+        scrobbles["artist"] = scrobbles["artist"].replace(row["original"], row["canonico"])
+    scrobbles["artist"] = scrobbles["artist"].str.replace(r" - .*", "", regex=True)
 
-    scrobbles = scrobbles.merge(
-        equivalencias,
-        left_on="artist",
-        right_on="original",
-        how="left"
-    )
-
-    scrobbles["artist"] = scrobbles["canonico"].fillna(scrobbles["artist"])
-    scrobbles = scrobbles.drop(columns=["original", "canonico"])
-
-    # --- Cargar duraciones ---
+    # 2. CARGA DE METADATOS (musica.csv) - Mapeo de columnas español/inglés
+    durations = pd.DataFrame()
     if os.path.exists(DURATIONS_PATH):
-        durations = pd.read_csv(
-            DURATIONS_PATH,
-            sep=";",
-            engine="python",
-            quoting=csv.QUOTE_NONE
-        )
-        durations = durations.rename(columns={
-            "Artista": "artist",
-            "Título": "track",
-            "Duración(s)": "duration",
-            "Género": "genre",
-            # Si la columna se llama literalmente "Año"
-            "Año": "year_raw",
-        })
+        try:
+            durations = pd.read_csv(DURATIONS_PATH, sep=None, engine='python', encoding='utf-8-sig')
+            durations.columns = durations.columns.str.strip()
+            
+            # Mapeo crítico para evitar KeyError: 'genre' y 'year_release'
+            rename_map = {
+                "Artista": "artist", "Título": "track", "Género": "genre",
+                "Duración(s)": "duration", "Año": "year_raw", "Álbum": "album_musica"
+            }
+            durations = durations.rename(columns=rename_map)
 
-        durations["duration"] = pd.to_numeric(
-            durations.get("duration", pd.Series(dtype=float)),
-            errors="coerce"
-        ) / 100  # ← ya lo tienes
+            # Crear 'year_release' usando tus funciones parseadoras
+            if "year_raw" in durations.columns:
+                durations["year_release"] = durations["year_raw"].apply(_parse_year_mixed).apply(_sanitize_year)
+            
+            if "duration" in durations.columns:
+                durations["duration"] = pd.to_numeric(durations["duration"], errors="coerce") / 100
+        except Exception as e:
+            st.warning(f"Error cargando musica.csv: {e}")
 
-        # ---- Nuevo: parsear año
-        if "year_raw" in durations.columns:
-            durations["year_release"] = durations["year_raw"].apply(_parse_year_mixed).apply(_sanitize_year)
-        else:
-            durations["year_release"] = None
-    else:
-        durations = pd.DataFrame(columns=["artist", "track", "duration", "genre", "year_release"])
-
-    # --- Normalización de cadenas para merge ---
+    # 3. MERGE (Cruce de datos)
     def normalize_str(s):
-        if pd.isna(s):
-            return ""
-        return s.strip().lower().replace("’", "'")
+        return str(s).strip().lower().replace("’", "'") if pd.notna(s) else ""
 
     scrobbles["artist_norm"] = scrobbles["artist"].apply(normalize_str)
     scrobbles["track_norm"] = scrobbles["track"].apply(normalize_str)
-    durations["artist_norm"] = durations["artist"].apply(normalize_str)
-    durations["track_norm"] = durations["track"].apply(normalize_str)
+    
+    if not durations.empty:
+        durations["artist_norm"] = durations["artist"].apply(normalize_str)
+        durations["track_norm"] = durations["track"].apply(normalize_str)
+        
+        # Columnas que queremos traer
+        cols_to_merge = ["artist_norm", "track_norm", "duration", "genre", "year_release"]
+        if "album_musica" in durations.columns: cols_to_merge.append("album_musica")
+        
+        df = scrobbles.merge(
+            durations[cols_to_merge].drop_duplicates(["artist_norm", "track_norm"]),
+            on=["artist_norm", "track_norm"],
+            how="left"
+        )
+    else:
+        df = scrobbles
+        df["genre"], df["duration"], df["year_release"] = "Unknown", 0, None
 
-    # --- Merge de duraciones + género ---
-    df = scrobbles.merge(
-        durations[["artist_norm", "track_norm", "duration", "genre", "year_release"]],
-        on=["artist_norm", "track_norm"],
-        how="left"
-    )
+    # 4. UNIFICACIÓN DE ÁLBUMES (album_clean)
+    def normalize_album_full(name):
+        if pd.isna(name) or str(name).lower() in ["nan", "unknown album", ""]: return "Unknown Album"
+        # Limpieza Regex (Disc, Remaster, etc)
+        clean = re.sub(r'[\(\[].*?(Disc|Remaster|Edition|Maxicut|Deluxe|Live|Explicit).*?[\)\]]', '', str(name), flags=re.IGNORECASE)
+        # Equivalencias específicas
+        EQUIV = {
+            "The Wall [Disc 1]": "The Wall", "The Wall [Disc 2]": "The Wall",
+            "Ummagumma [Studio Album] [Disc 1]": "Ummagumma", "Ummagumma [Live Album] [Disc 2]": "Ummagumma",
+            "Making Movies (Australia Maxicut)": "Making Movies", "Love (Disc 1)": "Love", "Love (Disc 2)": "Love"
+        }
+        return " ".join(EQUIV.get(clean.strip(), clean.strip()).split())
 
-    # eliminar columnas auxiliares de normalización
-    df = df.drop(columns=["artist_norm", "track_norm"])
+    # Crear album_clean (priorizando el nombre de musica.csv)
+    if "album_musica" in df.columns:
+        df["album_clean"] = df["album_musica"].fillna(df["album"]).apply(normalize_album_full)
+    else:
+        df["album_clean"] = df["album"].apply(normalize_album_full)
 
+    # 5. ASEGURAR COLUMNAS PARA EVITAR CRASHES
+    if "genre" not in df.columns: df["genre"] = "Unknown"
+    if "year_release" not in df.columns: df["year_release"] = None
+    if "duration" not in df.columns: df["duration"] = 0
+    
+    # Limpiar auxiliares
+    df = df.drop(columns=["artist_norm", "track_norm"], errors="ignore")
     return df
- 
+
+# --- BLOQUE DE PROCESAMIENTO TRAS CARGAR ---
 df = load_data()
 
+# Procesar Géneros (Ahora con la columna asegurada)
 df_genre = df.copy()
-df_genre["genre_single"] = df_genre["genre"].apply(split_genres)
-df_genre = df_genre.explode("genre_single")  # duplica filas por cada género
+df_genre["genre_single"] = df_genre["genre"].fillna("Unknown").apply(split_genres)
+df_genre = df_genre.explode("genre_single")
 df_genre = df_genre.dropna(subset=["genre_single"])
-
-# ⬇️ Normaliza AQUÍ
 df_genre["genre_single"] = df_genre["genre_single"].apply(normalize_genre_name)
-# Si alguna quedó como None tras normalizar, elimínala
-df_genre = df_genre.dropna(subset=["genre_single"])
 
+# Procesar Décadas (Ahora con year_release asegurada)
 df["decade"] = df["year_release"].apply(get_decade)
 df_genre["decade"] = df_genre["year_release"].apply(get_decade)
+ 
+
+
 
 df_full = df.copy()  # o aplicar filtros si quieres
 df_full.to_csv("full_dataframe_export.csv", index=False, encoding="utf-8")
@@ -416,20 +513,40 @@ def apply_time_filter(df, filter_name):
 def safe_top_by_minutes(df, col):
     if col not in df.columns or df.empty:
         return None
-    summary = df.groupby(col)["duration"].sum()
+
+    summary = (
+        df.groupby(col)
+        .agg(
+            minutes=("duration", "sum"),
+            plays=("duration", "count")
+        )
+        .sort_values(["minutes", "plays"], ascending=False)
+    )
+
     if summary.empty:
         return None
+
+    return summary.index[0]
+
+def top_decade_by_minutes(df):
+    if "year_release" not in df.columns:
+        return None
+    temp = df.dropna(subset=["year_release"]).copy()
+    if temp.empty:
+        return None
+    temp["decade"] = temp["year_release"].apply(get_decade)
+    summary = temp.groupby("decade")["duration"].sum()
     return summary.idxmax()
 
 def get_listening_summary(df, period="month"):
-    df = df.copy()
+
     if df.empty:
         return pd.DataFrame()
 
+    df = df.copy()
+
     if period == "week":
-        df["Period"] = df["datetime"].dt.to_period("W").apply(
-            lambda r: r.start_time.tz_localize(LOCAL_TZ).date()
-        )
+        df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("W").apply(lambda r: r.start_time.date())
     elif period == "day":
         df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.date
     elif period == "month":
@@ -437,23 +554,94 @@ def get_listening_summary(df, period="month"):
     elif period == "year":
         df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("Y").apply(lambda r: r.start_time.date())
 
-    rows = []
-    for period_val, group in df.groupby("Period"):
-        rows.append({
-            "Period": str(period_val),
-            "Minutes": round(group["duration"].sum() / 60, 2),
-            "Plays": len(group),
-            "Mean Year": round(group["year_release"].dropna().mean(), 2) if "year_release" in group.columns else None,
-            "Top Artist": safe_top_by_minutes(group, "artist"),
-            "Top Track": safe_top_by_minutes(group, "track"),
-            "Top Album": safe_top_by_minutes(group, "album") if "album" in group.columns else None,
-            "Top Genre": top_genre_by_minutes_full_credit(group),
-            "Top Decade": get_decade(
-                    group["year_release"].value_counts().idxmax()
-                ) if group["year_release"].notna().any() else None,
-        })
+    df["Period"] = df["Period"].astype(str)
 
-    return pd.DataFrame(rows).sort_values("Period")
+    # --------------------------
+    # métricas básicas
+    # --------------------------
+
+    summary = df.groupby("Period").agg(
+        Minutes=("duration", lambda x: round(x.sum()/60, 2)),
+        Plays=("duration", "count"),
+        Median_Year=("year_release", "median")
+    ).reset_index()
+
+    summary["Median_Year"] = summary["Median_Year"].round(2)
+
+    # --------------------------
+    # Top Artist
+    # --------------------------
+
+    artist_minutes = (
+        df.groupby(["Period","artist"])["duration"]
+        .sum()
+        .reset_index()
+    )
+
+    idx = artist_minutes.groupby("Period")["duration"].idxmax()
+
+    top_artist = artist_minutes.loc[idx, ["Period","artist"]] \
+        .rename(columns={"artist":"Top Artist"})
+
+    summary = summary.merge(top_artist, on="Period", how="left")
+
+    # --------------------------
+    # Top Track
+    # --------------------------
+
+    track_minutes = (
+        df.groupby(["Period","track"])["duration"]
+        .sum()
+        .reset_index()
+    )
+
+    idx = track_minutes.groupby("Period")["duration"].idxmax()
+
+    top_track = track_minutes.loc[idx, ["Period","track"]] \
+        .rename(columns={"track":"Top Track"})
+
+    summary = summary.merge(top_track, on="Period", how="left")
+
+    # --------------------------
+    # Top Album
+    # --------------------------
+
+    if "album" in df.columns:
+
+        album_minutes = (
+            df.groupby(["Period","album"])["duration"]
+            .sum()
+            .reset_index()
+        )
+
+        idx = album_minutes.groupby("Period")["duration"].idxmax()
+
+        top_album = album_minutes.loc[idx, ["Period","album"]] \
+            .rename(columns={"album":"Top Album"})
+
+        summary = summary.merge(top_album, on="Period", how="left")
+
+    # --------------------------
+    # Top Decade (por minutos)
+    # --------------------------
+
+    temp = df.dropna(subset=["year_release"]).copy()
+    temp["decade"] = temp["year_release"].apply(get_decade)
+
+    decade_minutes = (
+        temp.groupby(["Period","decade"])["duration"]
+        .sum()
+        .reset_index()
+    )
+
+    idx = decade_minutes.groupby("Period")["duration"].idxmax()
+
+    top_decade = decade_minutes.loc[idx, ["Period","decade"]] \
+        .rename(columns={"decade":"Top Decade"})
+
+    summary = summary.merge(top_decade, on="Period", how="left")
+
+    return summary.sort_values("Period")
 
 def summarize(df, col):
     return (
@@ -921,57 +1109,129 @@ def get_quick_range(preset: str, tz_name: str = "Europe/Madrid"):
 
 st.sidebar.title("Filtros Globales")
 
-# --- NUEVO: rango rápido (presets) ---
+# --- QUICK RANGE ---
+quick_options = [
+    "Todo",
+    "Personalizado",
+    "Último día",
+    "Última semana",
+    "Último mes",
+    "Últimos 3 meses",
+    "Últimos 6 meses",
+    "YTD (año en curso)",
+    "Último año",
+    "Último día natural",
+    "Última semana natural",
+    "Último mes natural",
+]
+
+# Usamos session_state para permitir cambio automático
+if "quick_range" not in st.session_state:
+    st.session_state.quick_range = "Todo"
+
 quick_range = st.sidebar.selectbox(
     "Quick range",
-    [
-        "Todo",
-        "Personalizado",
-        "Último día",
-        "Última semana",
-        "Último mes",
-        "Últimos 3 meses",
-        "Últimos 6 meses",
-        "YTD (año en curso)",
-        "Último año",
-        "Último día natural",
-        "Última semana natural",
-        "Último mes natural",
-    ],
-    index=0  # elige el default que prefieras, p. ej. "Último mes"
+    quick_options,
+    key="quick_range"
 )
 
-# Controles de fecha (se usan si quick_range == "Personalizado")
-start_date_input = st.sidebar.date_input("Start Date", datetime(2025, 1, 1))
-end_date_input   = st.sidebar.date_input("End Date", datetime.now())
+# -----------------------------------
+# Determinar rango base
+# -----------------------------------
 
-# Determinar start/end finales según quick_range
-if quick_range == "Personalizado":
-    global_start = pd.to_datetime(start_date_input).tz_localize(LOCAL_TZ)
-    global_end   = pd.to_datetime(end_date_input).tz_localize(LOCAL_TZ)
+is_custom = quick_range == "Personalizado"
+
+if is_custom:
+    default_start = datetime(2025, 1, 1)
+    default_end = datetime.now()
 else:
     q_start, q_end = get_quick_range(quick_range, tz_name=LOCAL_TZ)
 
-    # Si has elegido "Todo" y quieres ajustarlo al rango real de datos:
     if quick_range == "Todo" and not df.empty:
         q_start = df["datetime"].min()
         q_end   = df["datetime"].max()
 
-    global_start, global_end = q_start, q_end
+    default_start = q_start
+    default_end   = q_end
 
-# Resto de filtros
+# -----------------------------------
+# DATE INPUTS (con lógica inteligente)
+# -----------------------------------
 
-# Después de cargar df
+# Inicializamos session_state para fechas
+if "start_date" not in st.session_state:
+    st.session_state.start_date = default_start.date()
+
+if "end_date" not in st.session_state:
+    st.session_state.end_date = default_end.date()
+
+# Si NO es personalizado, forzamos fechas automáticas
+if not is_custom:
+    st.session_state.start_date = default_start.date()
+    st.session_state.end_date   = default_end.date()
+
+start_date_input = st.sidebar.date_input(
+    "Start Date",
+    key="start_date",
+    disabled=not is_custom
+)
+
+end_date_input = st.sidebar.date_input(
+    "End Date",
+    key="end_date",
+    disabled=not is_custom
+)
+
+# -----------------------------------
+# Cambio automático a "Personalizado"
+# -----------------------------------
+
+if not is_custom:
+    # Si el usuario intenta modificar fechas (cosa rara pero posible por estado),
+    # cambiamos automáticamente a Personalizado
+    if (
+        st.session_state.start_date != default_start.date() or
+        st.session_state.end_date   != default_end.date()
+    ):
+        st.session_state.quick_range = "Personalizado"
+        st.rerun()
+
+# -----------------------------------
+# Determinar global_start y global_end
+# -----------------------------------
+
+if st.session_state.quick_range == "Personalizado":
+    global_start = pd.to_datetime(st.session_state.start_date).tz_localize(LOCAL_TZ)
+    global_end   = pd.to_datetime(st.session_state.end_date).tz_localize(LOCAL_TZ)
+else:
+    global_start = default_start
+    global_end   = default_end
+
+# -----------------------------------
+# RESTO DE FILTROS
+# -----------------------------------
+
 year_min = int(df["year_release"].min()) if df["year_release"].notna().any() else 1950
 year_max = int(df["year_release"].max()) if df["year_release"].notna().any() else datetime.now().year
 
-global_period = st.sidebar.selectbox("Time period", ["day", "week", "month", "year"], index=2)
-global_time_filter = st.sidebar.selectbox("Time of day", ["All","Morning","Afternoon","Night"], index=0)
+global_period = st.sidebar.selectbox(
+    "Time period",
+    ["day", "week", "month", "year"],
+    index=2
+)
+
+global_time_filter = st.sidebar.selectbox(
+    "Time of day",
+    ["All", "Morning", "Afternoon", "Night"],
+    index=0
+)
+
 global_rows_to_show = st.sidebar.selectbox(
     "Number of rows",
     [10, 25, 50, 100, 200, 500],
     index=0
 )
+
 year_range = st.sidebar.slider(
     "Release year range",
     min_value=year_min,
@@ -979,7 +1239,7 @@ year_range = st.sidebar.slider(
     value=(year_min, year_max),
     step=1,
 )
-# --- NUEVO: Top N para gráficos de evolución ---
+
 global_top_n = st.sidebar.slider(
     "Series en gráficos de evolución (Top N)",
     min_value=3,
@@ -989,28 +1249,46 @@ global_top_n = st.sidebar.slider(
     help="Número de series (líneas) a mostrar en los gráficos de evolución para artistas, tracks, álbumes y géneros.",
 )
 
-# Filtro global por año de lanzamiento (mantén NaN si quieres “No year” aparte)
-df = df[(df["year_release"].between(year_range[0], year_range[1]))]
-df_genre = df_genre.merge(df[["datetime","track","artist","album","year_release"]], on=["datetime","track","artist","album"], how="left")
+# -----------------------------------
+# Aplicar filtro por año de lanzamiento
+# -----------------------------------
 
-# (Opcional) feedback visual
-if quick_range != "Personalizado":
+df = df[df["year_release"].between(year_range[0], year_range[1])]
+
+df_genre = df_genre.merge(
+    df[["datetime", "track", "artist", "album", "year_release"]],
+    on=["datetime", "track", "artist", "album"],
+    how="left"
+)
+
+
+# -----------------------------------
+# Feedback visual
+# -----------------------------------
+
+if st.session_state.quick_range != "Personalizado":
     st.sidebar.caption(
-        f"Aplicando rango: **{quick_range}** → "
-        f"{global_start.strftime('%Y-%m-%d %H:%M')} a {global_end.strftime('%Y-%m-%d %H:%M')}"
+        f"Aplicando rango: **{st.session_state.quick_range}** → "
+        f"{global_start.strftime('%Y-%m-%d %H:%M')} "
+        f"a {global_end.strftime('%Y-%m-%d %H:%M')}"
     )
-
 # =========================
 # TABS
 # =========================
 
 st.title("Music Stats")
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
+# ampliamos pestañas con secciones extra sin tocar las existentes
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs([
     "Summary",
     "Tracks / Artists / Albums",
     "Time Patterns",
     "Listening Behavior",
-    "Predictions"
+    "Searcher",
+    "Heatmap",
+    "Wordcloud",
+    "Prediction",
+    "Genre Network",
+    "Diversity"
 ])
 
 # =========================
@@ -1023,6 +1301,7 @@ with tab1:
 
     # Generamos el resumen completo por periodo
     summary_full = get_listening_summary(df_filtered, global_period)
+    
 
     # --------------------------
     # Top Genre por periodo usando df_genre (crédito completo)
@@ -1229,7 +1508,62 @@ with tab1:
     # --------------------------
     summary_table = summary_full.sort_values("Period", ascending=False).head(global_rows_to_show)
     display_aggrid(summary_table, container_id="grid_summary_tab1")
+    
+    # =========================
+    # Tablas de descubrimientos
+    # =========================
 
+    st.markdown("## New Discoveries")
+
+    # ---------------- Artists ----------------
+    if len(new_artists) > 0:
+        artists_table = format_first_listen_table(new_artists, "artist")
+        artists_table = artists_table.head(global_rows_to_show)
+        
+        st.markdown("### 🎤 New Artists")
+        display_aggrid(artists_table, container_id="grid_new_artists")
+
+    # ---------------- Tracks ----------------
+    if len(new_tracks) > 0:
+        tracks_table = format_first_listen_table(new_tracks, "track")
+        tracks_table = tracks_table.head(global_rows_to_show)
+        
+        st.markdown("### 🎵 New Tracks")
+        display_aggrid(tracks_table, container_id="grid_new_tracks")
+
+    # ---------------- Albums ----------------
+    if len(new_albums) > 0:
+        albums_table = format_first_listen_table(new_albums, "album")
+        albums_table = albums_table.head(global_rows_to_show)
+        
+        st.markdown("### 💿 New Albums")
+        display_aggrid(albums_table, container_id="grid_new_albums")
+
+    # ---------------- Genres ----------------
+    if len(new_genres) > 0:
+        genres_table = format_first_listen_table(new_genres, "genre_single")
+        genres_table = genres_table.head(global_rows_to_show)
+        
+        st.markdown("### 🎼 New Genres")
+        display_aggrid(genres_table, container_id="grid_new_genres")
+
+    # ---------------- Decades ----------------
+    if len(new_decades) > 0:
+        decades_table = new_decades.copy()
+
+        decades_table["first_listen"] = decades_table["first_listen"].dt.tz_convert(LOCAL_TZ)
+
+        # Orden correcto
+        decades_table = decades_table.sort_values("first_listen", ascending=True)
+
+        decades_table["First Listen"] = decades_table["first_listen"] \
+            .dt.strftime("%d/%m/%Y %H:%M:%S")
+
+        decades_table = decades_table[["decade", "First Listen"]] \
+            .head(global_rows_to_show)
+
+        st.markdown("### 🗓️ New Decades")
+        display_aggrid(decades_table, container_id="grid_new_decades")
     # --------------------------
     # Gráficas de minutos y plays
     # --------------------------
@@ -1274,51 +1608,49 @@ with tab1:
 
     st.plotly_chart(fig, use_container_width=True)
 
+
 # =========================
 # TAB 2 - Full Data Viewer
 # =========================
 
 with tab2:
 
+    # --------------------------------------------------
+    # Filtrado por fecha y turno
+    # --------------------------------------------------
     df_fd = df[(df["datetime"] >= global_start) & (df["datetime"] <= global_end)]
-    df_fd = apply_time_filter(df_fd, global_time_filter)
-    df_fd = df_fd.copy()
+    df_fd = apply_time_filter(df_fd, global_time_filter).copy()
 
-    df_fd["track"] = df_fd["track"].str.title()
-    df_fd["artist"] = df_fd["artist"].str.title()
+    df_fd["track"] = df_fd["track"].astype(str).str.title().str.strip()
+    df_fd["artist"] = df_fd["artist"].astype(str).str.title().str.strip()
     if "album" in df_fd.columns:
-        df_fd["album"] = df_fd["album"].str.title()
+        df_fd["album"] = df_fd["album"].astype(str).str.title().str.strip()
 
     df_fd["decade"] = df_fd["year_release"].apply(get_decade)
     df_fd_dec = df_fd[df_fd["decade"].notna()]
 
-    # ======================================================================
-    # Cálculo correcto de días efectivos según los datos disponibles
-    # ======================================================================
+    # --------------------------------------------------
+    # Días efectivos
+    # --------------------------------------------------
     if not df_fd.empty:
         data_start = df_fd["datetime"].min()
         data_end = df_fd["datetime"].max()
-
         effective_start = max(global_start, data_start)
         effective_end = min(global_end, data_end)
-
-        effective_days = (effective_end - effective_start).days + 1
-        if effective_days < 1:
-            effective_days = 1
+        effective_days = max(1, (effective_end - effective_start).days + 1)
     else:
-        effective_days = 1  # evitar divisiones por 0
+        effective_days = 1
 
     total_minutes_fd = df_fd["duration"].sum() / 60 if not df_fd.empty else 0.0
-
-    # ======================================================================
-    # TRACKS
-    # ======================================================================
-    st.markdown("### Tracks")
-
-    n_unique_tracks = df_fd["track"].nunique()
-    avg_minutes_per_track = round(total_minutes_fd / n_unique_tracks, 2) if n_unique_tracks > 0 else 0.0
     plays_per_day = round(len(df_fd) / effective_days, 2)
     minutes_per_day = round(total_minutes_fd / effective_days, 2)
+
+    # =========================
+    # TRACKS
+    # =========================
+    st.markdown("### Tracks")
+    n_unique_tracks = df_fd["track"].nunique()
+    avg_minutes_per_track = round(total_minutes_fd / n_unique_tracks, 2) if n_unique_tracks else 0.0
 
     c1, c2, c4, c3 = st.columns(4)
     c1.metric("Unique tracks", n_unique_tracks)
@@ -1326,56 +1658,60 @@ with tab2:
     c3.metric("Plays per day", plays_per_day)
     c4.metric("Minutes per day", f"{minutes_per_day:.2f} min")
 
-    tracks_summary = summarize(df_fd, "track")
-    tracks_summary.rename(columns={"track": "Track"}, inplace=True)
-    tracks_summary = add_share_columns(tracks_summary)
-
-    # --- Racha de repeticiones consecutivas (track) sobre df_fd ---
     top_track_val, top_track_size, first_play, last_play = longest_consecutive_block_details(df_fd, "track")
-
     c1, c2, c3 = st.columns(3)
-    if top_track_val is not None and first_play is not None:
-        c1.metric("Longest track repeat streak",
-                f"{top_track_size} plays of {top_track_val}",
-                help=f"{top_track_size} plays of {top_track_val}")
-        c2.metric("First play of the streak", first_play.strftime('%Y-%m-%d %H:%M:%S'),
-                help=first_play.strftime('%Y-%m-%d %H:%M:%S'))
-        c3.metric("Last play of the streak",  last_play.strftime('%Y-%m-%d %H:%M:%S'),
-                help=last_play.strftime('%Y-%m-%d %H:%M:%S'))
+    if top_track_val:
+        c1.metric("Longest track repeat streak", f"{top_track_size} plays of {top_track_val}", help=f"{top_track_size} plays of {top_track_val}")
+        c2.metric("First play of the streak", first_play.strftime('%Y-%m-%d %H:%M:%S'), help=first_play.strftime('%Y-%m-%d %H:%M:%S'))
+        c3.metric("Last play of the streak", last_play.strftime('%Y-%m-%d %H:%M:%S'), help=last_play.strftime('%Y-%m-%d %H:%M:%S'))
     else:
         c1.metric("Longest track repeat streak", "-")
         c2.metric("First play of the streak", "-")
         c3.metric("Last play of the streak", "-")
 
-    # --- Racha consecutiva por MINUTOS (track) sobre df_fd ---
+    # Racha por minutos
     mt1, mt2, mt3 = st.columns(3)
     track_val_m, track_minutes, first_m, last_m = longest_consecutive_block_minutes(df_fd, "track")
-    if track_val_m is not None and first_m is not None:
-        mt1.metric("Longest track minutes streak",
-                f"{track_minutes:.2f} min of {track_val_m}",
-                help=f"{track_minutes:.2f} min of {track_val_m}")
-        mt2.metric("First play of the minutes streak", first_m.strftime('%Y-%m-%d %H:%M:%S'),
-                help=first_m.strftime('%Y-%m-%d %H:%M:%S'))
-        mt3.metric("Last play of the minutes streak",  last_m.strftime('%Y-%m-%d %H:%M:%S'),
-                help=last_m.strftime('%Y-%m-%d %H:%M:%S'))
+    if track_val_m:
+        mt1.metric("Longest track minutes streak", f"{track_minutes:.2f} min of {track_val_m}", help=f"{track_minutes:.2f} min of {track_val_m}")
+        mt2.metric("First play of the minutes streak", first_m.strftime('%Y-%m-%d %H:%M:%S'), help=first_m.strftime('%Y-%m-%d %H:%M:%S'))
+        mt3.metric("Last play of the minutes streak", last_m.strftime('%Y-%m-%d %H:%M:%S'), help=last_m.strftime('%Y-%m-%d %H:%M:%S'))
     else:
         mt1.metric("Longest track minutes streak", "-")
         mt2.metric("First play of the minutes streak", "-")
         mt3.metric("Last play of the minutes streak", "-")
 
-    # Reordenar columnas: Track | Minutes | Minutes% | Plays | Plays%
-    tracks_summary = tracks_summary[["Track", "Minutes", "Minutes%", "Plays", "Plays%"]]
-    tracks_summary = tracks_summary.head(global_rows_to_show)
+    # Summary y artista principal
+    tracks_summary = summarize(df_fd, "track").rename(columns={"track": "Track"})
+    tracks_summary = add_share_columns(tracks_summary)
+
+    track_artist = (
+        df_fd.groupby(["track", "artist"])
+        .size().reset_index(name="count")
+        .sort_values(["track", "count"], ascending=[True, False])
+        .drop_duplicates("track", keep="first")[["track", "artist"]]
+    )
+
+    track_first_listen = df_fd.groupby("track")["datetime"].min().reset_index()
+    track_first_listen["First Listen"] = track_first_listen["datetime"].dt.tz_convert(LOCAL_TZ).dt.strftime("%d/%m/%Y %H:%M:%S")
+
+    tracks_summary = (
+        tracks_summary
+        .merge(track_artist, left_on="Track", right_on="track", how="left")
+        .drop(columns=["track"])
+        .merge(track_first_listen[["track", "First Listen"]], left_on="Track", right_on="track", how="left")
+        .drop(columns=["track"])
+    )
+    tracks_summary["Artist"] = tracks_summary["artist"].fillna("Unknown")
+    tracks_summary = tracks_summary[["Track", "Artist", "First Listen", "Minutes", "Minutes%", "Plays", "Plays%"]].head(global_rows_to_show)
     display_aggrid(tracks_summary, container_id="grid_tracks")
 
-
-    # ======================================================================
+    # =========================
     # ARTISTS
-    # ======================================================================
+    # =========================
     st.markdown("### Artists")
-
     n_unique_artists = df_fd["artist"].nunique()
-    avg_minutes_per_artist = round(total_minutes_fd / n_unique_artists, 2) if n_unique_artists > 0 else 0.0
+    avg_minutes_per_artist = round(total_minutes_fd / n_unique_artists, 2) if n_unique_artists else 0.0
 
     c1, c2, c4, c3 = st.columns(4)
     c1.metric("Unique artists", n_unique_artists)
@@ -1383,55 +1719,43 @@ with tab2:
     c3.metric("Plays per day", plays_per_day)
     c4.metric("Minutes per day", f"{minutes_per_day:.2f} min")
 
-    # --- Racha de repeticiones consecutivas (artist) sobre df_fd ---
     top_artist_val, top_artist_size, first_play, last_play = longest_consecutive_block_details(df_fd, "artist")
-
     c1, c2, c3 = st.columns(3)
-    if top_artist_val is not None and first_play is not None:
-        c1.metric("Longest artist repeat streak",
-                f"{top_artist_size} plays of {top_artist_val}",
-                help=f"{top_artist_size} plays of {top_artist_val}")
-        c2.metric("First play of the streak", first_play.strftime('%Y-%m-%d %H:%M:%S'),
-                help=first_play.strftime('%Y-%m-%d %H:%M:%S'))
-        c3.metric("Last play of the streak",  last_play.strftime('%Y-%m-%d %H:%M:%S'),
-                help=last_play.strftime('%Y-%m-%d %H:%M:%S'))
+    if top_artist_val:
+        c1.metric("Longest artist repeat streak", f"{top_artist_size} plays of {top_artist_val}")
+        c2.metric("First play of the streak", first_play.strftime('%Y-%m-%d %H:%M:%S'))
+        c3.metric("Last play of the streak", last_play.strftime('%Y-%m-%d %H:%M:%S'))
     else:
         c1.metric("Longest artist repeat streak", "-")
         c2.metric("First play of the streak", "-")
         c3.metric("Last play of the streak", "-")
 
-    # --- Racha consecutiva por MINUTOS (artist) sobre df_fd ---
     ma1, ma2, ma3 = st.columns(3)
     artist_val_m, artist_minutes, first_m, last_m = longest_consecutive_block_minutes(df_fd, "artist")
-    if artist_val_m is not None and first_m is not None:
-        ma1.metric("Longest artist minutes streak",
-                f"{artist_minutes:.2f} min of {artist_val_m}",
-                help=f"{artist_minutes:.2f} min of {artist_val_m}")
-        ma2.metric("First play of the minutes streak", first_m.strftime('%Y-%m-%d %H:%M:%S'),
-                help=first_m.strftime('%Y-%m-%d %H:%M:%S'))
-        ma3.metric("Last play of the minutes streak",  last_m.strftime('%Y-%m-%d %H:%M:%S'),
-                help=last_m.strftime('%Y-%m-%d %H:%M:%S'))
+    if artist_val_m:
+        ma1.metric("Longest artist minutes streak", f"{artist_minutes:.2f} min of {artist_val_m}")
+        ma2.metric("First play of the minutes streak", first_m.strftime('%Y-%m-%d %H:%M:%S'))
+        ma3.metric("Last play of the minutes streak", last_m.strftime('%Y-%m-%d %H:%M:%S'))
     else:
         ma1.metric("Longest artist minutes streak", "-")
         ma2.metric("First play of the minutes streak", "-")
         ma3.metric("Last play of the minutes streak", "-")
 
-    artists_summary = summarize(df_fd, "artist")
-    artists_summary.rename(columns={"artist": "Artist"}, inplace=True)
+    artists_summary = summarize(df_fd, "artist").rename(columns={"artist": "Artist"})
     artists_summary = add_share_columns(artists_summary)
-    artists_summary = artists_summary[["Artist", "Minutes", "Minutes%", "Plays", "Plays%"]]
-    artists_summary = artists_summary.head(global_rows_to_show)
+    artist_first_listen = df.groupby("artist")["datetime"].min().reset_index()
+    artist_first_listen["First Listen"] = artist_first_listen["datetime"].dt.tz_convert(LOCAL_TZ).dt.strftime("%d/%m/%Y %H:%M:%S")
+    artists_summary = artists_summary.merge(artist_first_listen, left_on="Artist", right_on="artist", how="left")
+    artists_summary = artists_summary[["Artist", "First Listen", "Minutes", "Minutes%", "Plays", "Plays%"]].head(global_rows_to_show)
     display_aggrid(artists_summary, container_id="grid_artists")
 
-
-
-    # ======================================================================
-    # ALBUMS
-    # ======================================================================
+    ## =========================
+    # ALBUMS (CORREGIDO PARA USAR LA COLUMNA LIMPIA)
+    # =========================
     st.markdown("### Albums")
-
-    n_unique_albums = df_fd["album"].nunique()
-    avg_minutes_per_album = round(total_minutes_fd / n_unique_albums, 2) if n_unique_albums > 0 else 0.0
+    # Usamos album_clean para contar únicos
+    n_unique_albums = df_fd["album_clean"].nunique() 
+    avg_minutes_per_album = round(total_minutes_fd / n_unique_albums, 2) if n_unique_albums else 0.0
 
     c1, c2, c4, c3 = st.columns(4)
     c1.metric("Unique albums", n_unique_albums)
@@ -1439,182 +1763,128 @@ with tab2:
     c3.metric("Plays per day", plays_per_day)
     c4.metric("Minutes per day", f"{minutes_per_day:.2f} min")
 
-    # --- Racha de repeticiones consecutivas (album) sobre df_fd ---
-    top_album_val, top_album_size, first_play, last_play = longest_consecutive_block_details(df_fd, "album")
-
+    # Rachas usando la columna limpia
+    top_album_val, top_album_size, first_play, last_play = longest_consecutive_block_details(df_fd, "album_clean")
     c1, c2, c3 = st.columns(3)
-    if top_album_val is not None and first_play is not None:
-        c1.metric("Longest album repeat streak",
-                f"{top_album_size} plays of {top_album_val}",
-                help=f"{top_album_size} plays of {top_album_val}")
-        c2.metric("First play of the streak", first_play.strftime('%Y-%m-%d %H:%M:%S'),
-                help=first_play.strftime('%Y-%m-%d %H:%M:%S'))
-        c3.metric("Last play of the streak",  last_play.strftime('%Y-%m-%d %H:%M:%S'),
-                help=last_play.strftime('%Y-%m-%d %H:%M:%S'))
-    else:
-        c1.metric("Longest album repeat streak", "-")
-        c2.metric("First play of the streak", "-")
-        c3.metric("Last play of the streak", "-")
+    if top_album_val:
+        c1.metric("Longest album repeat streak", f"{top_album_size} plays of {top_album_val}")
+        c2.metric("First play of the streak", first_play.strftime('%Y-%m-%d %H:%M:%S'))
+        c3.metric("Last play of the streak", last_play.strftime('%Y-%m-%d %H:%M:%S'))
 
-    # --- Racha consecutiva por MINUTOS (album) sobre df_fd ---
+    # Rachas por minutos usando la columna limpia
     mal1, mal2, mal3 = st.columns(3)
-    album_val_m, album_minutes, first_m, last_m = longest_consecutive_block_minutes(df_fd, "album")
-    if album_val_m is not None and first_m is not None:
-        mal1.metric("Longest album minutes streak",
-                    f"{album_minutes:.2f} min of {album_val_m}",
-                    help=f"{album_minutes:.2f} min of {album_val_m}")
-        mal2.metric("First play of the minutes streak", first_m.strftime('%Y-%m-%d %H:%M:%S'),
-                    help=first_m.strftime('%Y-%m-%d %H:%M:%S'))
-        mal3.metric("Last play of the minutes streak",  last_m.strftime('%Y-%m-%d %H:%M:%S'),
-                    help=last_m.strftime('%Y-%m-%d %H:%M:%S'))
-    else:
-        mal1.metric("Longest album minutes streak", "-")
-        mal2.metric("First play of the minutes streak", "-")
-        mal3.metric("Last play of the minutes streak", "-")
+    album_val_m, album_minutes, first_m, last_m = longest_consecutive_block_minutes(df_fd, "album_clean")
+    if album_val_m:
+        mal1.metric("Longest album minutes streak", f"{album_minutes:.2f} min of {album_val_m}")
+        mal2.metric("First play of the minutes streak", first_m.strftime('%Y-%m-%d %H:%M:%S'))
+        mal3.metric("Last play of the minutes streak", last_m.strftime('%Y-%m-%d %H:%M:%S'))
 
-    albums_summary = summarize(df_fd, "album")
-    albums_summary.rename(columns={"album": "Album"}, inplace=True)
+    # TABLA DE RESUMEN: Aquí es donde se agrupaba mal
+    albums_summary = summarize(df_fd, "album_clean").rename(columns={"album_clean": "Album"})
     albums_summary = add_share_columns(albums_summary)
-    albums_summary = albums_summary[["Album", "Minutes", "Minutes%", "Plays", "Plays%"]]
-    albums_summary = albums_summary.head(global_rows_to_show)
+    
+    album_artist = (
+        df_fd.groupby(["album_clean", "artist"]).size().reset_index(name="count")
+        .sort_values(["album_clean", "count"], ascending=[True, False])
+        .drop_duplicates("album_clean")[["album_clean", "artist"]]
+    )
+    
+    album_first_listen = df_fd.groupby("album_clean")["datetime"].min().reset_index()
+    album_first_listen["First Listen"] = album_first_listen["datetime"].dt.tz_convert(LOCAL_TZ).dt.strftime("%d/%m/%Y %H:%M:%S")
+    
+    albums_summary = (
+        albums_summary
+        .merge(album_artist, left_on="Album", right_on="album_clean", how="left")
+        .merge(album_first_listen, on="album_clean", how="left")
+    )
+    
+    albums_summary.rename(columns={"artist": "Artist"}, inplace=True)
+    albums_summary = albums_summary[["Album", "Artist", "First Listen", "Minutes", "Minutes%", "Plays", "Plays%"]].head(global_rows_to_show)
+    
     display_aggrid(albums_summary, container_id="grid_albums")
 
-   ########################################################################
-    # Géneros (usando df_genre para minutos totales con crédito completo,
-    # y 'primary_genre' (primer género) por reproducción para rachas)
-    ########################################################################
-
+    # =========================
+    # GENRES
+    # =========================
     st.markdown("### Genres")
-
-    # --- 1) Filtrado coherente con Tab 2 ---
-    # df_fd: ya es df filtrado por fecha/turno para Tab 2 (1 fila = 1 play)
-    # df_genre: explotado (1 fila = 1 play x género)
     df_gf = df_genre[(df_genre["datetime"] >= global_start) & (df_genre["datetime"] <= global_end)]
     df_gf = apply_time_filter(df_gf, global_time_filter).copy()
 
-    # --- 2) Métricas básicas ---
-    # Unique genres tomando el explotado (géneros que realmente aparecen)
     n_unique_genres = df_gf["genre_single"].nunique()
+    minutes_by_genre = (df_gf.groupby("genre_single")["duration"].sum() / 60).sort_values(ascending=False)
+    avg_minutes_per_genre = float(minutes_by_genre.mean()) if n_unique_genres else 0.0
 
-    # Minutos por género (crédito completo): sumamos duration y dividimos entre 60
-    minutes_by_genre = (
-        df_gf.groupby("genre_single")["duration"].sum() / 60.0
-    ).sort_values(ascending=False)
-
-    # Promedio de minutos por género => media de los minutos por cada género presente
-    avg_minutes_per_genre = float(minutes_by_genre.mean()) if n_unique_genres > 0 else 0.0
-
-    # plays_per_day y minutes_per_day ya los tienes arriba calculados con df_fd.
-    # Ojo: minutes_per_day de Tab 2 usa df_fd (no explotado), que está OK.
     t1, t2, t4, t3 = st.columns(4)
     t1.metric("Unique genres", n_unique_genres)
     t2.metric("Minutes per genre", f"{avg_minutes_per_genre:.2f} min")
     t3.metric("Plays per day", plays_per_day)
     t4.metric("Minutes per day", f"{minutes_per_day:.2f} min")
 
-    # --- 3) Rachas de género (secuencia 1 play -> 1 género primario) ---
-    # Para medir rachas sobre la secuencia temporal real sin "multiplicar" por multi-género,
-    # generamos un 'primary_genre' = primer género de la celda 'genre' de df_fd (1 fila = 1 play).
+    # Rachas por primary genre
     df_seq = df_fd.sort_values("datetime").copy()
-
-    def first_genre_or_nan(cell):
-        try:
-            lst = split_genres(cell)
-            return lst[0] if lst else None
-        except Exception:
-            return None
-
-    df_seq["primary_genre"] = df_seq["genre"].apply(first_genre_or_nan)
-
-    # Creamos bloques de repeticiones consecutivas por género primario
+    df_seq["primary_genre"] = df_seq["genre"].apply(lambda x: split_genres(x)[0] if split_genres(x) else None)
     df_seq["prev_genre"] = df_seq["primary_genre"].shift()
     df_seq["new_block"] = df_seq["primary_genre"] != df_seq["prev_genre"]
     df_seq["block"] = df_seq["new_block"].cumsum()
 
-    # Si no hay géneros válidos, evitamos fallos
     if df_seq["primary_genre"].notna().any():
         repeats = df_seq.groupby(["primary_genre", "block"]).size()
         top_repeats = repeats.groupby("primary_genre").max().sort_values(ascending=False)
-
-        # Género con mayor repetición consecutiva
         top_genre_streak = top_repeats.index[0]
-        # Filtramos las reproducciones de ese género (secuencia temporal real)
         genre_plays = df_seq[df_seq["primary_genre"] == top_genre_streak].sort_values("datetime")
-
-        # Identificador de racha por hueco de más de X segundos (usas 3600 = 1h)
         genre_plays["diff"] = genre_plays["datetime"].diff().dt.total_seconds().fillna(0)
         genre_plays["streak_id"] = (genre_plays["diff"] > 3600).cumsum()
-
-        # Racha más larga (en nº de plays) dentro de ese género
         streak_lengths = genre_plays.groupby("streak_id").size()
-        longest_streak_id = streak_lengths.idxmax()
-        longest_streak = genre_plays[genre_plays["streak_id"] == longest_streak_id]
+        longest_streak = genre_plays[genre_plays["streak_id"] == streak_lengths.idxmax()]
 
-        # Primera y última reproducción de la racha
         first_play = longest_streak["datetime"].min()
         last_play = longest_streak["datetime"].max()
-
         c1, c2, c3 = st.columns(3)
-        c1.metric("Longest genre repeat streak",
-                f"{top_repeats.iloc[0]} plays of {top_genre_streak}",
-                help=f"{top_repeats.iloc[0]} plays of {top_genre_streak}")
-        c2.metric("First play of the streak", first_play.strftime('%Y-%m-%d %H:%M:%S'),
-                  help=f"{first_play.strftime('%Y-%m-%d %H:%M:%S')}")
-        c3.metric("Last play of the streak",  last_play.strftime('%Y-%m-%d %H:%M:%S'),
-                  help=f"{last_play.strftime('%Y-%m-%d %H:%M:%S')}")
+        c1.metric("Longest genre repeat streak", f"{top_repeats.iloc[0]} plays of {top_genre_streak}")
+        c2.metric("First play of the streak", first_play.strftime('%Y-%m-%d %H:%M:%S'))
+        c3.metric("Last play of the streak", last_play.strftime('%Y-%m-%d %H:%M:%S'))
     else:
         st.info("No hay géneros válidos para calcular rachas en el rango/turno seleccionado.")
 
-    # --- Racha consecutiva por MINUTOS (genre primario) sobre df_seq ---
     mg1, mg2, mg3 = st.columns(3)
     genre_val_m, genre_minutes, first_m, last_m = longest_consecutive_block_minutes(df_seq.rename(columns={"primary_genre":"genre_primary"}), "genre_primary")
-    if genre_val_m is not None and first_m is not None:
-        mg1.metric("Longest genre minutes streak",
-                f"{genre_minutes:.2f} min of {genre_val_m}",
-                help=f"{genre_minutes:.2f} min of {genre_val_m}")
-        mg2.metric("First play of the minutes streak", first_m.strftime('%Y-%m-%d %H:%M:%S'),
-                help=first_m.strftime('%Y-%m-%d %H:%M:%S'))
-        mg3.metric("Last play of the minutes streak",  last_m.strftime('%Y-%m-%d %H:%M:%S'),
-                help=last_m.strftime('%Y-%m-%d %H:%M:%S'))
+    if genre_val_m:
+        mg1.metric("Longest genre minutes streak", f"{genre_minutes:.2f} min of {genre_val_m}")
+        mg2.metric("First play of the minutes streak", first_m.strftime('%Y-%m-%d %H:%M:%S'))
+        mg3.metric("Last play of the minutes streak", last_m.strftime('%Y-%m-%d %H:%M:%S'))
     else:
         mg1.metric("Longest genre minutes streak", "-")
         mg2.metric("First play of the minutes streak", "-")
         mg3.metric("Last play of the minutes streak", "-")
 
-    # --- 4) Tabla de géneros (crédito completo) ---
-    # Construimos un resumen por género a partir de df_gf (explotado)
+    # Tabla de géneros
     if not df_gf.empty:
         genres_summary = (
             df_gf.groupby("genre_single")
-            .agg(
-                Minutes=("duration", lambda x: round(x.sum() / 60.0, 2)),
-                Plays=("genre_single", "count")  # número de filas explotadas (play x género)
-            )
+            .agg(Minutes=("duration", lambda x: round(x.sum() / 60.0, 2)),
+                 Plays=("genre_single", "count"))
             .sort_values("Minutes", ascending=False)
             .reset_index()
             .rename(columns={"genre_single": "Genre"})
         )
-        # Añadimos % sobre el total
         total_minutes_g = genres_summary["Minutes"].sum()
         total_plays_g = genres_summary["Plays"].sum()
-        genres_summary["Minutes%"] = (genres_summary["Minutes"] / total_minutes_g * 100) if total_minutes_g > 0 else 0.0
-        genres_summary["Plays%"] = (genres_summary["Plays"] / total_plays_g * 100) if total_plays_g > 0 else 0.0
-
-        # Reordenar y limitar
-        genres_summary = genres_summary[["Genre", "Minutes", "Minutes%", "Plays", "Plays%"]]
-        genres_summary = genres_summary.head(global_rows_to_show)
-
+        genres_summary["Minutes%"] = (genres_summary["Minutes"] / total_minutes_g * 100) if total_minutes_g else 0.0
+        genres_summary["Plays%"] = (genres_summary["Plays"] / total_plays_g * 100) if total_plays_g else 0.0
+        genre_first_listen = df_genre.groupby("genre_single")["datetime"].min().reset_index()
+        genre_first_listen["First Listen"] = genre_first_listen["datetime"].dt.tz_convert(LOCAL_TZ).dt.strftime("%d/%m/%Y %H:%M:%S")
+        genres_summary = genres_summary.merge(genre_first_listen, left_on="Genre", right_on="genre_single", how="left")
+        genres_summary = genres_summary[["Genre", "First Listen", "Minutes", "Minutes%", "Plays", "Plays%"]].head(global_rows_to_show)
         display_aggrid(genres_summary, container_id="grid_genres")
     else:
         st.write("No hay datos de géneros en el rango/turno seleccionado.")
 
-
+    # =========================
+    # DECADES
+    # =========================
     st.markdown("### Decades")
-
     n_unique_decades = df_fd_dec["decade"].nunique()
-    avg_minutes_per_decade = round(
-        (df_fd_dec["duration"].sum() / 60) / n_unique_decades, 2
-    ) if n_unique_decades > 0 else 0.0
+    avg_minutes_per_decade = round((df_fd_dec["duration"].sum() / 60) / n_unique_decades, 2) if n_unique_decades else 0.0
 
     d1, d2, d3, d4 = st.columns(4)
     d1.metric("Unique decades", n_unique_decades)
@@ -1623,11 +1893,9 @@ with tab2:
     d4.metric("Minutes per day", f"{minutes_per_day:.2f} min")
 
     top_dec_val, top_dec_size, first_play, last_play = longest_consecutive_block_details(df_fd_dec, "decade")
-
     c1, c2, c3 = st.columns(3)
-    if top_dec_val is not None and first_play is not None:
-        c1.metric("Longest decade repeat streak",
-                f"{top_dec_size} plays of {top_dec_val}")
+    if top_dec_val:
+        c1.metric("Longest decade repeat streak", f"{top_dec_size} plays of {top_dec_val}")
         c2.metric("First play of the streak", first_play.strftime('%Y-%m-%d %H:%M:%S'))
         c3.metric("Last play of the streak", last_play.strftime('%Y-%m-%d %H:%M:%S'))
     else:
@@ -1637,10 +1905,8 @@ with tab2:
 
     dm1, dm2, dm3 = st.columns(3)
     dec_val_m, dec_minutes, first_m, last_m = longest_consecutive_block_minutes(df_fd_dec, "decade")
-
-    if dec_val_m is not None and first_m is not None:
-        dm1.metric("Longest decade minutes streak",
-                f"{dec_minutes:.2f} min of {dec_val_m}")
+    if dec_val_m:
+        dm1.metric("Longest decade minutes streak", f"{dec_minutes:.2f} min of {dec_val_m}")
         dm2.metric("First play of minutes streak", first_m.strftime('%Y-%m-%d %H:%M:%S'))
         dm3.metric("Last play of minutes streak", last_m.strftime('%Y-%m-%d %H:%M:%S'))
     else:
@@ -1650,26 +1916,27 @@ with tab2:
 
     decades_summary = (
         df_fd_dec.groupby("decade")
-        .agg(
-            Minutes=("duration", lambda x: round(x.sum() / 60.0, 2)),
-            Plays=("decade", "count")
-        )
+        .agg(Minutes=("duration", lambda x: round(x.sum() / 60.0, 2)),
+             Plays=("decade", "count"))
         .reset_index()
         .rename(columns={"decade": "Decade"})
     )
-
-    # Añadir porcentajes
     total_m = decades_summary["Minutes"].sum()
     total_p = decades_summary["Plays"].sum()
+    decades_summary["Minutes%"] = total_m and (decades_summary["Minutes"] / total_m * 100)
+    decades_summary["Plays%"] = total_p and (decades_summary["Plays"] / total_p * 100)
 
-    decades_summary["Minutes%"] = (decades_summary["Minutes"] / total_m * 100)
-    decades_summary["Plays%"]   = (decades_summary["Plays"] / total_p * 100)
-
-    decades_summary = decades_summary[["Decade", "Minutes", "Minutes%", "Plays", "Plays%"]]
-    decades_summary = decades_summary.sort_values("Minutes", ascending=False).head(global_rows_to_show)
-
+    decade_first_listen = (
+        df[df["year_release"].notna()]
+        .assign(decade=df["year_release"].apply(get_decade))
+        .groupby("decade")["datetime"].min()
+        .reset_index()
+    )
+    decade_first_listen["First Listen"] = decade_first_listen["datetime"].dt.tz_convert(LOCAL_TZ).dt.strftime("%d/%m/%Y %H:%M:%S")
+    decades_summary = decades_summary.merge(decade_first_listen, left_on="Decade", right_on="decade", how="left")
+    decades_summary = decades_summary[["Decade", "First Listen", "Minutes", "Minutes%", "Plays", "Plays%"]].sort_values("Minutes", ascending=False).head(global_rows_to_show)
     display_aggrid(decades_summary, container_id="grid_decades")
-
+    
 # =========================
 # TAB 3 - Time Patterns
 # =========================
@@ -2091,353 +2358,223 @@ with tab4:
     dominant = dominant.loc[idx]
     dominant["minutes"] = dominant["duration"]/60
 
-# =========================
-# TAB 5 - Predictions (GAM con Splines - pyGAM)
-# =========================
 with tab5:
-    st.header("📈 Predictions (GAM con Splines)")
+    st.header("Music Search / Filter")
 
-    st.write("""
-    Predicciones con **GAM (Generalized Additive Models)** usando *splines*:
-    - Captura **tendencia suave** y **estacionalidad cíclica** (mes/semana/día).
-    - No requiere series perfectamente regulares.
-    - Sin las planicies/serruchos típicos de ARIMA en datos ruidosos.
-    """)
-
-    # -------- Intento de importación de pyGAM --------
-    try:
-        from pygam import LinearGAM, PoissonGAM, s
-    except Exception as e:
-        st.error("Necesitas instalar `pygam` para usar el modelo con splines.\n\n"
-                 "Ejecuta: `pip install pygam`")
-        st.stop()
-
-    # -------- Controles de la UI --------
-    pred_metric = st.selectbox("Métrica a predecir", ["Minutes", "Plays"], index=0)
-    pred_horizon = st.slider("Horizonte (periodos futuros)", 3, 24, 8)
-    show_intervals = st.checkbox("Mostrar intervalos (95%)", True)
-
-    # Hyperparámetros del GAM
-    st.markdown("**Ajustes del modelo (opcional)**")
-    c1, c2, c3 = st.columns(3)
-    trend_splines = c1.slider("Nº splines de tendencia", 5, 60, 20, help="Complejidad de la curva de tendencia")
-    season_splines = c2.slider("Nº splines estacionales", 5, 24, 10, help="Complejidad del ciclo (mes/semana/día)")
-    lam_power = c3.selectbox("Suavizado λ (potencia de 10)", [0,1,2,3,4], index=2,
-                             help="Mayor λ = más suave (10^λ)")
-    lam = 10.0 ** lam_power
-
-    st.caption(f"Periodo actual: {global_period} — Filtros globales aplicados.")
-
-    # -------- Helpers --------
-    def _freq_map(period: str) -> str:
-        if period == "day": return "D"
-        if period == "week": return "W-MON"   # semanas desde Lunes
-        if period == "month": return "MS"     # inicio de mes
-        if period == "year": return "YS"      # inicio de año
-        return "MS"
-
-    def _add_period(df_in: pd.DataFrame, period: str, tz_name: str) -> pd.DataFrame:
-        """Replica la lógica de 'Period' para day/week/month/year."""
-        df_out = df_in.copy()
-        if df_out.empty:
-            df_out["Period"] = pd.NaT
-            return df_out
-
-        if period == "week":
-            df_out["Period"] = (
-                df_out["datetime"].dt.tz_convert(tz_name)
-                .dt.to_period("W").apply(lambda r: r.start_time.date())
-            )
-        elif period == "day":
-            df_out["Period"] = df_out["datetime"].dt.tz_convert(tz_name).dt.date
-        elif period == "month":
-            df_out["Period"] = (
-                df_out["datetime"].dt.tz_convert(tz_name)
-                .dt.to_period("M").apply(lambda r: r.start_time.date())
-            )
-        elif period == "year":
-            df_out["Period"] = (
-                df_out["datetime"].dt.tz_convert(tz_name)
-                .dt.to_period("Y").apply(lambda r: r.start_time.date())
-            )
-        else:
-            df_out["Period"] = (
-                df_out["datetime"].dt.tz_convert(tz_name)
-                .dt.to_period("M").apply(lambda r: r.start_time.date())
-            )
-        return df_out
-
-    def _aggregate_series(df_in: pd.DataFrame, period: str, metric: str) -> pd.DataFrame:
-        """
-        Devuelve DataFrame con columnas: ds(datetime), y(valor).
-        y = Minutes (dur/60) o Plays (conteo).
-        """
-        tmp = _add_period(df_in, period, LOCAL_TZ)
-        agg = tmp.groupby("Period").agg(
-            dur=("duration", "sum"),
-            play=("track", "count")
-        ).reset_index()
-
-        agg["ds"] = pd.to_datetime(agg["Period"])
-        if metric == "Minutes":
-            agg["y"] = agg["dur"] / 60.0
-        else:
-            agg["y"] = agg["play"].astype(float)
-
-        return agg[["ds", "y"]].sort_values("ds").reset_index(drop=True)
-
-    def _make_features(ds: pd.Series, period: str, t_offset:int=0) -> pd.DataFrame:
-        """
-        Crea matriz de features X para GAM:
-          - t_norm: índice temporal normalizado [0..1], con offset para futuro
-          - estacionalidad cíclica según period:
-            * month -> month_of_year (1..12) como variable cíclica
-            * week  -> iso week (1..53) como variable cíclica
-            * day   -> day_of_week (0..6) como variable cíclica
-            * year  -> sin estacionalidad (solo tendencia)
-        Devuelve DataFrame con columnas numéricas para alimentar al GAM.
-        """
-        n = len(ds)
-        t = np.arange(t_offset, t_offset + n, dtype=float)
-        # normalizamos t para estabilidad numérica
-        t_norm = (t - t.min()) / (t.max() - t.min() + 1e-9)
-
-        dfX = pd.DataFrame({"t_norm": t_norm}, index=ds.index)
-
-        if period == "month":
-            month = ds.dt.month.astype(int)  # 1..12
-            # Escala 0..12 para cyclic; pyGAM con constraints='cyclic'
-            dfX["season"] = month.astype(float)
-            which = ["t_norm", "season"]
-        elif period == "week":
-            wk = ds.dt.isocalendar().week.astype(int).astype(float)  # 1..53
-            dfX["season"] = wk
-            which = ["t_norm", "season"]
-        elif period == "day":
-            dow = ds.dt.weekday.astype(int).astype(float)  # 0..6
-            dfX["season"] = dow
-            which = ["t_norm", "season"]
-        else:
-            # year u otros -> sólo tendencia
-            which = ["t_norm"]
-
-        return dfX[which].to_numpy(), which
-
-    def _build_future_index(last_ds: pd.Timestamp, period: str, horizon: int) -> pd.DatetimeIndex:
-        freq = _freq_map(period)
-        return pd.date_range(
-            start=last_ds + pd.tseries.frequencies.to_offset(freq),
-            periods=horizon,
-            freq=freq
+    # --- INPUTS DE FILTRO ---
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        track_input = st.text_input("Track contains")
+        artist_input = st.text_input("Artist contains")
+    
+    with col2:
+        album_input = st.text_input("Album contains")
+    
+    with col3:
+        duration_range = st.slider(
+            "Duration (seconds)",
+            min_value=0,
+            max_value=int(df["duration"].max()) if not df.empty else 600,
+            value=(0, int(df["duration"].max()) if not df.empty else 600)
         )
+    
+    year_filter = st.slider(
+        "Release year",
+        min_value=year_min,
+        max_value=year_max,
+        value=(year_min, year_max),
+    )
 
-    def _fit_gam_and_forecast(agg_df: pd.DataFrame, period: str, metric: str,
-                              horizon: int, trend_spl:int, season_spl:int, lam_val:float):
-        """
-        Ajusta GAM y genera predicciones + intervalos:
-          - LinearGAM para Minutes
-          - PoissonGAM para Plays
-        Devuelve: yhat (ndarray), ci (ndarray Nx2), future_index (DatetimeIndex), gam, used_seasonal(bool)
-        """
-        y = agg_df["y"].to_numpy()
-        ds = agg_df["ds"]
+    # --- FILTRAR DATAFRAME ---
+    df_search = df.copy()
+    
+    if track_input:
+        df_search = df_search[df_search["track"].str.contains(track_input, case=False, na=False)]
+    if artist_input:
+        df_search = df_search[df_search["artist"].str.contains(artist_input, case=False, na=False)]
+    if album_input:
+        df_search = df_search[df_search["album"].str.contains(album_input, case=False, na=False)]
+    
+    df_search = df_search[
+        (df_search["duration"].between(duration_range[0], duration_range[1])) &
+        (df_search["year_release"].between(year_filter[0], year_filter[1]))
+    ]
 
-        if len(agg_df) < 6:
-            raise ValueError("Serie demasiado corta (<6 puntos). Amplía el rango temporal.")
-
-        # Construir X de entrenamiento
-        X_train, cols = _make_features(ds, period, t_offset=0)
-
-        # Definir el modelo
-        # Componente de tendencia
-        if metric == "Plays":
-            gam = PoissonGAM(s(0, n_splines=trend_spl, lam=lam_val))
-        else:
-            gam = LinearGAM(s(0, n_splines=trend_spl, lam=lam_val))
-
-        # Componente estacional si existe 'season' como segunda columna
-        used_seasonal = (X_train.shape[1] > 1)
-        if used_seasonal:
-            # add_term: spline cíclico sobre la segunda columna
-            gam = gam + s(1, n_splines=season_spl, lam=lam_val, constraints='periodic')
-
-        # Ajuste
-        gam.fit(X_train, y)
-
-        # Futuro
-        future_index = _build_future_index(ds.iloc[-1], period, horizon)
-        X_future, _ = _make_features(future_index.to_series(), period, t_offset=len(agg_df))
-
-        # Predicción e intervalos
-        yhat = gam.predict(X_future)
-        ci = gam.confidence_intervals(X_future, width=0.95)
-
-        # No negativos
-        yhat = np.clip(yhat, 0, None)
-        ci[:, 0] = np.clip(ci[:, 0], 0, None)
-        ci[:, 1] = np.clip(ci[:, 1], 0, None)
-
-        return yhat, ci, future_index, gam, used_seasonal
-
-    # --------------------------
-    # Filtrado base global
-    # --------------------------
-    df_pred_base = df[(df["datetime"] >= global_start) & (df["datetime"] <= global_end)]
-    df_pred_base = apply_time_filter(df_pred_base, global_time_filter).copy()
-
-    # =====================================================================
-    # A) PREDICCIÓN GLOBAL (GAM)
-    # =====================================================================
-    st.subheader("A) Predicción Global (GAM)")
-
-    if df_pred_base.empty:
-        st.info("No hay datos en el rango seleccionado.")
-    else:
-        agg = _aggregate_series(df_pred_base, global_period, pred_metric)
-
-        try:
-            with st.spinner("Entrenando GAM..."):
-                yhat, ci, future_index, gam, used_seasonal = _fit_gam_and_forecast(
-                    agg, global_period, pred_metric, pred_horizon,
-                    trend_splines, season_splines, lam
-                )
-
-            # Tabla de salida
-            df_fc = pd.DataFrame({
-                "Period": future_index,
-                "Forecast": yhat,
-                "Lower": ci[:, 0],
-                "Upper": ci[:, 1]
-            })
-
-            # Gráfico
-            fig = go.Figure()
-            fig.add_trace(go.Scatter(
-                x=agg["ds"], y=agg["y"],
-                mode="lines+markers",
-                name="Histórico",
-                line=dict(color="#4A90E2", width=3)
-            ))
-            fig.add_trace(go.Scatter(
-                x=future_index, y=yhat,
-                mode="lines+markers",
-                name="Forecast (GAM)",
-                line=dict(color="#FF4B4B", width=3, dash="dash")
-            ))
-            if show_intervals:
-                fig.add_trace(go.Scatter(
-                    x=list(future_index) + list(future_index[::-1]),
-                    y=list(ci[:, 1]) + list(ci[:, 0][::-1]),
-                    fill="toself",
-                    fillcolor="rgba(255,75,75,0.15)",
-                    line=dict(color="rgba(0,0,0,0)"),
-                    hoverinfo="skip",
-                    name="Intervalo 95%"
-                ))
-
-            fig.update_layout(
-                title=f"{pred_metric} — Predicción (GAM con splines, próximos {pred_horizon} periodos)"
-                      + (" — con estacionalidad" if used_seasonal else " — sólo tendencia"),
-                template="plotly_dark",
-                xaxis_title="Periodo",
-                yaxis_title=pred_metric
+    # --- AGREGAR RESUMEN POR TRACK ---
+    if not df_search.empty:
+        summary_search = (
+            df_search.groupby(["track","artist","album"])
+            .agg(
+                Plays=("track", "count"),
+                Minutes=("duration", lambda x: round(x.sum()/60, 2)),
+                Year=("year_release", "first"),
+                Duration=("duration", "first")
             )
+            .reset_index()
+            .sort_values("Minutes", ascending=False)
+        )
+    else:
+        summary_search = pd.DataFrame(columns=["track","artist","album","Plays","Minutes","Year","Duration"])
 
+    display_aggrid(summary_search, container_id="search_tab_grid")
+
+# =========================
+# TAB 6 - HEATMAP HORA vs DÍA
+# =========================
+with tab6:
+    st.header("Hourly / Weekday Heatmap")
+    df_ht = df[(df["datetime"] >= global_start) & (df["datetime"] <= global_end)]
+    df_ht = apply_time_filter(df_ht, global_time_filter)
+    if df_ht.empty:
+        st.info("No data for selected range/filter")
+    else:
+        df_ht = df_ht.copy()
+        df_ht["hour"] = df_ht["datetime"].dt.hour
+        df_ht["weekday"] = df_ht["datetime"].dt.day_name()
+        order = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+        df_ht["weekday"] = pd.Categorical(df_ht["weekday"], categories=order, ordered=True)
+        # usar density_heatmap para control de colores
+        df_ht["duration_min"] = df_ht["duration"] / 60.0
+        fig = px.density_heatmap(
+            df_ht,
+            x="hour",
+            y="weekday",
+            z="duration_min",
+            histfunc="sum",
+            labels={"hour":"Hour","weekday":"Weekday","z":"Minutes"},
+            color_continuous_scale="Viridis",
+            nbinsx=24,
+            nbinsy=7
+        )
+        fig.update_traces(zmax=df_ht["duration_min"].sum())  # forzar escala completa
+        st.plotly_chart(fig, use_container_width=True)
+
+# =========================
+# TAB 7 - WORDCLOUD REAL
+# =========================
+with tab7:
+    st.header("Wordcloud of track titles & artists")
+    if not _HAS_WORDCLOUD:
+        st.error("wordcloud package not installed. Install via `pip install wordcloud` or use requirements file.")
+    df_wc = df[(df["datetime"] >= global_start) & (df["datetime"] <= global_end)]
+    df_wc = apply_time_filter(df_wc, global_time_filter)
+    if df_wc.empty:
+        st.info("No data for selected range/filter")
+    else:
+        text = " ".join(
+            df_wc["track"].astype(str).tolist() + df_wc["artist"].astype(str).tolist()
+        )
+        words = re.findall(r"\w+", text.lower())
+        if words:
+            if _HAS_WORDCLOUD:
+                wc = WordCloud(width=800, height=400, background_color="white").generate(" ".join(words))
+                st.image(wc.to_array(), use_column_width=True)
+            else:
+                counts = pd.Series(words).value_counts().head(50).reset_index()
+                counts.columns = ["word","count"]
+                fig = px.bar(
+                    counts,
+                    x="word",
+                    y="count",
+                    title="Most common words (bar chart fallback)",
+                )
+                st.plotly_chart(fig, use_container_width=True)
+        else:
+            st.info("No words found in the selection")
+
+# =========================
+# TAB 8 - SIMPLE PREDICTION
+# =========================
+with tab8:
+    st.header("Trend & Forecast")
+    df_pf = df[(df["datetime"] >= global_start) & (df["datetime"] <= global_end)]
+    df_pf = apply_time_filter(df_pf, global_time_filter)
+    summary_pred = get_listening_summary(df_pf, global_period)
+    if summary_pred.empty:
+        st.info("No data to predict")
+    else:
+        summary_pred = summary_pred.copy()
+        # convertir Period a datetime para ordenar
+        summary_pred["PeriodDt"] = pd.to_datetime(summary_pred["Period"])
+        summary_pred = summary_pred.sort_values("PeriodDt")
+        X = np.arange(len(summary_pred)).reshape(-1,1)
+        y = summary_pred["Minutes"].values
+        model = LinearRegression()
+        model.fit(X, y)
+        forecast_horizon = 3
+        forecast_idx = np.arange(len(summary_pred), len(summary_pred)+forecast_horizon).reshape(-1,1)
+        preds = model.predict(forecast_idx)
+        # generar fechas futuras según global_period
+        freq_map = {"day":"D","week":"W","month":"M","year":"Y"}
+        last_date = summary_pred["PeriodDt"].iloc[-1]
+        future_dates = pd.date_range(start=last_date + pd.offsets.DateOffset(1), periods=forecast_horizon, freq=freq_map.get(global_period, "M"))
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=summary_pred["PeriodDt"], y=y, mode="lines+markers", name="Actual"))
+        fig.add_trace(go.Scatter(x=future_dates, y=preds, mode="lines+markers", name="Forecast"))
+        fig.update_layout(title="Minutes trend and short-term forecast")
+        st.plotly_chart(fig, use_container_width=True)
+        st.write(f"Equation: minutes = {model.coef_[0]:.2f} * period + {model.intercept_:.2f}, R² = {model.score(X,y):.3f}")
+
+# =========================
+# TAB 9 - GENRE CO-OCCURRENCE
+# =========================
+with tab9:
+    st.header("Genre co-occurrence heatmap")
+    df_n = df[(df["datetime"] >= global_start) & (df["datetime"] <= global_end)]
+    df_n = apply_time_filter(df_n, global_time_filter)
+    if df_n.empty:
+        st.info("No data for selected range/filter")
+    else:
+        df_n = df_n.copy()
+        df_n["genres_list"] = df_n["genre"].apply(split_genres).apply(lambda lst: [normalize_genre_name(g) for g in lst if g])
+        from itertools import combinations
+        pairs = {}
+        for gl in df_n["genres_list"]:
+            unique = sorted(set(gl))
+            for a,b in combinations(unique,2):
+                pairs[(a,b)] = pairs.get((a,b),0) + 1
+        if not pairs:
+            st.info("No multi-genre tracks to compute co-occurrence")
+        else:
+            genres = sorted({g for pair in pairs for g in pair})
+            mat = pd.DataFrame(0, index=genres, columns=genres)
+            for (a,b),cnt in pairs.items():
+                mat.loc[a,b] = cnt
+                mat.loc[b,a] = cnt
+            fig = px.imshow(mat, labels={"x":"Genre","y":"Genre","color":"Count"}, color_continuous_scale="Inferno")
             st.plotly_chart(fig, use_container_width=True)
-            st.dataframe(df_fc)
-        except Exception as e:
-            st.error(f"No se pudo ajustar el modelo GAM: {e}")
-            st.info("Prueba a ampliar el rango temporal, reducir el horizonte o bajar la complejidad de splines.")
 
-    # =====================================================================
-    # B) PREDICCIÓN POR GÉNERO (GAM)
-    # =====================================================================
-    st.subheader("B) Genre Evolution Forecast (GAM)")
-
-    df_gen_pred = df_genre[(df_genre["datetime"] >= global_start) & (df_genre["datetime"] <= global_end)]
-    df_gen_pred = apply_time_filter(df_gen_pred, global_time_filter).copy()
-    df_gen_pred = df_gen_pred[df_gen_pred["genre_single"].notna()]
-
-    if df_gen_pred.empty:
-        st.info("No hay datos de géneros en el rango seleccionado.")
+# =========================
+# TAB 10 - DIVERSITY OVER TIME
+# =========================
+with tab10:
+    st.header("Artist diversity per period (Shannon index)")
+    df_div = df[(df["datetime"] >= global_start) & (df["datetime"] <= global_end)]
+    df_div = apply_time_filter(df_div, global_time_filter)
+    if df_div.empty:
+        st.info("No data")
     else:
-        topN = st.slider("Top‑N géneros a predecir", 1, 5, 3)
+        temp = df_div.copy()
+        if global_period == "week":
+            temp["Period"] = temp["datetime"].dt.to_period("W").apply(lambda r: r.start_time.date())
+        elif global_period == "day":
+            temp["Period"] = temp["datetime"].dt.date
+        elif global_period == "month":
+            temp["Period"] = temp["datetime"].dt.to_period("M").apply(lambda r: r.start_time.date())
+        elif global_period == "year":
+            temp["Period"] = temp["datetime"].dt.to_period("Y").apply(lambda r: r.start_time.date())
+        counts = temp.groupby(["Period","artist"]).size()
+        # convertir a proporciones por periodo
+        prop = counts.groupby(level=0).apply(lambda s: s / s.sum())
+        shannon = prop.groupby(level=0).apply(lambda s: -(s * np.log(s)).sum())
+        sh_df = shannon.reset_index(name="Shannon")
+        # ordenar por fecha si posible
+        try:
+            sh_df["PeriodDt"] = pd.to_datetime(sh_df["Period"])
+            sh_df = sh_df.sort_values("PeriodDt")
+        except Exception:
+            pass
+        fig = px.line(sh_df, x="Period", y="Shannon", title="Artist diversity (Shannon index)")
+        st.plotly_chart(fig, use_container_width=True)
 
-        # Agregamos por Period & género
-        df_gen_pred = _add_period(df_gen_pred, global_period, LOCAL_TZ)
-        agg_all = (
-            df_gen_pred.groupby(["Period", "genre_single"])["duration"]
-            .sum().reset_index()
-        )
-        # Top-N por minutos totales
-        top_genres = (
-            agg_all.groupby("genre_single")["duration"].sum()
-            .sort_values(ascending=False).head(topN).index.tolist()
-        )
-
-        # DataFrame común con ds,y para cada género
-        agg_all["ds"] = pd.to_datetime(agg_all["Period"])
-        agg_all["y"] = agg_all["duration"] / 60.0
-
-        fig_gen = go.Figure()
-        colors = px.colors.qualitative.Bold
-        progress = st.progress(0)
-
-        for i, g in enumerate(top_genres):
-            dfg = agg_all[agg_all["genre_single"] == g].sort_values("ds")[["ds","y"]].reset_index(drop=True)
-
-            if len(dfg) < 6:
-                # Serie corta: pinta histórico y continua
-                fig_gen.add_trace(go.Scatter(
-                    x=dfg["ds"], y=dfg["y"],
-                    mode="lines+markers",
-                    name=f"{g} — Histórico (serie corta)",
-                    line=dict(color=colors[i % len(colors)], width=2)
-                ))
-                progress.progress((i + 1) / len(top_genres))
-                continue
-
-            try:
-                yhat, ci, future_idx, gam_g, used_seasonal_g = _fit_gam_and_forecast(
-                    dfg, global_period, "Minutes", pred_horizon,
-                    trend_splines, season_splines, lam
-                )
-                color = colors[i % len(colors)]
-
-                fig_gen.add_trace(go.Scatter(
-                    x=dfg["ds"], y=dfg["y"],
-                    mode="lines+markers",
-                    name=f"{g} — Histórico",
-                    line=dict(color=color, width=2)
-                ))
-                fig_gen.add_trace(go.Scatter(
-                    x=future_idx, y=yhat,
-                    mode="lines+markers",
-                    name=f"{g} — Pred.",
-                    line=dict(color=color, width=3, dash="dash")
-                ))
-                if show_intervals:
-                    fig_gen.add_trace(go.Scatter(
-                        x=list(future_idx) + list(future_idx[::-1]),
-                        y=list(ci[:, 1]) + list(ci[:, 0][::-1]),
-                        fill="toself",
-                        fillcolor="rgba(255,255,255,0.06)",
-                        line=dict(color="rgba(0,0,0,0)"),
-                        hoverinfo="skip",
-                        showlegend=False
-                    ))
-            except Exception as e:
-                st.warning(f"{g}: no se pudo entrenar el GAM ({e}) — se muestra sólo histórico.")
-
-            progress.progress((i + 1) / len(top_genres))
-
-        fig_gen.update_layout(
-            title=f"Predicción por Género (GAM - Top {topN}, próximos {pred_horizon} periodos)",
-            template="plotly_dark",
-            xaxis_title="Periodo",
-            yaxis_title="Minutes",
-            hovermode="x unified"
-        )
-        st.plotly_chart(fig_gen, use_container_width=True)
-
-    st.info("Consejos: usa 'month' o 'week' con histórico suficiente; aumenta λ si ves sobreajuste (curvas muy onduladas).")

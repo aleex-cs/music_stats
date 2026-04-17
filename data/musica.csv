@@ -55,14 +55,14 @@
 11 - Stop.flac;Stop;Pink Floyd;The Wall [Disc 2];11;Progressive Rock;1979;3024
 12 - The Trial.flac;The Trial;Pink Floyd;The Wall [Disc 2];12;Progressive Rock;1979;31973
 13 - Outside The Wall.flac;Outside The Wall;Pink Floyd;The Wall [Disc 2];13;Progressive Rock;1979;10313
-01 - Shine On You Crazy Diamond [Parts I–V].flac;Shine On You Crazy Diamond [Parts I–V];Pink Floyd;Wish You Were Here;1;Progressive rock;1975;8108
+01 - Shine On You Crazy Diamond [Parts I–V].flac;Shine On You Crazy Diamond [Parts I–V];Pink Floyd;Wish You Were Here;1;Progressive rock;1975;81080
 02 - Welcome to The Machine.flac;Welcome to The Machine;Pink Floyd;Wish You Were Here;2;Progressive rock;1975;44669
-03 - Have a Cigar.flac;Have a Cigar;Pink Floyd;Wish You Were Here;3;Progressive rock;1975;3080
+03 - Have a Cigar.flac;Have a Cigar;Pink Floyd;Wish You Were Here;3;Progressive rock;1975;30800
 04 - Wish You Were Here.flac;Wish You Were Here;Pink Floyd;Wish You Were Here;4;Progressive rock;1975;34033
 05 - Shine On You Crazy Diamond [Parts VI–IX].flac;Shine On You Crazy Diamond [Parts VI–IX];Pink Floyd;Wish You Were Here;5;Progressive rock;1975;74287
 01 - Pigs on the wing 1.flac;Pigs on the wing 1;Pink Floyd;Animals;1;Psychedelic Rock;1977;8503
 02 - Dogs.flac;Dogs;Pink Floyd;Animals;2;Psychedelic Rock;1977;102413
-03 - Pigs [Three Different Ones].flac;Pigs [Three Different Ones];Pink Floyd;Animals;3;Psychedelic Rock;1977;6818
+03 - Pigs [Three Different Ones].flac;Pigs [Three Different Ones];Pink Floyd;Animals;3;Psychedelic Rock;1977;68180
 04 - Sheep.flac;Sheep;Pink Floyd;Animals;4;Psychedelic Rock;1977;62391
 05 - Pigs on the wing 2.flac;Pigs on the wing 2;Pink Floyd;Animals;5;Psychedelic Rock;1977;8476
 01 - Atom Heart Mother.flac;Atom Heart Mother;Pink Floyd;Atom Heart Mother;1;Progressive Rock;1970;142433
@@ -78,8 +78,8 @@
 06 - Echoes.flac;Echoes;Pink Floyd;Meddle;6;Progressive Rock;1971;141149
 01 - Speak to Me.flac;Speak to Me;Pink Floyd;The Dark Side of the Moon;1;Progressive rock;1973;6835
 02 - Breathe in the Air.flac;Breathe in the Air;Pink Floyd;The Dark Side of the Moon;2;Progressive rock;1973;16872
-03 - On the Run.flac;On the Run;Pink Floyd;The Dark Side of the Moon;3;Progressive rock;1973;2306
-04 - Time.flac;Time;Pink Floyd;The Dark Side of the Moon;4;Progressive rock;1973;4096
+03 - On the Run.flac;On the Run;Pink Floyd;The Dark Side of the Moon;3;Progressive rock;1973;23060
+04 - Time.flac;Time;Pink Floyd;The Dark Side of the Moon;4;Progressive rock;1973;40960
 05 - The Great Gig in the Sky.flac;The Great Gig in the Sky;Pink Floyd;The Dark Side of the Moon;5;Progressive rock;1973;28413
 06 - Money.flac;Money;Pink Floyd;The Dark Side of the Moon;6;Progressive rock;1973;38275
 07 - Us and Them.flac;Us and Them;Pink Floyd;The Dark Side of the Moon;7;Progressive rock;1973;46985
@@ -155,7 +155,7 @@ B5 Fin.flac;;Triana;Un encuentro {SP Repress};;;;10864
 05. Dire Straits - Hand In Hand.flac;Hand In Hand;Dire Straits;Making Movies (Australia Maxicut);5;Rock;1980;28949
 06. Dire Straits - Solid Rock.flac;Solid Rock;Dire Straits;Making Movies (Australia Maxicut);6;Rock;1980;20705
 07. Dire Straits - Les Boys.flac;Les Boys;Dire Straits;Making Movies (Australia Maxicut);7;Rock;1980;25057
-01 - Abre la puerta.flac;Abre la puerta;Triana;El Patio [40 Aniversario 2015];1;Rock Andaluz;1975;5918
+01 - Abre la puerta.flac;Abre la puerta;Triana;El Patio [40 Aniversario 2015];1;Rock Andaluz;1975;59180
 02 - Luminosa manana.flac;Luminosa manana;Triana;El Patio [40 Aniversario 2015];2;Rock Andaluz;1975;24133
 03 - Recuerdos de una noche.flac;Recuerdos de una noche;Triana;El Patio [40 Aniversario 2015];3;Rock Andaluz;1975;2814
 04 - Se de un lugar.flac;Se de un lugar;Triana;El Patio [40 Aniversario 2015];4;Rock Andaluz;1975;42935
@@ -195,7 +195,7 @@ B5 Fin.flac;;Triana;Un encuentro {SP Repress};;;;10864
 03. Otra inútil canción para la paz.flac;Otra inútil canción para la paz;Extremoduro;Material defectuoso;3;Rock;2011;37105
 04. Si te vas....flac;Si te vas...;Extremoduro;Material defectuoso;4;Rock;2011;51667
 05. Tango suicida.flac;Tango suicida;Extremoduro;Material defectuoso;5;Rock;2011;48785
-06. Calle esperanza s_n.flac;Calle esperanza s/n;Extremoduro;Material defectuoso;6;Rock;2011;4228
+06. Calle esperanza s_n.flac;Calle esperanza s/n;Extremoduro;Material defectuoso;6;Rock;2011;42280
 01. Dulce introducción al caos.flac;Dulce introducción al caos;Extremoduro;La ley innata;1;Rock;2008;46223
 02. Primer movimiento_ El sueño.flac;Primer movimiento: El sueño;Extremoduro;La ley innata;2;Rock;2008;36259
 03. Segundo movimiento_ Lo de fuera.flac;Segundo movimiento: Lo de fuera;Extremoduro;La ley innata;3;Rock;2008;70319
@@ -738,12 +738,12 @@ B5 - Rumbo A La Fiesta (Bulerias).flac;Rumbo A La Fiesta (Bulerias);Sabicas;Flam
 03 - Sin Solucion.mp3;Sin Solución;Leño;Más Madera;;Classic Rock/Hard Rock;1980;1850
 04 - No Voy Mas Lejos.mp3;No Voy Más Lejos;Leño;Más Madera;;Classic Rock/Hard Rock;1980;17423
 05 - Como Debe De Ser.mp3;Como Debe De Ser;Leño;Más Madera;;Classic Rock/Hard Rock;1980;13877
-06 - Si Senor, Si Senor.mp3;Sí Señor, Sí Señor;Leño;Más Madera;;Classic Rock/Hard Rock;1980;1370
-07 - Cucarachas.mp3;Cucarachas;Leño;Más Madera;;Classic Rock/Hard Rock;1980;1680
-08 - La Noche De Que Te Hable.mp3;La Noche De Que Te Hablé;Leño;Más Madera;;Classic Rock/Hard Rock;1980;1780
+06 - Si Senor, Si Senor.mp3;Sí Señor, Sí Señor;Leño;Más Madera;;Classic Rock/Hard Rock;1980;13700
+07 - Cucarachas.mp3;Cucarachas;Leño;Más Madera;;Classic Rock/Hard Rock;1980;16800
+08 - La Noche De Que Te Hable.mp3;La Noche De Que Te Hablé;Leño;Más Madera;;Classic Rock/Hard Rock;1980;17800
 09 - Calendario.mp3;Calendario;Leño;Más Madera;;Classic Rock/Hard Rock;1980;2070
-10 - Apаgalas.mp3;Apágalas;Leño;Más Madera;;Classic Rock/Hard Rock;1980;1490
-11 - Lo Que Acabas De Elegir.mp3;Lo Que Acabas De Elegir;Leño;Más Madera;;Classic Rock/Hard Rock;1980;1380
+10 - Apаgalas.mp3;Apágalas;Leño;Más Madera;;Classic Rock/Hard Rock;1980;14900
+11 - Lo Que Acabas De Elegir.mp3;Lo Que Acabas De Elegir;Leño;Más Madera;;Classic Rock/Hard Rock;1980;13800
 1 - Corre, Corre.mp3;¡Corre, Corre!;Leño;¡Corre, Corre!;;Classic Rock/Hard Rock;1982;20169
 2 - Sorprendente.mp3;Sorprendente;Leño;¡Corre, Corre!;;Classic Rock/Hard Rock;1982;24544
 3 - No Se Vende El Rock & Roll.mp3;No Se Vende El Rock & Roll;Leño;¡Corre, Corre!;;Classic Rock/Hard Rock;1982;19063
@@ -795,12 +795,12 @@ B5 - Rumbo A La Fiesta (Bulerias).flac;Rumbo A La Fiesta (Bulerias);Sabicas;Flam
 11 La Folie.flac;La Folie;The Stranglers;La Folie;11;New Wave;1981;36863
 12 Cruel Garden.flac;Cruel Garden;The Stranglers;La Folie;12;New Wave;1981;13544
 01.-Gone Hollywood.flac;Gone Hollywood;Supertramp;Breakfast In America;1;Rock;1979;31857
-02.-The Logical Song.flac;The Logical Song;Supertramp;Breakfast In America;2;Rock;1979;2503
-03.-Goodbye Stranger.flac;Goodbye Stranger;Supertramp;Breakfast In America;3;Rock;1979;3507
+02.-The Logical Song.flac;The Logical Song;Supertramp;Breakfast In America;2;Rock;1979;25030
+03.-Goodbye Stranger.flac;Goodbye Stranger;Supertramp;Breakfast In America;3;Rock;1979;35070
 04.-Breakfast In America.flac;Breakfast In America;Supertramp;Breakfast In America;4;Rock;1979;15922
 05.-Oh Darling.flac;Oh Darling;Supertramp;Breakfast In America;5;Rock;1979;23782
 06.-Take The Long Way Home.flac;Take The Long Way Home;Supertramp;Breakfast In America;6;Rock;1979;30909
-07.-Lord Is It Mine.flac;Lord Is It Mine;Supertramp;Breakfast In America;7;Rock;1979;2497
+07.-Lord Is It Mine.flac;Lord Is It Mine;Supertramp;Breakfast In America;7;Rock;1979;24970
 08.-Just Another Nervous Wreck.flac;Just Another Nervous Wreck;Supertramp;Breakfast In America;8;Rock;1979;26478
 09.-Casual Conversations.flac;Casual Conversations;Supertramp;Breakfast In America;9;Rock;1979;17931
 10.-Child Of Vision.flac;Child Of Vision;Supertramp;Breakfast In America;10;Rock;1979;44797
@@ -1282,7 +1282,7 @@ Robe - Se nos lleva el aire - 10 - Esto no está pasando.flac;Esto no está pasa
 01 - Roy Harper - Hors d'Oeuvres.flac;Hors d'Oeuvres;Roy Harper;Stormcock;1;Folk/Rock,Progressive Rock;1971;51715
 02 - Roy Harper - The Same Old Rock.flac;The Same Old Rock;Roy Harper;Stormcock;2;Progressive Rock,Folk/Rock;1971;74192
 03 - Roy Harper - One Man Rock and Roll Band.flac;One Man Rock and Roll Band;Roy Harper;Stormcock;3;Folk/Rock,Progressive Rock;1971;44313
-04 - Roy Harper - Me and My Woman.flac;Me and My Woman;Roy Harper;Stormcock;4;Folk/Rock,Progressive Rock;1971;7814
+04 - Roy Harper - Me and My Woman.flac;Me and My Woman;Roy Harper;Stormcock;4;Folk/Rock,Progressive Rock;1971;78140
 01 Sgt Peppers Lonely Hearts Club Band.mp3;Sgt Peppers Lonely Hearts Club Band;The Beatles;Sgt. Pepper's Lonely Hearts Club Band;;Pop/Rock;1967;12289
 02 With A Little Help From My Friends.mp3;With A Little Help From My Friends;The Beatles;Sgt. Pepper's Lonely Hearts Club Band;;Pop/Rock;1967;16411
 03 Lucy In The Sky With Diamonds.mp3;Lucy In The Sky With Diamonds;The Beatles;Sgt. Pepper's Lonely Hearts Club Band;;Pop/Rock;1967;20847
@@ -1402,13 +1402,13 @@ Robe - Se nos lleva el aire - 10 - Esto no está pasando.flac;Esto no está pasa
 05. La flamenca electrica.flac;La flamenca electrica;Iceberg;Coses Nostres;5;Progressive Rock;1976;34888
 06. Valencia.flac;Valencia;Iceberg;Coses Nostres;6;Progressive Rock;1976;49728
 07. 11,8 'Manifest de la follia'.flac;11/8 'Manifest de la follia';Iceberg;Coses Nostres;7;Progressive Rock;1976;3928
-01 - Don't You Grieve.flac;Don't You Grieve;Roy Harper;Flat Baroque And Berserk;1;Rock;1970;3454
-02 - I Hate The White Man.flac;I Hate The White Man;Roy Harper;Flat Baroque And Berserk;2;Rock;1970;4848
-03 - Feeling All The Saturday.flac;Feeling All The Saturday;Roy Harper;Flat Baroque And Berserk;3;Rock;1970;1182
+01 - Don't You Grieve.flac;Don't You Grieve;Roy Harper;Flat Baroque And Berserk;1;Rock;1970;34540
+02 - I Hate The White Man.flac;I Hate The White Man;Roy Harper;Flat Baroque And Berserk;2;Rock;1970;48480
+03 - Feeling All The Saturday.flac;Feeling All The Saturday;Roy Harper;Flat Baroque And Berserk;3;Rock;1970;11820
 04 - How Does It Feel.flac;How Does It Feel;Roy Harper;Flat Baroque And Berserk;4;Rock;1970;39107
 05 - Goodbye.flac;Goodbye;Roy Harper;Flat Baroque And Berserk;5;Rock;1970;34487
-06 - Another Day.flac;Another Day;Roy Harper;Flat Baroque And Berserk;6;Rock;1970;1790
-07 - Davey.flac;Davey;Roy Harper;Flat Baroque And Berserk;7;Rock;1970;926
+06 - Another Day.flac;Another Day;Roy Harper;Flat Baroque And Berserk;6;Rock;1970;17900
+07 - Davey.flac;Davey;Roy Harper;Flat Baroque And Berserk;7;Rock;1970;9260
 08 - East Of The Sun.flac;East Of The Sun;Roy Harper;Flat Baroque And Berserk;8;Rock;1970;18423
 09 - Tom Tiddler's Ground.flac;Tom Tiddler's Ground;Roy Harper;Flat Baroque And Berserk;9;Rock;1970;41067
 10 - Francesca.flac;Francesca;Roy Harper;Flat Baroque And Berserk;10;Rock;1970;8127
@@ -1426,7 +1426,7 @@ Robe - Se nos lleva el aire - 10 - Esto no está pasando.flac;Esto no está pasa
 11. Home (Studio).flac;Home (Studio);Roy Harper;Valentine;11;;1974;1887
 12. Too Many Movies.flac;Too Many Movies;Roy Harper;Valentine;12;;1974;39789
 13. Home.flac;Home;Roy Harper;Valentine;13;;1974;37044
-01 Sergio Corbucci Is Dead.flac;Sergio Corbucci Is Dead;Kreator;Hate Über Alles;1;Thrash Metal;2022;583
+01 Sergio Corbucci Is Dead.flac;Sergio Corbucci Is Dead;Kreator;Hate Über Alles;1;Thrash Metal;2022;5830
 02 Hate Über Alles.flac;Hate Über Alles;Kreator;Hate Über Alles;2;Thrash Metal;2022;22869
 03 Killer Of Jesus.flac;Killer Of Jesus;Kreator;Hate Über Alles;3;Thrash Metal;2022;24501
 04 Crush The Tyrants.flac;Crush The Tyrants;Kreator;Hate Über Alles;4;Thrash Metal;2022;25069
@@ -1600,14 +1600,14 @@ Sabicas  - Rock Encounter.flac;;Sabicas - Rock Encounter;Rock Encounter With Joe
 04. Love over Gold.flac;Love over Gold;Dire Straits;Love Over Gold;4;Pop, Rock;16/09/1982;37703
 05. It Never Rains.flac;It Never Rains;Dire Straits;Love Over Gold;5;Pop, Rock;16/09/1982;47964
 01. So Far Away.flac;So Far Away;Dire Straits;Brothers in Arms;1;Pop, Rock;01/05/1985;31213
-02. Money for Nothing.flac;Money for Nothing;Dire Straits;Brothers in Arms;2;Pop, Rock;01/05/1985;5064
+02. Money for Nothing.flac;Money for Nothing;Dire Straits;Brothers in Arms;2;Pop, Rock;01/05/1985;50640
 03. Walk of Life.flac;Walk of Life;Dire Straits;Brothers in Arms;3;Pop, Rock;01/05/1985;25251
 04. Your Latest Trick.flac;Your Latest Trick;Dire Straits;Brothers in Arms;4;Pop, Rock;01/05/1985;39387
 05. Why Worry.flac;Why Worry;Dire Straits;Brothers in Arms;5;Pop, Rock;01/05/1985;51129
 06. Ride Across the River.flac;Ride Across the River;Dire Straits;Brothers in Arms;6;Pop, Rock;01/05/1985;41791
 07. The Man's Too Strong.flac;The Man's Too Strong;Dire Straits;Brothers in Arms;7;Pop, Rock;01/05/1985;28043
 08. One World.flac;One World;Dire Straits;Brothers in Arms;8;Pop, Rock;01/05/1985;22077
-09. Brothers in Arms.flac;Brothers in Arms;Dire Straits;Brothers in Arms;9;Pop, Rock;01/05/1985;4194
+09. Brothers in Arms.flac;Brothers in Arms;Dire Straits;Brothers in Arms;9;Pop, Rock;01/05/1985;41940
 01. Storm.flac;Storm (Lift Yr. Skinny Fists Like Antennas To Heaven..., Gathering Storm, ''Welcome To Barco AM/PM...'' [L.A.X., 5/14/00], Cancer Towers On Holy Road Hi-Way);Godspeed You Black Emperor!;''Lift Yr. Skinny Fists Like Antennas To Heaven!'' [PCD-5608~9]: (One);1;Post-Rock;2000;135241
 02. Static.flac;Static (Terrible Canyons Of Static, Atomic Clock., Chart #3, World Police And Friendly Fire, [...+The Buildings They Are Sleeping Now]);Godspeed You Black Emperor!;''Lift Yr. Skinny Fists Like Antennas To Heaven!'' [PCD-5608~9]: (One);2;Post-Rock;2000;135595
 01. Sleep.flac;Sleep (Murray Ostril: ''...They Don't Sleep Anymore On The Beach...'', Monheim, Broken Windows, Locks Of Love Pt. III. / 3rd Part);Godspeed You Black Emperor!;''Lift Yr. Skinny Fists Like Antennas To Heaven!'' [PCD-5608~9]: (Two);1;Post-Rock;2000;139775
@@ -1934,3 +1934,362 @@ ROBE - Mayéutica.flac;;;;;;;263221
 09 - I Don't Want To Know.flac;I Don't Want to Know;Fleetwood Mac;Rumours;9;Rock;1977;19708
 10 - Oh Daddy.flac;Oh Daddy;Fleetwood Mac;Rumours;10;Rock;1977;2320
 11 - Gold Dust Woman.flac;Gold Dust Woman;Fleetwood Mac;Rumours;11;Rock;1977;3082
+Thin Lizzy - Vagabonds of the Western World - 32 - The Rocker (Radio One in Concert, Paris Theatre, London, UK, 1973-07-26).flac;The Rocker (Radio One In Concert);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);32;Hard Rock;1973;36017
+Thin Lizzy - Vagabonds of the Western World - 31 - The Rocker (Bob Harris Session, 1973-09-17).flac;The Rocker (Bob Harris Session);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);31;Hard Rock;1973;31212
+Thin Lizzy - Vagabonds of the Western World - 30 - Little Girl in Bloom (Bob Harris Session, 1973-09-17).flac;Little Girl In Bloom (Bob Harris Session);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);30;Hard Rock;1973;27669
+Thin Lizzy - Vagabonds of the Western World - 29 - Randolph’s Tango (Bob Harris Session, 1973-09-17).flac;Randolph’s Tango (Bob Harris Session);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);29;Hard Rock;1973;22231
+Thin Lizzy - Vagabonds of the Western World - 28 - Slow Blues (John Peel Session, 1973-08-16).flac;Slow Blues (John Peel Session);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);28;Hard Rock;1973;33307
+Thin Lizzy - Vagabonds of the Western World - 27 - The Rocker (John Peel Session, 1973-08-16).flac;The Rocker (John Peel Session);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);27;Hard Rock;1973;31179
+Thin Lizzy - Vagabonds of the Western World - 26 - Randolph’s Tango (John Peel Session, 1973-08-16).flac;Randolph’s Tango (John Peel Session);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);26;Hard Rock;1973;22669
+Thin Lizzy - Vagabonds of the Western World - 25 - Little Girl in Bloom (John Peel Session, 1973-08-07).flac;Little Girl In Bloom (John Peel Session);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);25;Hard Rock;1973;27749
+Thin Lizzy - Vagabonds of the Western World - 24 - Gonna Creep Up on You (John Peel Session, 1973-08-07).flac;Gonna Creep Up On You (John Peel Session);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);24;Hard Rock;1973;20099
+Thin Lizzy - Vagabonds of the Western World - 23 - Vagabond of the Western World (John Peel Session, 1973-08-07).flac;Vagabond Of The Western World (John Peel Session);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);23;Hard Rock;1973;26441
+Thin Lizzy - Vagabonds of the Western World - 22 - Eddie's Blues + Blue Shadows (RTE Radio Éireann Session, 1973-01-16).flac;Eddie's Blues / Blue Shadows (With Intro / RTE Radio Eireann Session / 16th Jan 1973);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);22;Hard Rock;1973;23752
+Thin Lizzy - Vagabonds of the Western World - 21 - Broken Dreams (RTE Radio Éireann Session, 1973-01-16).flac;Broken Dreams (With Intro / RTE Radio Eireann Session / 16th Jan 1973);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);21;Hard Rock;1973;3398
+Thin Lizzy - Vagabonds of the Western World - 20 - Suicide (RTE Radio Éireann Session, 1973-01-16).flac;Suicide (With Intro / RTE Radio Eireann Session / 16th Jan 1973);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);20;Hard Rock;1973;27219
+Thin Lizzy - Vagabonds of the Western World - 19 - 1969 Rock (RTE Radio Éireann Session, 1973-01-16).flac;1969 Rock (With Intro / RTE Radio Eireann Session / 16th Jan 1973);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);19;Hard Rock;1973;34236
+Thin Lizzy - Vagabonds of the Western World - 18 - Black Boys on the Corner (John Peel Session, 1972-11-28).flac;Black Boys On The Corner (John Peel Session);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);18;Hard Rock;1973;18665
+Thin Lizzy - Vagabonds of the Western World - 17 - Suicide (John Peel Session, 1972-11-28).flac;Suicide (John Peel Session);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);17;Hard Rock;1973;24224
+Thin Lizzy - Vagabonds of the Western World - 16 - Whiskey in the Jar (John Peel Session, 1972-11-28).flac;Whiskey In The Jar (John Peel Session);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);16;Hard Rock;1973;35251
+Thin Lizzy - Vagabonds of the Western World - 15 - A Ride in the Lizzy Mobile.flac;A Ride In The Lizzy Mobile;Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);15;Hard Rock;1973;2482
+Thin Lizzy - Vagabonds of the Western World - 14 - Here I Go Again.flac;Here I Go Again;Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);14;Hard Rock;1973;23288
+Thin Lizzy - Vagabonds of the Western World - 13 - The Rocker (Single Edit).flac;The Rocker (Single Edit);Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);13;Hard Rock;1973;16231
+Thin Lizzy - Vagabonds of the Western World - 12 - Broken Dreams.flac;Broken Dreams;Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);12;Hard Rock;1973;26711
+Thin Lizzy - Vagabonds of the Western World - 11 - Randolph's Tango.flac;Randolph's Tango;Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);11;Hard Rock;1973;22796
+Thin Lizzy - Vagabonds of the Western World - 10 - Black Boys on the Corner.flac;Black Boys On The Corner;Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);10;Hard Rock;1973;20347
+Thin Lizzy - Vagabonds of the Western World - 09 - Whiskey in the Jar.flac;Whiskey In The Jar;Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);9;Hard Rock;1973;34639
+Thin Lizzy - Vagabonds of the Western World - 08 - A Song for While I'm Away.flac;A Song For While I'm Away;Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);8;Hard Rock;1973;31323
+Thin Lizzy - Vagabonds of the Western World - 07 - Gonna Creep Up on You.flac;Gonna Creep Up On You;Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);7;Hard Rock;1973;20923
+Thin Lizzy - Vagabonds of the Western World - 06 - Little Girl in Bloom.flac;Little Girl In Bloom;Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);6;Hard Rock;1973;31503
+Thin Lizzy - Vagabonds of the Western World - 05 - Vagabond of the Western World.flac;Vagabond Of The Western World;Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);5;Hard Rock;1973;28543
+Thin Lizzy - Vagabonds of the Western World - 04 - The Rocker.flac;The Rocker;Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);4;Hard Rock;1973;31232
+Thin Lizzy - Vagabonds of the Western World - 03 - Slow Blues.flac;Slow Blues;Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);3;Hard Rock;1973;31461
+Thin Lizzy - Vagabonds of the Western World - 02 - The Hero and the Madman.flac;The Hero And The Madman;Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);2;Hard Rock;1973;36995
+Thin Lizzy - Vagabonds of the Western World - 01 - Mama Nature Said.flac;Mama Nature Said;Thin Lizzy;Vagabonds Of The Western World (Deluxe Edition);1;Hard Rock;1973;2938
+Thin Lizzy - Nightlife - 10 - Dear Heart.flac;Dear Heart;Thin Lizzy;Nightlife;10;Hard Rock;1974;27533
+Thin Lizzy - Nightlife - 09 - Sha-La-La.flac;Sha-La-La;Thin Lizzy;Nightlife;9;Hard Rock;1974;2090
+Thin Lizzy - Nightlife - 08 - Philomena.flac;Philomena;Thin Lizzy;Nightlife;8;Hard Rock;1974;2230
+Thin Lizzy - Nightlife - 07 - Banshee.flac;Banshee;Thin Lizzy;Nightlife;7;Hard Rock;1974;890
+Thin Lizzy - Nightlife - 06 - Showdown.flac;Showdown;Thin Lizzy;Nightlife;6;Hard Rock;1974;2730
+Thin Lizzy - Nightlife - 05 - Frankie Carroll.flac;Frankie Carroll;Thin Lizzy;Nightlife;5;Hard Rock;1974;1250
+Thin Lizzy - Nightlife - 04 - Still in Love With You.flac;Still in Love With You;Thin Lizzy;Nightlife;4;Hard Rock;1974;34233
+Thin Lizzy - Nightlife - 03 - It’s Only Money.flac;It’s Only Money;Thin Lizzy;Nightlife;3;Hard Rock;1974;17067
+Thin Lizzy - Nightlife - 02 - Night Life.flac;Night Life;Thin Lizzy;Nightlife;2;Hard Rock;1974;2390
+Thin Lizzy - Nightlife - 01 - She Knows.flac;She Knows;Thin Lizzy;Nightlife;1;Hard Rock;1974;3150
+Thin Lizzy - Fighting - 21 Blues Boy.flac;Blues Boy;Thin Lizzy;Fighting;21;Hard Rock, Rock;12/09/1975;27193
+Thin Lizzy - Fighting - 25 Bryans Funky Fazer - Silver Dollar.flac;Bryan's Funky Fazer / Silver Dollar;Thin Lizzy;Fighting;25;Hard Rock, Rock;12/09/1975;21795
+Thin Lizzy - Fighting - 24 Wild One (instrumental version).flac;Wild One (instrumental version);Thin Lizzy;Fighting;24;Hard Rock, Rock;12/09/1975;25665
+Thin Lizzy - Fighting - 23 Spirit Slips Away (extended version take 4).flac;Spirit Slips Away (extended version take 4);Thin Lizzy;Fighting;23;Hard Rock, Rock;12/09/1975;33033
+Thin Lizzy - Fighting - 22 Leaving Town (extended take).flac;Leaving Town (extended take);Thin Lizzy;Fighting;22;Hard Rock, Rock;12/09/1975;34985
+Thin Lizzy - Fighting - 20 Leaving Town (instrumental version).flac;Leaving Town (instrumental version);Thin Lizzy;Fighting;20;Hard Rock, Rock;12/09/1975;29125
+Thin Lizzy - Fighting - 18 Fighting My Way Back (Rough mix with alternate vocal).flac;Fighting My Way Back (Rough mix with alternate vocal);Thin Lizzy;Fighting;18;Hard Rock, Rock;12/09/1975;20208
+Thin Lizzy - Fighting - 19 Song for Jesse.flac;Song for Jesse;Thin Lizzy;Fighting;19;Hard Rock, Rock;12/09/1975;13355
+Thin Lizzy - Fighting - 16 Ballad of the Hard Man (instrumental version).flac;Ballad of the Hard Man (instrumental version);Thin Lizzy;Fighting;16;Hard Rock, Rock;12/09/1975;24661
+Thin Lizzy - Fighting - 17 Try a Little Harder.flac;Try a Little Harder;Thin Lizzy;Fighting;17;Hard Rock, Rock;12/09/1975;24641
+Thin Lizzy - Fighting - 15 Suicide (BBC Radio 1 John Peel session).flac;Suicide (BBC Radio 1 John Peel session);Thin Lizzy;Fighting;15;Hard Rock, Rock;12/09/1975;31741
+Thin Lizzy - Fighting - 14 Rosalie (BBC Radio 1 John Peel session).flac;Rosalie (BBC Radio 1 John Peel session);Thin Lizzy;Fighting;14;Hard Rock, Rock;12/09/1975;19387
+Thin Lizzy - Fighting - 13 Half Caste (BBC Radio 1 John Peel session).flac;Half Caste (BBC Radio 1 John Peel session);Thin Lizzy;Fighting;13;Hard Rock, Rock;12/09/1975;22859
+Thin Lizzy - Fighting - 09 Freedom Song.flac;Freedom Song;Thin Lizzy;Fighting;9;Hard Rock, Rock;12/09/1975;21136
+Thin Lizzy - Fighting - 07 Spirit Slips Away.flac;Spirit Slips Away;Thin Lizzy;Fighting;7;Hard Rock, Rock;12/09/1975;28003
+Thin Lizzy - Fighting - 12 Rosalie (US mix).flac;Rosalie (US mix);Thin Lizzy;Fighting;12;Hard Rock, Rock;12/09/1975;17481
+Thin Lizzy - Fighting - 11 Half Caste.flac;Half Caste;Thin Lizzy;Fighting;11;Hard Rock, Rock;12/09/1975;21732
+Thin Lizzy - Fighting - 10 Ballad of the Hard Man.flac;Ballad of the Hard Man;Thin Lizzy;Fighting;10;Hard Rock, Rock;12/09/1975;19884
+Thin Lizzy - Fighting - 08 Silver Dollar.flac;Silver Dollar;Thin Lizzy;Fighting;8;Hard Rock, Rock;12/09/1975;20569
+Thin Lizzy - Fighting - 06 Kings Vengeance.flac;King's Vengeance;Thin Lizzy;Fighting;6;Hard Rock, Rock;12/09/1975;24896
+Thin Lizzy - Fighting - 04 Wild One.flac;Wild One;Thin Lizzy;Fighting;4;Hard Rock, Rock;12/09/1975;25796
+Thin Lizzy - Fighting - 05 Fighting My Way Back.flac;Fighting My Way Back;Thin Lizzy;Fighting;5;Hard Rock, Rock;12/09/1975;19133
+Thin Lizzy - Fighting - 02 For Those Who Love to Live.flac;For Those Who Love to Live;Thin Lizzy;Fighting;2;Hard Rock, Rock;12/09/1975;18837
+Thin Lizzy - Fighting - 01 Rosalie.flac;Rosalie;Thin Lizzy;Fighting;1;Hard Rock, Rock;12/09/1975;17721
+Thin Lizzy - Fighting - 03 Suicide.flac;Suicide;Thin Lizzy;Fighting;3;Hard Rock, Rock;12/09/1975;31209
+Thin Lizzy_Shades of a Blue Orphanage_18_Whiskey in the Jar (BBC Radio 1 John Peel session).flac;Whiskey in the Jar (BBC Radio 1 John Peel session);Thin Lizzy;Shades of a Blue Orphanage;18;Classic Rock, Hard Rock, Rock;1972;35435
+Thin Lizzy_Shades of a Blue Orphanage_17_Saga of the Ageing Orphan (BBC Radio 1 John Peel session).flac;Saga of the Ageing Orphan (BBC Radio 1 John Peel session);Thin Lizzy;Shades of a Blue Orphanage;17;Classic Rock, Hard Rock, Rock;1972;22176
+Thin Lizzy_Shades of a Blue Orphanage_16_Black Boys on the Corner (BBC Radio 1 John Peel session).flac;Black Boys on the Corner (BBC Radio 1 John Peel session);Thin Lizzy;Shades of a Blue Orphanage;16;Classic Rock, Hard Rock, Rock;1972;18991
+Thin Lizzy_Shades of a Blue Orphanage_15_Suicide (BBC Radio 1 John Peel session).flac;Suicide (BBC Radio 1 John Peel session);Thin Lizzy;Shades of a Blue Orphanage;15;Classic Rock, Hard Rock, Rock;1972;24537
+Thin Lizzy_Shades of a Blue Orphanage_14_Brought Down (1977 overdubbed & remixed version).flac;Brought Down (1977 overdubbed & remixed version);Thin Lizzy;Shades of a Blue Orphanage;14;Classic Rock, Hard Rock, Rock;1972;18892
+Thin Lizzy_Shades of a Blue Orphanage_13_Sarah (1977 overdubbed & remixed version).flac;Sarah (1977 overdubbed & remixed version);Thin Lizzy;Shades of a Blue Orphanage;13;Classic Rock, Hard Rock, Rock;1972;16852
+Thin Lizzy_Shades of a Blue Orphanage_12_Buffalo Gal (1977 overdubbed & remixed version).flac;Buffalo Gal (1977 overdubbed & remixed version);Thin Lizzy;Shades of a Blue Orphanage;12;Classic Rock, Hard Rock, Rock;1972;31039
+Thin Lizzy_Shades of a Blue Orphanage_11_Black Boys on the Corner.flac;Black Boys on the Corner;Thin Lizzy;Shades of a Blue Orphanage;11;Classic Rock, Hard Rock, Rock;1972;20553
+Thin Lizzy_Shades of a Blue Orphanage_10_Whiskey in the Jar (full length version).flac;Whiskey in the Jar (full length version);Thin Lizzy;Shades of a Blue Orphanage;10;Classic Rock, Hard Rock, Rock;1972;34759
+Thin Lizzy_Shades of a Blue Orphanage_09_Shades of a Blue Orphanage.flac;Shades of a Blue Orphanage;Thin Lizzy;Shades of a Blue Orphanage;9;Classic Rock, Hard Rock, Rock;1972;42657
+Thin Lizzy_Shades of a Blue Orphanage_08_Call the Police.flac;Call the Police;Thin Lizzy;Shades of a Blue Orphanage;8;Classic Rock, Hard Rock, Rock;1972;22023
+Thin Lizzy_Shades of a Blue Orphanage_07_Chatting Today.flac;Chatting Today;Thin Lizzy;Shades of a Blue Orphanage;7;Classic Rock, Hard Rock, Rock;1972;2612
+Thin Lizzy_Shades of a Blue Orphanage_06_Baby Face.flac;Baby Face;Thin Lizzy;Shades of a Blue Orphanage;6;Classic Rock, Hard Rock, Rock;1972;20947
+Thin Lizzy_Shades of a Blue Orphanage_05_Brought Down.flac;Brought Down;Thin Lizzy;Shades of a Blue Orphanage;5;Classic Rock, Hard Rock, Rock;1972;26257
+Thin Lizzy_Shades of a Blue Orphanage_04_Sarah.flac;Sarah;Thin Lizzy;Shades of a Blue Orphanage;4;Classic Rock, Hard Rock, Rock;1972;17267
+Thin Lizzy_Shades of a Blue Orphanage_03_I Don't Want to Forget How to Jive.flac;I Don't Want to Forget How to Jive;Thin Lizzy;Shades of a Blue Orphanage;3;Classic Rock, Hard Rock, Rock;1972;11629
+Thin Lizzy_Shades of a Blue Orphanage_02_Buffalo Gal.flac;Buffalo Gal;Thin Lizzy;Shades of a Blue Orphanage;2;Classic Rock, Hard Rock, Rock;1972;33319
+Thin Lizzy_Shades of a Blue Orphanage_01_The Rise and Dear Demise of the Funky Nomadic Tribes.flac;The Rise and Dear Demise of the Funky Nomadic Tribes;Thin Lizzy;Shades of a Blue Orphanage;1;Classic Rock, Hard Rock, Rock;1972;43081
+Thin Lizzy_Thin Lizzy_14_Things Ain't Working Out Down at the Farm.flac;Things Ain't Working Out Down at the Farm;Thin Lizzy;Thin Lizzy;14;Hard Rock, Rock;1971;27063
+Thin Lizzy_Thin Lizzy_13_Old Moon Madness.flac;Old Moon Madness;Thin Lizzy;Thin Lizzy;13;Hard Rock, Rock;1971;23571
+Thin Lizzy_Thin Lizzy_12_Remembering Part 2 (New Day).flac;Remembering Part 2 (New Day);Thin Lizzy;Thin Lizzy;12;Hard Rock, Rock;1971;30793
+Thin Lizzy_Thin Lizzy_11_Dublin.flac;Dublin;Thin Lizzy;Thin Lizzy;11;Hard Rock, Rock;1971;15036
+Thin Lizzy_Thin Lizzy_10_Remembering Part 1.flac;Remembering Part 1;Thin Lizzy;Thin Lizzy;10;Hard Rock, Rock;1971;3622
+Thin Lizzy_Thin Lizzy_08_Clifton Grange Hotel.flac;Clifton Grange Hotel;Thin Lizzy;Thin Lizzy;8;Hard Rock, Rock;1971;15127
+Thin Lizzy_Thin Lizzy_07_Return of the Farmer's Son.flac;Return of the Farmer's Son;Thin Lizzy;Thin Lizzy;7;Hard Rock, Rock;1971;25616
+Thin Lizzy_Thin Lizzy_06_Eire.flac;Eire;Thin Lizzy;Thin Lizzy;6;Hard Rock, Rock;1971;13031
+Thin Lizzy_Thin Lizzy_05_Look What the Wind Blew In.flac;Look What the Wind Blew In;Thin Lizzy;Thin Lizzy;5;Hard Rock, Rock;1971;2068
+Thin Lizzy_Thin Lizzy_03_Diddy Levine.flac;Diddy Levine;Thin Lizzy;Thin Lizzy;3;Hard Rock, Rock;1971;42796
+Thin Lizzy_Thin Lizzy_02_Honesty Is No Excuse.flac;Honesty Is No Excuse;Thin Lizzy;Thin Lizzy;2;Hard Rock, Rock;1971;2224
+Thin Lizzy_Thin Lizzy_01_The Friendly Ranger at Clontarf Castle.flac;The Friendly Ranger at Clontarf Castle;Thin Lizzy;Thin Lizzy;1;Hard Rock, Rock;1971;18204
+Thin Lizzy_Thin Lizzy_09_Saga of the Ageing Orphan.flac;Saga of the Ageing Orphan;Thin Lizzy;Thin Lizzy;9;Hard Rock, Rock;1990;22011
+Thin Lizzy_Thin Lizzy_04_Ray-Gun.flac;Ray-Gun;Thin Lizzy;Thin Lizzy;4;Hard Rock, Rock;1990;1882
+Cyndi Lauper - True Colors - 10 - One Track Mind (FLAC 24bit 5592 kbps).flac;One Track Mind;Cyndi Lauper;True Colors;10;Downtempo;1986;22245
+Cyndi Lauper - True Colors - 09 - 911 (FLAC 24bit 5625 kbps).flac;911;Cyndi Lauper;True Colors;9;Downtempo;1986;19594
+Cyndi Lauper - True Colors - 08 - The Faraway Nearby (FLAC 24bit 5667 kbps).flac;The Faraway Nearby;Cyndi Lauper;True Colors;8;Downtempo;1986;17916
+Cyndi Lauper - True Colors - 07 - Iko Iko (FLAC 24bit 5522 kbps).flac;Iko Iko;Cyndi Lauper;True Colors;7;Downtempo;1986;1296
+Cyndi Lauper - True Colors - 06 - What’s Going On (FLAC 24bit 5610 kbps).flac;What’s Going On;Cyndi Lauper;True Colors;6;Downtempo;1986;2784
+Cyndi Lauper - True Colors - 05 - Calm Inside the Storm (FLAC 24bit 5530 kbps).flac;Calm Inside the Storm;Cyndi Lauper;True Colors;5;Downtempo;1986;23489
+Cyndi Lauper - True Colors - 04 - True Colors (FLAC 24bit 4896 kbps).flac;True Colors;Cyndi Lauper;True Colors;4;Downtempo;1986;22759
+Cyndi Lauper - True Colors - 03 - Boy Blue (FLAC 24bit 5060 kbps).flac;Boy Blue;Cyndi Lauper;True Colors;3;Downtempo;1986;28659
+Cyndi Lauper - True Colors - 02 - Maybe He’ll Know (FLAC 24bit 5313 kbps).flac;Maybe He’ll Know;Cyndi Lauper;True Colors;2;Downtempo;1986;26737
+Cyndi Lauper - True Colors - 01 - Change of Heart (FLAC 24bit 5196 kbps).flac;Change of Heart;Cyndi Lauper;True Colors;1;Downtempo;1986;26478
+11 - Cymbaline.flac;Cymbaline;Hawkwind;Hawkwind;11;Space rock/Psychedelic rock/progressive rock/folk rock/acid rock/blues rock;1996;24637
+10 - Kiss of the Velvet Whip (AKA Sweet Mistress of Pain).flac;Kiss of the Velvet Whip (AKA Sweet Mistress of Pain);Hawkwind;Hawkwind;10;Space rock/Psychedelic rock/progressive rock/folk rock/acid rock/blues rock;1996;32889
+09 - Hurry On Sundown.flac;Hurry On Sundown;Hawkwind;Hawkwind;9;Space rock/Psychedelic rock/progressive rock/folk rock/acid rock/blues rock;1996;30446
+08 - Bring It On Home.flac;Bring It On Home;Dave Brock;Hawkwind;8;Space rock/Psychedelic rock/progressive rock/folk rock/acid rock/blues rock;1996;20461
+07 - Mirror of Illusion.flac;Mirror of Illusion;Hawkwind;Hawkwind;7;Space rock/Psychedelic rock/progressive rock/folk rock/acid rock/blues rock;1996;42381
+06 - Seeing It as You Really Are.flac;Seeing It as You Really Are;Hawkwind;Hawkwind;6;Space rock/Psychedelic rock/progressive rock/folk rock/acid rock/blues rock;1970;64468
+05 - Paranoia, Part 2.flac;Paranoia, Part 2;Hawkwind;Hawkwind;5;Space rock/Psychedelic rock/progressive rock/folk rock/acid rock/blues rock;1970;25189
+04 - Paranoia, Part 1.flac;Paranoia, Part 1;Hawkwind;Hawkwind;4;Space rock/Psychedelic rock/progressive rock/folk rock/acid rock/blues rock;1970;6706
+03 - Be Yourself.flac;Be Yourself;Hawkwind;Hawkwind;3;Space rock/Psychedelic rock/progressive rock/folk rock/acid rock/blues rock;1970;48697
+02 - The Reason Is.flac;The Reason Is?;Hawkwind;Hawkwind;2;Space rock/Psychedelic rock/progressive rock/folk rock/acid rock/blues rock;1970;21502
+01 - Hurry On Sundown.flac;Hurry On Sundown;Hawkwind;Hawkwind;1;Space rock/Psychedelic rock/progressive rock/folk rock/acid rock/blues rock;1970;29694
+0112 - 5-11 AM The Moment of Clarity.flac;5:11 AM (The Moment of Clarity);Roger Waters;The Pros and Cons of Hitch Hiking;12;Alternative Rock;01/01/1984;8847
+0111 - 5-06 AM Every Strangers Eyes.flac;5:06 AM (Every Stranger's Eyes);Roger Waters;The Pros and Cons of Hitch Hiking;11;Alternative Rock;01/01/1984;28869
+06 - Children Of The Sun.flac;Children Of The Sun;Hawkwind;X In Search Of Space;;Space Rock;1971;20147
+05 - Adjust Me.flac;Adjust Me;Hawkwind;X In Search Of Space;;Space Rock;1971;34629
+04 - We Took The Wrong Step Years Ago.flac;We Took The Wrong Step Years Ago;Hawkwind;X In Search Of Space;;Space Rock;1971;29004
+03 - Master Of The Universe.flac;Master Of The Universe;Hawkwind;X In Search Of Space;;Space Rock;1971;37687
+02 - You Know You're Only Dreaming.flac;You Know You're Only Dreaming;Hawkwind;X In Search Of Space;;Space Rock;1971;39769
+01 - You Shouldn't Do That.flac;You Shouldn't Do That;Hawkwind;X In Search Of Space;;Space Rock;1971;94177
+0110 - 5-01 AM The Pros and Cons of Hitch Hiking Part 10.flac;5:01 AM (The Pros and Cons of Hitch Hiking, Part 10);Roger Waters;The Pros and Cons of Hitch Hiking;10;Alternative Rock;01/01/1984;27687
+0106 - Down Don’t Bother Me.flac;Down Don’t Bother Me;Cyndi Lauper;Memphis Blues;6;Blues;21/06/2010;18319
+0109 - 4-58 AM Dunroamin Duncarin Dunlivin.flac;4:58 AM (Dunroamin, Duncarin, Dunlivin);Roger Waters;The Pros and Cons of Hitch Hiking;9;Alternative Rock;01/01/1984;18377
+0107 - Don’t Cry No More.flac;Don’t Cry No More;Cyndi Lauper;Memphis Blues;7;Blues;21/06/2010;16421
+0111 - Crossroads.flac;Crossroads;Cyndi Lauper;Memphis Blues;11;Blues;21/06/2010;28247
+0108 - 4-56 AM For the First Time Today Part 1.flac;4:56 AM (For the First Time Today, Part 1);Roger Waters;The Pros and Cons of Hitch Hiking;8;Alternative Rock;01/01/1984;9833
+0107 - 4-50 AM Go Fishing.flac;4:50 AM (Go Fishing);Roger Waters;The Pros and Cons of Hitch Hiking;7;Alternative Rock;01/01/1984;41969
+0109 - Down So Low.flac;Down So Low;Cyndi Lauper;Memphis Blues;9;Blues;21/06/2010;23543
+0106 - 4-47 AM The Remains of Our Love.flac;4:47 AM (The Remains of Our Love);Roger Waters;The Pros and Cons of Hitch Hiking;6;Alternative Rock;01/01/1984;18944
+0110 - Mother Earth.flac;Mother Earth;Cyndi Lauper;Memphis Blues;10;Blues;21/06/2010;31912
+0105 - 4-41 AM Sexual Revolution.flac;4:41 AM (Sexual Revolution);Roger Waters;The Pros and Cons of Hitch Hiking;5;Alternative Rock;01/01/1984;28913
+0108 - Rollin’ and Tumblin’.flac;Rollin’ and Tumblin’;Cyndi Lauper;Memphis Blues;8;Blues;21/06/2010;20944
+0104 - Romance in the Dark.flac;Romance in the Dark;Cyndi Lauper;Memphis Blues;4;Blues;21/06/2010;34417
+0105 - How Blue Can You Get.flac;How Blue Can You Get?;Cyndi Lauper;Memphis Blues;5;Blues;21/06/2010;3238
+0103 - Early in the Mornin’.flac;Early in the Mornin’;Cyndi Lauper;Memphis Blues;3;Blues;21/06/2010;23113
+0102 - Shattered Dreams.flac;Shattered Dreams;Cyndi Lauper;Memphis Blues;2;Blues;21/06/2010;23229
+0101 - Just Your Fool.flac;Just Your Fool;Cyndi Lauper;Memphis Blues;1;Blues;21/06/2010;21784
+0104 - 4-39 AM For the First Time Today Part 2.flac;4:39 AM (For the First Time Today, Part 2);Roger Waters;The Pros and Cons of Hitch Hiking;4;Alternative Rock;01/01/1984;12256
+0103 - 4-37 AM Arabs With Knives and West German Skies.flac;4:37 AM (Arabs With Knives and West German Skies);Roger Waters;The Pros and Cons of Hitch Hiking;3;Alternative Rock;01/01/1984;13737
+0102 - 4-33 AM Running Shoes.flac;4:33 AM (Running Shoes);Roger Waters;The Pros and Cons of Hitch Hiking;2;Alternative Rock;01/01/1984;24807
+0101 - 4-30 AM Apparently They Were Travelling Abroad.flac;4:30 AM (Apparently They Were Travelling Abroad);Roger Waters;The Pros and Cons of Hitch Hiking;1;Alternative Rock;01/01/1984;19209
+Hawkwind - Doremi Fasol Latido - 11 - Ejection.flac;Ejection (1996 Remaster);Hawkwind;Doremi Fasol Latido;11;Rock/Progressive rock;1972;2278
+Hawkwind - Doremi Fasol Latido - 10 - Lord of Light (single version edit).flac;Lord of Light (Single Mix, 1996 Remaster);Hawkwind;Doremi Fasol Latido;10;Rock/Progressive rock;1972;2416
+Hawkwind - Doremi Fasol Latido - 09 - Brainbox Pollution.flac;Brainbox Pollution (1996 Remaster);Hawkwind;Doremi Fasol Latido;9;Rock/Progressive rock;1972;34316
+Hawkwind - Doremi Fasol Latido - 08 - Urban Guerilla.flac;Urban Guerilla (1996 Remaster);Hawkwind;Doremi Fasol Latido;8;Rock/Progressive rock;1972;22247
+Hawkwind - Doremi Fasol Latido - 07 - The Watcher.flac;The Watcher (1996 Remaster);Hawkwind;Doremi Fasol Latido;7;Rock/Progressive rock;1972;25727
+Hawkwind - Doremi Fasol Latido - 06 - Time We Left This World Today.flac;Time We Left This World Today (1996 Remaster);Hawkwind;Doremi Fasol Latido;6;Rock/Progressive rock;1972;52391
+Hawkwind - Doremi Fasol Latido - 05 - Down Through the Night.flac;Down Through the Night (1996 Remaster);Hawkwind;Doremi Fasol Latido;5;Rock/Progressive rock;1972;18467
+Hawkwind - Doremi Fasol Latido - 04 - Lord of Light.flac;Lord of Light (1996 Remaster);Hawkwind;Doremi Fasol Latido;4;Rock/Progressive rock;1972;41856
+Hawkwind - Doremi Fasol Latido - 03 - One Change.flac;One Change (1996 Remaster);Hawkwind;Doremi Fasol Latido;3;Rock/Progressive rock;1972;506
+Hawkwind - Doremi Fasol Latido - 02 - Space Is Deep.flac;Space Is Deep (1996 Remaster);Hawkwind;Doremi Fasol Latido;2;Rock/Progressive rock;1972;3826
+Hawkwind - Doremi Fasol Latido - 01 - Brainstorm.flac;Brainstorm (1996 Remaster);Hawkwind;Doremi Fasol Latido;1;Rock/Progressive rock;1972;69344
+06 - Witch's Song, I Am Your Pussy.flac;Witch's Song, I Am Your Pussy;Gong;Flying Teapot;6;Rock;1973;30904
+05 - Zero the Hero and the Witch's Spell.flac;Zero the Hero and the Witch's Spell;Gong;Flying Teapot;5;Rock;1973;57013
+04 - The Octave Doctors and the Crystal Machine.flac;The Octave Doctors and the Crystal Machine;Gong;Flying Teapot;4;Rock;1973;11985
+03 - The Pot Head Pixies.flac;The Pot Head Pixies;Gong;Flying Teapot;3;Rock;1973;17769
+02 - Flying Teapot.flac;Flying Teapot;Gong;Flying Teapot;2;Rock;1973;70795
+01 - Radio Gnome Invisible.flac;Radio Gnome Invisible;Gong;Flying Teapot;1;Rock;1973;33365
+Prince - Purple Rain - 09 - Purple Rain.flac;Purple Rain;Prince;Purple Rain;9;Funk;1984;52465
+Prince - Purple Rain - 08 - Baby I’m a Star.flac;Baby I’m a Star;Prince;Purple Rain;8;Funk;1984;26272
+Prince - Purple Rain - 07 - I Would Die 4 U.flac;I Would Die 4 U;Prince;Purple Rain;7;Funk;1984;16907
+Prince - Purple Rain - 06 - When Doves Cry.flac;When Doves Cry;Prince;Purple Rain;6;Funk;1984;35348
+Prince - Purple Rain - 05 - Darling Nikki.flac;Darling Nikki;Prince;Purple Rain;5;Funk;1984;25534
+Prince - Purple Rain - 04 - Computer Blue.flac;Computer Blue;Prince;Purple Rain;4;Funk;1984;23862
+Prince - Purple Rain - 03 - The Beautiful Ones.flac;The Beautiful Ones;Prince;Purple Rain;3;Funk;1984;31335
+Prince - Purple Rain - 02 - Take Me With U.flac;Take Me With U;Prince;Purple Rain;2;Funk;1984;23343
+Prince - Purple Rain - 01 - Let’s Go Crazy.flac;Let’s Go Crazy;Prince;Purple Rain;1;Funk;1984;27824
+07 Adore.flac;Adore;Prince;Sign O' The Times;16;R&B,Funk,Soul;1987;3916
+06 It's Gonna Be A Beautiful Night.flac;It's Gonna Be A Beautiful Night;Prince;Sign O' The Times;15;R&B,Funk,Soul;1987;54173
+05 The Cross.flac;The Cross;Prince;Sign O' The Times;14;R&B,Funk,Soul;1987;28887
+04 I Could Never Take The Place Of Your Man.flac;I Could Never Take The Place Of Your Man;Prince;Sign O' The Times;13;R&B,Funk,Soul;1987;38923
+03 Strange Relationship.flac;Strange Relationship;Prince;Sign O' The Times;12;R&B,Funk,Soul;1987;24113
+02 If I Was Your Girlfriend.flac;If I Was Your Girlfriend;Prince;Sign O' The Times;11;R&B,Funk,Soul;1987;30311
+01 U Got The Look.flac;U Got The Look;Prince;Sign O' The Times;10;R&B,Funk,Soul;1987;2270
+09 Forever In My Life.flac;Forever In My Life;Prince;Sign O' The Times;9;R&B,Funk,Soul;1987;21173
+08 Hot Thing.flac;Hot Thing;Prince;Sign O' The Times;8;R&B,Funk,Soul;1987;33903
+07 Slow Love.flac;Slow Love;Prince;Sign O' The Times;7;R&B,Funk,Soul;1987;26237
+06 Starfish And Coffee.flac;Starfish And Coffee;Prince;Sign O' The Times;6;R&B,Funk,Soul;1987;17047
+05 It.flac;It;Prince;Sign O' The Times;5;R&B,Funk,Soul;1987;30983
+04 The Ballad Of Dorothy Parker.flac;The Ballad Of Dorothy Parker;Prince;Sign O' The Times;4;R&B,Funk,Soul;1987;24193
+03 Housequake.flac;Housequake;Prince;Sign O' The Times;3;R&B,Funk,Soul;1987;28197
+02 Play In The Sunshine.flac;Play In The Sunshine;Prince;Sign O' The Times;2;R&B,Funk,Soul;1987;30553
+01 Sign O The Times.flac;Sign O The Times;Prince;Sign O' The Times;1;R&B,Funk,Soul;1987;29713
+03 - Delirious.flac;Delirious;Prince;1999;3;Contemporary R&B;1982;2400
+11 - International Lover.flac;International Lover;Prince;1999;11;Contemporary R&B;1983;39783
+10 - All the Critics Love U in New York.flac;All the Critics Love U in New York;Prince;1999;10;Contemporary R&B;1984;3577
+09 - Lady Cab Driver.flac;Lady Cab Driver;Prince;1999;9;Contemporary R&B;1985;49733
+08 - Free.flac;Free;Prince;1999;8;Contemporary R&B;1986;30741
+07 - Something in the Water (Does Not Compute).flac;Something in the Water (Does Not Compute);Prince;1999;7;Contemporary R&B;1987;24203
+06 - Automatic.flac;Automatic;Prince;1999;6;Contemporary R&B;1988;56622
+05 - D.M.S.R.flac;D.M.S.R.;Prince;1999;5;Contemporary R&B;1989;49761
+04 - Let’s Pretend We’re Married.flac;Let’s Pretend We’re Married;Prince;1999;4;Contemporary R&B;1990;43999
+02 - Little Red Corvette.flac;Little Red Corvette;Prince;1999;2;Contemporary R&B;1991;30354
+01 - 1999.flac;1999;Prince;1999;1;Contemporary R&B;1992;37375
+12 Better Off Dead.flac;Better Off Dead;Bill Withers;Just As I Am;12;Soul;1971;13448
+11 Moanin' and Groanin'.flac;Moanin' and Groanin';Bill Withers;Just As I Am;11;Soul;1971;17836
+10 In My Heart.flac;In My Heart;Bill Withers;Just As I Am;10;Soul;1971;25996
+09 I'm Her Daddy.flac;I'm Her Daddy;Bill Withers;Just As I Am;9;Soul;1971;19803
+08 Let It Be.flac;Let It Be;Bill Withers;Just As I Am;8;Soul;1971;15677
+07 Hope She'll Be Happier.flac;Hope She'll Be Happier;Bill Withers;Just As I Am;7;Soul;1971;23015
+06 Do It Good.flac;Do It Good;Bill Withers;Just As I Am;6;Soul;1971;17223
+05 Everybody's Talkin'.flac;Everybody's Talkin';Bill Withers;Just As I Am;5;Soul;1971;2044
+04 Sweet Wanomi.flac;Sweet Wanomi;Bill Withers;Just As I Am;4;Soul;1971;15277
+03 Grandma's Hands.flac;Grandma's Hands;Bill Withers;Just As I Am;3;Soul;1971;12108
+02 Ain't No Sunshine.flac;Ain't No Sunshine;Bill Withers;Just As I Am;2;Soul;1971;12509
+01 Harlem.flac;Harlem;Bill Withers;Just As I Am;1;Soul;1971;20376
+09 - Marvin Gaye - Inner City Blues (Make Me Wanna Holler).flac;Inner City Blues (Make Me Wanna Holler);Marvin Gaye;What's Going On (Deluxe Edition / 50th Anniversary);9;Soul;20/05/1971;33325
+08 - Marvin Gaye - Wholy Holy.flac;Wholy Holy;Marvin Gaye;What's Going On (Deluxe Edition / 50th Anniversary);8;Soul;20/05/1971;18787
+07 - Marvin Gaye - Right On.flac;Right On;Marvin Gaye;What's Going On (Deluxe Edition / 50th Anniversary);7;Soul;20/05/1971;45236
+06 - Marvin Gaye - Mercy Mercy Me (The Ecology).flac;Mercy Mercy Me (The Ecology);Marvin Gaye;What's Going On (Deluxe Edition / 50th Anniversary);6;Soul;20/05/1971;19608
+05 - Marvin Gaye - God Is Love.flac;God Is Love;Marvin Gaye;What's Going On (Deluxe Edition / 50th Anniversary);5;Soul;20/05/1971;1018
+04 - Marvin Gaye - Save The Children.flac;Save The Children;Marvin Gaye;What's Going On (Deluxe Edition / 50th Anniversary);4;Soul;20/05/1971;24304
+03 - Marvin Gaye - Flyin' High (In The Friendly Sky).flac;Flyin' High (In The Friendly Sky);Marvin Gaye;What's Going On (Deluxe Edition / 50th Anniversary);3;Soul;20/05/1971;22957
+02 - Marvin Gaye - What's Happening Brother.flac;What's Happening Brother;Marvin Gaye;What's Going On (Deluxe Edition / 50th Anniversary);2;Soul;20/05/1971;16365
+01 - Marvin Gaye - What's Going On.flac;What's Going On;Marvin Gaye;What's Going On (Deluxe Edition / 50th Anniversary);1;Soul;20/05/1971;2330
+9. Joni Mitchell - A Case Of You.flac;A Case Of You;Joni Mitchell;Blue (1999 Remastered Edition);9;Folk;1971;26311
+8. Joni Mitchell - River.flac;River;Joni Mitchell;Blue (1999 Remastered Edition);8;Folk;1971;2450
+7. Joni Mitchell - This Flight Tonight.flac;This Flight Tonight;Joni Mitchell;Blue (1999 Remastered Edition);7;Folk;1971;1726
+6. Joni Mitchell - California.flac;California;Joni Mitchell;Blue (1999 Remastered Edition);6;Folk;1971;23043
+5. Joni Mitchell - Blue.flac;Blue;Joni Mitchell;Blue (1999 Remastered Edition);5;Folk;1971;18547
+4. Joni Mitchell - Carey.flac;Carey;Joni Mitchell;Blue (1999 Remastered Edition);4;Folk;1971;18351
+3. Joni Mitchell - Little Green.flac;Little Green;Joni Mitchell;Blue (1999 Remastered Edition);3;Folk;1971;20749
+2. Joni Mitchell - My Old Man.flac;My Old Man;Joni Mitchell;Blue (1999 Remastered Edition);2;Folk;1971;21484
+10. Joni Mitchell - The Last Time I Saw Richard.flac;The Last Time I Saw Richard;Joni Mitchell;Blue (1999 Remastered Edition);10;Folk;1971;25676
+1. Joni Mitchell - All I Want.flac;All I Want;Joni Mitchell;Blue (1999 Remastered Edition);1;Folk;1971;21423
+11 - You Don’t Miss Your Water.flac;You Don’t Miss Your Water;Otis Redding;Otis Blue / Otis Redding Sings Soul;11;Soul;15/09/1965;16551
+10 - Satisfaction.flac;Satisfaction;Otis Redding;Otis Blue / Otis Redding Sings Soul;10;Soul;15/09/1965;16661
+09 - Rock Me Baby.flac;Rock Me Baby;Otis Redding;Otis Blue / Otis Redding Sings Soul;9;Soul;15/09/1965;20968
+08 - Wonderful World.flac;Wonderful World;Otis Redding;Otis Blue / Otis Redding Sings Soul;8;Soul;15/09/1965;18812
+07 - My Girl.flac;My Girl;Otis Redding;Otis Blue / Otis Redding Sings Soul;7;Soul;15/09/1965;17495
+06 - Shake.flac;Shake;Otis Redding;Otis Blue / Otis Redding Sings Soul;6;Soul;15/09/1965;16084
+05 - I’ve Been Loving You Too Long.flac;I’ve Been Loving You Too Long;Otis Redding;Otis Blue / Otis Redding Sings Soul;5;Soul;15/09/1965;19459
+04 - Down in the Valley.flac;Down in the Valley;Otis Redding;Otis Blue / Otis Redding Sings Soul;4;Soul;15/09/1965;1796
+03 - A Change Is Gonna Come.flac;A Change Is Gonna Come;Otis Redding;Otis Blue / Otis Redding Sings Soul;3;Soul;15/09/1965;26077
+02 - Respect.flac;Respect;Otis Redding;Otis Blue / Otis Redding Sings Soul;2;Soul;15/09/1965;12985
+01 - Ole Man Trouble.flac;Ole Man Trouble;Otis Redding;Otis Blue / Otis Redding Sings Soul;1;Soul;15/09/1965;15981
+9. Té para 3.flac;Té para 3;Soda Stereo;Canción animal;9;Pop Rock;1990;14549
+8. Entre caníbales.flac;Entre caníbales;Soda Stereo;Canción animal;8;Rock;1990;24669
+7. Hombre al agua.flac;Hombre al agua;Soda Stereo;Canción animal;7;Rock;1990;35507
+6. De música ligera.flac;De música ligera;Soda Stereo;Canción animal;6;Rock;1990;21275
+5. Sueles dejarme solo.flac;Sueles dejarme solo;Soda Stereo;Canción animal;5;Rock;1990;22692
+4. 1990 (Mil nueve noventa).flac;1990 (Mil nueve noventa);Soda Stereo;Canción animal;4;Rock;1990;21875
+3. Canción animal.flac;Canción animal;Soda Stereo;Canción animal;3;Rock;1990;24745
+2. Un millón de años luz.flac;Un millón de años luz;Soda Stereo;Canción animal;2;Pop Rock;1990;30405
+10. Cae el sol.flac;Cae el sol;Soda Stereo;Canción animal;10;Rock;1990;26275
+1. (En) el séptimo día.flac;(En) el séptimo día;Soda Stereo;Canción animal;1;Rock;1990;26328
+Thin Lizzy - Johnny the Fox - 10 - Boogie Woogie Dance.flac;Boogie Woogie Dance;Thin Lizzy;Johnny the Fox;10;Classic Rock;1976;19052
+Thin Lizzy - Johnny the Fox - 09 - Sweet Marie.flac;Sweet Marie;Thin Lizzy;Johnny the Fox;9;Classic Rock;1976;23705
+Thin Lizzy - Johnny the Fox - 08 - Massacre.flac;Massacre;Thin Lizzy;Johnny the Fox;8;Classic Rock;1976;18019
+Thin Lizzy - Johnny the Fox - 07 - Old Flame.flac;Old Flame;Thin Lizzy;Johnny the Fox;7;Classic Rock;1976;18933
+Thin Lizzy - Johnny the Fox - 06 - Johnny the Fox Meets Jimmy the Weed.flac;Johnny the Fox Meets Jimmy the Weed;Thin Lizzy;Johnny the Fox;6;Classic Rock;1976;22251
+Thin Lizzy - Johnny the Fox - 05 - Fools Gold.flac;Fools Gold;Thin Lizzy;Johnny the Fox;5;Classic Rock;1976;2312
+Thin Lizzy - Johnny the Fox - 04 - Don’t Believe a Word.flac;Don’t Believe a Word;Thin Lizzy;Johnny the Fox;4;Classic Rock;1976;13787
+Thin Lizzy - Johnny the Fox - 03 - Borderline.flac;Borderline;Thin Lizzy;Johnny the Fox;3;Classic Rock;1976;2734
+Thin Lizzy - Johnny the Fox - 02 - Rocky.flac;Rocky;Thin Lizzy;Johnny the Fox;2;Classic Rock;1976;22219
+Thin Lizzy - Johnny the Fox - 01 - Johnny.flac;Johnny;Thin Lizzy;Johnny the Fox;1;Classic Rock;1976;26281
+Thin Lizzy - Jailbreak - 09 - Emerald.flac;Emerald (Album Version);Thin Lizzy;Jailbreak;9;Hard Rock,Blues Rock;1976;24312
+Thin Lizzy - Jailbreak - 08 - Cowboy Song.flac;Cowboy Song (Album Version);Thin Lizzy;Jailbreak;8;Hard Rock,Blues Rock;1976;31444
+Thin Lizzy - Jailbreak - 07 - Fight or Fall.flac;Fight Or Fall;Thin Lizzy;Jailbreak;7;Hard Rock,Blues Rock;1976;22509
+Thin Lizzy - Jailbreak - 06 - The Boys Are Back in Town.flac;The Boys Are Back In Town (Album Version);Thin Lizzy;Jailbreak;6;Hard Rock,Blues Rock;1976;26672
+Thin Lizzy - Jailbreak - 05 - Warriors.flac;Warriors (Album Version);Thin Lizzy;Jailbreak;5;Hard Rock,Blues Rock;1976;24832
+Thin Lizzy - Jailbreak - 04 - Romeo and the Lonely Girl.flac;Romeo And The Lonely Girl;Thin Lizzy;Jailbreak;4;Hard Rock,Blues Rock;1976;23492
+Thin Lizzy - Jailbreak - 03 - Running Back.flac;Running Back;Thin Lizzy;Jailbreak;3;Hard Rock,Blues Rock;1976;19284
+Thin Lizzy - Jailbreak - 02 - Angel From the Coast.flac;Angel From The Coast;Thin Lizzy;Jailbreak;2;Hard Rock,Blues Rock;1976;18419
+Thin Lizzy - Jailbreak - 01 - Jailbreak.flac;Jailbreak (Album Version);Thin Lizzy;Jailbreak;1;Hard Rock,Blues Rock;1976;2406
+06. Returned.flac;Returned;Airbag;Disconnected;6;Pop, Rock, Rock progressif;2016-06-10;31052
+05. Disconnected.flac;Disconnected;Airbag;Disconnected;5;Pop, Rock, Rock progressif;2016-06-10;7898
+10 - David Bowie - Memory Of A Free Festival.flac;Memory Of A Free Festival;David Bowie;Space Oddity;10;Folk Rock,Psychedelic rock;1969;44077
+09 - David Bowie - God Knows I'm Good.flac;God Knows I'm Good;David Bowie;Space Oddity;9;Folk Rock,Psychedelic rock;1969;19723
+08 - David Bowie - Conversation Piece.flac;Conversation Piece;David Bowie;Space Oddity;8;Folk Rock,Psychedelic rock;1969;19124
+07 - David Bowie - Wild Eyed Boy From Freecloud.flac;Wild Eyed Boy From Freecloud;David Bowie;Space Oddity;7;Folk Rock,Psychedelic rock;1969;29055
+06 - David Bowie - An Occasional Dream.flac;An Occasional Dream;David Bowie;Space Oddity;6;Folk Rock,Psychedelic rock;1969;17738
+05 - David Bowie - Janine.flac;Janine;David Bowie;Space Oddity;5;Folk Rock,Psychedelic rock;1969;20105
+04 - David Bowie - Cygnet Committee.flac;Cygnet Committee;David Bowie;Space Oddity;4;Folk Rock,Psychedelic rock;1969;57781
+03 - David Bowie - Letter To Hermione.flac;Letter To Hermione;David Bowie;Space Oddity;3;Folk Rock,Psychedelic rock;1969;15372
+02 - David Bowie - Unwashed And Somewhat Slightly Dazed.flac;Unwashed And Somewhat Slightly Dazed;David Bowie;Space Oddity;2;Folk Rock,Psychedelic rock;1969;3792
+01 - David Bowie - Space Oddity.flac;Space Oddity;David Bowie;Space Oddity;1;Folk Rock,Psychedelic rock;1969;32093
+04. Sleepwalker.flac;Sleepwalker;Airbag;Disconnected;4;Pop, Rock, Rock progressif;2016-06-10;42504
+03. Slave.flac;Slave;Airbag;Disconnected;3;Pop, Rock, Rock progressif;2016-06-10;51919
+02. Broken.flac;Broken;Airbag;Disconnected;2;Pop, Rock, Rock progressif;2016-06-10;42764
+Beck - Sea Change - 11 - Little One.flac;Little One;Beck;Sea Change;11;AlternRock;2014;26672
+Beck - Sea Change - 12 - Side of the Road.flac;Side Of The Road;Beck;Sea Change;12;AlternRock;2002;20348
+Beck - Sea Change - 10 - Sunday Sun.flac;Sunday Sun;Beck;Sea Change;10;AlternRock;2002;28426
+Beck - Sea Change - 09 - Already Dead.flac;Already Dead;Beck;Sea Change;9;AlternRock;2002;17879
+Beck - Sea Change - 08 - Round the Bend.flac;Round The Bend;Beck;Sea Change;8;AlternRock;2002;31502
+Beck - Sea Change - 07 - It’s All in Your Mind.flac;It's All In Your Mind;Beck;Sea Change;7;AlternRock;2002;18559
+Beck - Sea Change - 06 - End of the Day.flac;End Of The Day;Beck;Sea Change;6;AlternRock;2002;30249
+Beck - Sea Change - 05 - Lost Cause.flac;Lost Cause;Beck;Sea Change;5;AlternRock;2002;22788
+Beck - Sea Change - 04 - Lonesome Tears.flac;Lonesome Tears;Beck;Sea Change;4;AlternRock;2002;33759
+Beck - Sea Change - 03 - Guess I’m Doing Fine.flac;Guess I'm Doing Fine;Beck;Sea Change;3;AlternRock;2002;28912
+Beck - Sea Change - 02 - Paper Tiger.flac;Paper Tiger;Beck;Sea Change;2;AlternRock;2002;27528
+Beck - Sea Change - 01 - The Golden Age.flac;The Golden Age;Beck;Sea Change;1;AlternRock;2002;27621
+01. Killer.flac;Killer;Airbag;Disconnected;1;Pop, Rock, Rock progressif;2016-06-10;55816
+20 - Wreck on the Highway.flac;Wreck on the Highway;Bruce Springsteen;The River;20;Rock;1980;23456
+19 - Drive All Night.flac;Drive All Night;Bruce Springsteen;The River;19;Rock;1980;50673
+18 - The Price You Pay.flac;The Price You Pay;Bruce Springsteen;The River;18;Rock;1980;32689
+17 - Ramrod.flac;Ramrod;Bruce Springsteen;The River;17;Rock;1980;24427
+16 - Stolen Car.flac;Stolen Car;Bruce Springsteen;The River;16;Rock;1980;23284
+15 - Fade Away.flac;Fade Away;Bruce Springsteen;The River;15;Rock;1980;28136
+14 - I’m a Rocker.flac;I’m a Rocker;Bruce Springsteen;The River;14;Rock;1980;21496
+13 - Cadillac Ranch.flac;Cadillac Ranch;Bruce Springsteen;The River;13;Rock;1980;18309
+12 - Point Blank.flac;Point Blank;Bruce Springsteen;The River;12;Rock;1980;36699
+11 - The River.flac;The River;Bruce Springsteen;The River;11;Rock;1980;30155
+10 - I Wanna Marry You.flac;I Wanna Marry You;Bruce Springsteen;The River;10;Rock;1980;20649
+09 - You Can Look (but You Better Not Touch).flac;You Can Look (but You Better Not Touch);Bruce Springsteen;The River;9;Rock;1980;15513
+08 - Crush on You.flac;Crush on You;Bruce Springsteen;The River;8;Rock;1980;19109
+07 - Out in the Street.flac;Out in the Street;Bruce Springsteen;The River;7;Rock;1980;2576
+06 - Hungry Heart.flac;Hungry Heart;Bruce Springsteen;The River;6;Rock;1980;19945
+05 - Independence Day.flac;Independence Day;Bruce Springsteen;The River;5;Rock;1980;28595
+04 - Two Hearts.flac;Two Hearts;Bruce Springsteen;The River;4;Rock;1980;16207
+03 - Jackson Cage.flac;Jackson Cage;Bruce Springsteen;The River;3;Rock;1980;18397
+02 - Sherry Darling.flac;Sherry Darling;Bruce Springsteen;The River;2;Rock;1980;24317
+01 - The Ties That Bind.flac;The Ties That Bind;Bruce Springsteen;The River;1;Rock;1980;21385
+09 - Dead End Angels.flac;Dead End Angels;Bohren & der Club of Gore;Sunset Mission;9;Dark Jazz,jazz;2000;62597
+08 - Black City Skyline.flac;Black City Skyline;Bohren & der Club of Gore;Sunset Mission;8;Dark Jazz,jazz;2000;3506
+07 - Nightwolf.flac;Nightwolf;Bohren & der Club of Gore;Sunset Mission;7;Dark Jazz,jazz;2000;99167
+06 - Darkstalker.flac;Darkstalker;Bohren & der Club of Gore;Sunset Mission;6;Dark Jazz,jazz;2000;34323
+05 - Painless Steel.flac;Painless Steel;Bohren & der Club of Gore;Sunset Mission;5;Dark Jazz,jazz;2000;34713
+04 - Street Tattoo.flac;Street Tattoo;Bohren & der Club of Gore;Sunset Mission;4;Dark Jazz,jazz;2000;59113
+03 - Midnight Walker.flac;Midnight Walker;Bohren & der Club of Gore;Sunset Mission;3;Dark Jazz,jazz;2000;43791
+02 - On Demon Wings.flac;On Demon Wings;Bohren & der Club of Gore;Sunset Mission;2;Dark Jazz,jazz;2000;42187
+01 - Prowler.flac;Prowler;Bohren & der Club of Gore;Sunset Mission;1;Dark Jazz,jazz;2000;30389
+09. IL MÉLODIEUX MANOIR.flac;IL MÉLODIEUX MANOIR;Dale Cooper Quartet;Metamanoir;9;electronic,jazz;2011;30743
+08. LA TERRIBLE PALAIS.flac;LA TERRIBLE PALAIS;Dale Cooper Quartet;Metamanoir;8;electronic,jazz;2011;35866
+07. MON TRAGIQUE CHARTREUSE.flac;MON TRAGIQUE CHARTREUSE;Dale Cooper Quartet;Metamanoir;7;electronic,jazz;2011;77388
+06. ELLE AGRÉABLE RENDEZ-VOUS DE CHASSE.flac;ELLE AGRÉABLE RENDEZ-VOUS DE CHASSE;Dale Cooper Quartet;Metamanoir;6;electronic,jazz;2011;33516
+05. LE IMPLACABLE GENTILHOMMIÈRE.flac;LE IMPLACABLE GENTILHOMMIÈRE;Dale Cooper Quartet;Metamanoir;5;electronic,jazz;2011;46539
+04. SA PRODIGIEUX HERMITAGE.flac;SA PRODIGIEUX HERMITAGE;Dale Cooper Quartet;Metamanoir;4;electronic,jazz;2011;3585
+03. MA INSAISISSABLE ABRI.flac;MA INSAISISSABLE ABRI;Dale Cooper Quartet;Metamanoir;3;electronic,jazz;2011;33724
+02. EUX EXQUIS ACROSTOLE.flac;EUX EXQUIS ACROSTOLE;Dale Cooper Quartet;Metamanoir;2;electronic,jazz;2011;67549
+01. UNE PETIT CELLIER.flac;UNE PETIT CELLIER;Dale Cooper Quartet;Metamanoir;1;electronic,jazz;2011;32397
+10. Chez le photographe du motel.flac;Chez le photographe du motel;Miles Davis;L'ascenseur pour l'échafaud (Lift to the Scaffold) [Original Motion Picture Soundtrack];10;Jazz;1958;23375
+09. Au bar du petit bac.flac;Au bar du petit bac;Miles Davis;L'ascenseur pour l'échafaud (Lift to the Scaffold) [Original Motion Picture Soundtrack];9;Jazz;1958;17386
+08. Visite du vigile.flac;Visite du vigile;Miles Davis;L'ascenseur pour l'échafaud (Lift to the Scaffold) [Original Motion Picture Soundtrack];8;Jazz;1958;12325
+07. Évasion de Julien.flac;Évasion de Julien;Miles Davis;L'ascenseur pour l'échafaud (Lift to the Scaffold) [Original Motion Picture Soundtrack];7;Jazz;1958;5113
+06. Dîner au motel.flac;Dîner au motel;Miles Davis;L'ascenseur pour l'échafaud (Lift to the Scaffold) [Original Motion Picture Soundtrack];6;Jazz;1958;23721
+05. Florence sur les Champs-Élysées.flac;Florence sur les Champs-Élysées;Miles Davis;L'ascenseur pour l'échafaud (Lift to the Scaffold) [Original Motion Picture Soundtrack];5;Jazz;1958;17121
+04. Julien dans l'ascenseur.flac;Julien dans l'ascenseur;Miles Davis;L'ascenseur pour l'échafaud (Lift to the Scaffold) [Original Motion Picture Soundtrack];4;Jazz;1958;1290
+03. Sur l'autoroute.flac;Sur l'autoroute;Miles Davis;L'ascenseur pour l'échafaud (Lift to the Scaffold) [Original Motion Picture Soundtrack];3;Jazz;1958;13775
+02. L'assassinat de carala.flac;L'assassinat de carala;Miles Davis;L'ascenseur pour l'échafaud (Lift to the Scaffold) [Original Motion Picture Soundtrack];2;Jazz;1958;13125
+01. Générique.flac;Générique;Miles Davis;L'ascenseur pour l'échafaud (Lift to the Scaffold) [Original Motion Picture Soundtrack];1;Jazz;1958;16688
+09 - Mentira y verdad.flac;Mentira y verdad;Fito & Fitipaldis;El monte de los aullidos;9;Rock And Roll;2025-10-24;21277
+06 - La noche más perfecta.flac;La noche más perfecta;Fito & Fitipaldis;El monte de los aullidos;6;Rock And Roll;2025-10-24;28461
+01 - Los cuervos se lo pasan bien.flac;Los cuervos se lo pasan bien;Fito & Fitipaldis;El monte de los aullidos;1;Rock And Roll;2025-10-24;26495
+03 - Volverá el espanto.flac;Volverá el espanto;Fito & Fitipaldis;El monte de los aullidos;3;Rock And Roll;2025-10-24;19832
+04 - Como un ataúd.flac;Como un ataúd;Fito & Fitipaldis;El monte de los aullidos;4;Rock And Roll;2025-10-24;1860
+08 - Una maldita suerte.flac;Una maldita suerte;Fito & Fitipaldis;El monte de los aullidos;8;Rock And Roll;2025-10-24;19591
+05 - A contraluz.flac;A contraluz;Fito & Fitipaldis;El monte de los aullidos;5;Rock And Roll;2025-10-24;26184
+07 - Marea imparable.flac;Marea imparable;Fito & Fitipaldis;El monte de los aullidos;7;Rock And Roll;2025-10-24;22696
+02 - El monte de los aullidos.flac;El monte de los aullidos;Fito & Fitipaldis;El monte de los aullidos;2;Rock And Roll;2025-10-24;30097
+10 - Ardi.flac;Ardi;Fito & Fitipaldis;El monte de los aullidos;10;Rock And Roll;2025-10-24;19621

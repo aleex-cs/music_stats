@@ -7,3 +7,9 @@ streamlit-aggrid
 scikit-learn
 pmdarima
 pygam
+xgboost
+lightgbm
+prophet
+catboost
+# tensorflow removed (no compatible wheel for Python 3.14)
+wordcloud
