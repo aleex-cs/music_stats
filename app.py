@@ -2506,7 +2506,7 @@ with tab8:
         forecast_idx = np.arange(len(summary_pred), len(summary_pred)+forecast_horizon).reshape(-1,1)
         preds = model.predict(forecast_idx)
         # generar fechas futuras según global_period
-        freq_map = {"day":"D","week":"W","month":"M","year":"Y"}
+        freq_map = {"day":"D","week":"W","month":"ME","year":"YE"}
         last_date = summary_pred["PeriodDt"].iloc[-1]
         future_dates = pd.date_range(start=last_date + pd.offsets.DateOffset(1), periods=forecast_horizon, freq=freq_map.get(global_period, "M"))
         fig = go.Figure()
