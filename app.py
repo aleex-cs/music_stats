@@ -550,7 +550,7 @@ def get_listening_summary(df, period="month"):
     elif period == "day":
         df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.date
     elif period == "month":
-        df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("M").apply(lambda r: r.start_time.date())
+        df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("ME").apply(lambda r: r.start_time.date())
     elif period == "year":
         df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("Y").apply(lambda r: r.start_time.date())
 
@@ -1315,9 +1315,9 @@ with tab1:
     elif global_period == "day":
         df_gf["Period"] = df_gf["datetime"].dt.tz_convert(LOCAL_TZ).dt.date
     elif global_period == "month":
-        df_gf["Period"] = df_gf["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("M").apply(lambda r: r.start_time.date())
+        df_gf["Period"] = df_gf["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("ME").apply(lambda r: r.start_time.date())
     elif global_period == "year":
-        df_gf["Period"] = df_gf["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("Y").apply(lambda r: r.start_time.date())
+        df_gf["Period"] = df_gf["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("YE").apply(lambda r: r.start_time.date())
 
     df_gf["Period"] = df_gf["Period"].astype(str)
 
@@ -2102,21 +2102,21 @@ with tab4:
             df_out["Period"] = (
                 df_out["datetime"]
                 .dt.tz_convert(tz_name)
-                .dt.to_period("M")
+                .dt.to_period("ME")
                 .apply(lambda r: r.start_time.date())
             )
         elif period == "year":
             df_out["Period"] = (
                 df_out["datetime"]
                 .dt.tz_convert(tz_name)
-                .dt.to_period("Y")
+                .dt.to_period("YE")
                 .apply(lambda r: r.start_time.date())
             )
         else:
             df_out["Period"] = (
                 df_out["datetime"]
                 .dt.tz_convert(tz_name)
-                .dt.to_period("M")
+                .dt.to_period("MES")
                 .apply(lambda r: r.start_time.date())
             )
         return df_out
@@ -2345,7 +2345,7 @@ with tab4:
 
 
     df_month = df_filtered.copy()
-    df_month["month"] = df_month["datetime"].dt.to_period("M")
+    df_month["month"] = df_month["datetime"].dt.to_period("ME")
 
     dominant = (
         df_month.groupby(["month","artist"])["duration"]
@@ -2561,7 +2561,7 @@ with tab10:
         elif global_period == "day":
             temp["Period"] = temp["datetime"].dt.date
         elif global_period == "month":
-            temp["Period"] = temp["datetime"].dt.to_period("M").apply(lambda r: r.start_time.date())
+            temp["Period"] = temp["datetime"].dt.to_period("ME").apply(lambda r: r.start_time.date())
         elif global_period == "year":
             temp["Period"] = temp["datetime"].dt.to_period("Y").apply(lambda r: r.start_time.date())
         counts = temp.groupby(["Period","artist"]).size()
