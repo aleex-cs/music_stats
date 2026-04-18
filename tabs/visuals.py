@@ -63,23 +63,33 @@ def render_visuals(df, df_genre, global_start, global_end, global_time_filter):
     # We need a clean dataframe based on the selected path
     df_sun = df_gen.dropna(subset=sun_path)
     
-    # Filter top genres to avoid browser freezing
-    top_genres = df_sun.groupby("genre_single")["duration"].sum().nlargest(15).index
-    df_sun = df_sun[df_sun["genre_single"].isin(top_genres)]
+    # Filter top genres only if genre is in the path
+    if "genre_single" in sun_path:
+        top_genres = df_sun.groupby("genre_single")["duration"].sum().nlargest(15).index
+        df_sun = df_sun[df_sun["genre_single"].isin(top_genres)]
     
-    # Filter out small artists (e.g. less than 10 mins total) to keep chart clean
+    # Filter out small artists to keep chart clean
     artist_totals = df_sun.groupby("artist")["duration"].sum() / 60.0
     top_artists = artist_totals[artist_totals > 10].index
     df_sun = df_sun[df_sun["artist"].isin(top_artists)]
+
+    # If track ring is active, limit to top 300 most listened tracks to avoid freezing
+    if "track" in sun_path:
+        top_tracks = df_sun.groupby("track")["duration"].sum().nlargest(300).index
+        df_sun = df_sun[df_sun["track"].isin(top_tracks)]
     
     sun_data = df_sun.groupby(sun_path)["duration"].sum().reset_index()
-    sun_data["minutes"] = sun_data["duration"] / 60.0    
+    sun_data["minutes"] = sun_data["duration"] / 60.0
+
+    # Color is based on the outermost ring (first element of path)
+    color_col = sun_path[0] if sun_path else None
+
     if not sun_data.empty:
         fig_sun = px.sunburst(
             sun_data, 
             path=sun_path, 
             values='minutes',
-            color='genre_single',
+            color=color_col,
             color_discrete_sequence=px.colors.qualitative.Pastel,
         )
         fig_sun.update_layout(
