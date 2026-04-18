@@ -213,7 +213,6 @@ marimo/_lsp/
 __marimo__/
 >>>>>>> de220a8 (Initial commit)
 
-data/
 cuaderno.ipynb
 full_dataframe_export.csv
 catboost_info/
