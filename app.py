@@ -326,7 +326,15 @@ def format_first_listen_table(df_new, name_col, datetime_col="datetime"):
     # Formateamos después de ordenar
     df_out["First Listen"] = df_out[datetime_col].dt.strftime("%d/%m/%Y %H:%M:%S")
 
+    # Filtramos columnas
     df_out = df_out[[name_col, "First Listen"]]
+
+    # --- CAMBIO AQUÍ: Capitalizar nombres de columnas ---
+    # Opción A: Solo la primera letra de la frase (ej: "First listen")
+    # df_out.columns = df_out.columns.str.capitalize()
+    
+    # Opción B: Primera letra de cada palabra (ej: "First Listen")
+    df_out.columns = df_out.columns.str.title()
 
     return df_out
 
@@ -334,8 +342,6 @@ def format_first_listen_table(df_new, name_col, datetime_col="datetime"):
 # LOAD DATA
 # =========================
 
-@st.cache_data
-@st.cache_data
 @st.cache_data
 def load_data():
     if not os.path.exists(DATA_PATH):
@@ -367,31 +373,49 @@ def load_data():
     equivalencias = pd.DataFrame({
         "original": [
             # --- TUS ORIGINALES ---
-            "Smash (ESP)", "Smash", "Jim Morrison", "Robe.", "I Nomadi", 
-            "Godspeed You Black Emperor!", "Fito Y Fitipaldis", "Fabrizio de Andre'", 
+            "Smash (ESP)", "Smash", "Jim Morrison", "Robe.", "I Nomadi",
+            "Godspeed You Black Emperor!", "Fito Y Fitipaldis", "Fabrizio de Andre'",
             "Fabrizio De Andre", "Fabrizio De AndrÃ©", "Fabrizio De André",
-            
-            # --- NUEVOS AÑADIDOS (Lote 1) ---
+
+            # --- Lote 1: VEVO / handles conocidos ---
             "Mark Knopfler & Emmylou Harris", "TheKnackVEVO", "joaquinsabinaVEVO",
             "ZoeVEVO", "calle13vevo", "ojetecalormusica", "fito&fitipaldisVEVO",
-            
-            # --- Lote 2 (Limpieza) ---
-            "Fabrizio De AndrÃ¨", "Guns N’ Roses", "The Tonight Show starring Jimmy Fallon", 
-            "The Game Awards"
+
+            # --- Lote 2: encoding / shows ---
+            "Fabrizio De AndrÃ¨", "Guns N' Roses",
+            "The Tonight Show starring Jimmy Fallon", "The Game Awards",
+
+            # --- Lote 3: VEVO → artista real ---
+            "FrancodeVitaVEVO", "CoezVEVO", "FrancescoGucciniVEVO",
+            "Lorenzo Jovanotti Cherubini",
+
+            # --- Lote 4: canales YT / sellos / no-música → _NON_MUSIC_ ---
+            "Canal Nostalgia", "Date un Vlog", "Mensaje de Voz",
+            "Nacional Records", "Warner Music Spain", "Waves Consumer Electronics",
+            "Hank Mc Koy",
         ],
         "canonico": [
             # --- TUS CANÓNICOS ---
-            "Smash", "Smash", "The Doors", "Robe", "Nomadi", 
-            "Godspeed You! Black Emperor", "Fito & Fitipaldis", "Fabrizio De Andre'", 
+            "Smash", "Smash", "The Doors", "Robe", "Nomadi",
+            "Godspeed You! Black Emperor", "Fito & Fitipaldis", "Fabrizio De Andre'",
             "Fabrizio De Andre'", "Fabrizio De Andre'", "Fabrizio De Andre'",
-            
-            # --- NUEVOS CANÓNICOS (Lote 1) ---
+
+            # --- Lote 1 ---
             "Mark Knopfler", "The Knack", "Joaquín Sabina",
             "Zoe", "Calle 13", "Ojete Calor", "Fito & Fitipaldis",
-            
-            # --- Lote 2 (Limpieza) ---
-            "Fabrizio De Andre'", "Guns N' Roses", "Jimmy Fallon", 
-            "Various Artists"
+
+            # --- Lote 2 ---
+            "Fabrizio De Andre'", "Guns N' Roses",
+            "Jimmy Fallon", "Various Artists",
+
+            # --- Lote 3 ---
+            "Franco De Vita", "Coez", "Francesco Guccini",
+            "Jovanotti",
+
+            # --- Lote 4 ---
+            "_NON_MUSIC_", "_NON_MUSIC_", "_NON_MUSIC_",
+            "_NON_MUSIC_", "_NON_MUSIC_", "_NON_MUSIC_",
+            "_NON_MUSIC_",
         ]
     })
     for i, row in equivalencias.iterrows():
@@ -458,9 +482,9 @@ def load_data():
         }
         return " ".join(EQUIV.get(clean.strip(), clean.strip()).split())
 
-    # Crear album_clean (priorizando el nombre de musica.csv)
+    # Crear album_clean (priorizando el scrobble de Last.fm; musica.csv solo como fallback)
     if "album_musica" in df.columns:
-        df["album_clean"] = df["album_musica"].fillna(df["album"]).apply(normalize_album_full)
+        df["album_clean"] = df["album"].fillna(df["album_musica"]).apply(normalize_album_full)
     else:
         df["album_clean"] = df["album"].apply(normalize_album_full)
 
@@ -476,6 +500,37 @@ def load_data():
 # --- BLOQUE DE PROCESAMIENTO TRAS CARGAR ---
 df = load_data()
 
+# Eliminar del dataset filas marcadas como no-música (canales YT, sellos, etc.)
+df = df[df["artist"] != "_NON_MUSIC_"].copy()
+
+# Detector de tracks con título en formato YouTube
+_YT_JUNK_RE = re.compile(
+    r'(\(Official\s*(Music\s*)?Video\)'
+    r'|\(Official\s*Audio\)'
+    r'|\(Videoclip\s*Oficial\)'
+    r'|\(Video\s*Oficial\)'
+    r'|\(Video\s*Ufficiale\)'
+    r'|\(Lyric\s*Video\)'
+    r'|\(Lyrics?\))',
+    re.IGNORECASE
+)
+
+def is_youtube_track(track: str, artist: str = "") -> bool:
+    """True si el track parece título de vídeo de YouTube, no un nombre real de canción."""
+    if not isinstance(track, str):
+        return False
+    # Patrón explícito "(Official Audio)", etc.
+    if _YT_JUNK_RE.search(track):
+        return True
+    # Formato "Artista - Canción" donde el artista está en el título
+    if isinstance(artist, str) and artist:
+        artist_norm = artist.lower().strip()
+        track_norm  = track.lower().strip()
+        if track_norm.startswith(artist_norm + " - ") or track_norm.startswith(artist_norm + "- "):
+            return True
+    return False
+
+
 # Procesar Géneros (Ahora con la columna asegurada)
 df_genre = df.copy()
 df_genre["genre_single"] = df_genre["genre"].fillna("Unknown").apply(split_genres)
@@ -487,9 +542,6 @@ df_genre["genre_single"] = df_genre["genre_single"].apply(normalize_genre_name)
 df["decade"] = df["year_release"].apply(get_decade)
 df_genre["decade"] = df_genre["year_release"].apply(get_decade)
  
-
-
-
 df_full = df.copy()  # o aplicar filtros si quieres
 df_full.to_csv("full_dataframe_export.csv", index=False, encoding="utf-8")
 
@@ -1202,7 +1254,12 @@ if not is_custom:
 
 if st.session_state.quick_range == "Personalizado":
     global_start = pd.to_datetime(st.session_state.start_date).tz_localize(LOCAL_TZ)
-    global_end   = pd.to_datetime(st.session_state.end_date).tz_localize(LOCAL_TZ)
+    # Llevamos el end al final del día (23:59:59) para incluir todos los scrobbles de ese día
+    global_end = (
+        pd.to_datetime(st.session_state.end_date).tz_localize(LOCAL_TZ)
+        + pd.Timedelta(days=1)
+        - pd.Timedelta(seconds=1)
+    )
 else:
     global_start = default_start
     global_end   = default_end
@@ -1253,7 +1310,7 @@ global_top_n = st.sidebar.slider(
 # Aplicar filtro por año de lanzamiento
 # -----------------------------------
 
-df = df[df["year_release"].between(year_range[0], year_range[1])]
+df = df[df["year_release"].isna() | df["year_release"].between(year_range[0], year_range[1])]
 
 df_genre = df_genre.merge(
     df[["datetime", "track", "artist", "album", "year_release"]],
@@ -1295,6 +1352,7 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs([
 # TAB 1 - Listening Summary
 # =========================
 with tab1:
+
     # Filtrado por fecha y hora
     df_filtered = df[(df["datetime"] >= global_start) & (df["datetime"] <= global_end)]
     df_filtered = apply_time_filter(df_filtered, global_time_filter)
@@ -1417,7 +1475,7 @@ with tab1:
             (first_artist_listen["datetime"] <= global_end)
         ]
 
-        first_album_listen = df.groupby("album")["datetime"].min().reset_index()
+        first_album_listen = df.groupby("album_clean")["datetime"].min().reset_index()
         new_albums = first_album_listen[
             (first_album_listen["datetime"] >= global_start) &
             (first_album_listen["datetime"] <= global_end)
@@ -1507,7 +1565,9 @@ with tab1:
     # Tabla en orden descendente
     # --------------------------
     summary_table = summary_full.sort_values("Period", ascending=False).head(global_rows_to_show)
-    display_aggrid(summary_table, container_id="grid_summary_tab1")
+    rows = len(summary_table)
+    calculated_height = (rows + 1) * 35 + 3
+    st.dataframe(summary_table,hide_index=True,use_container_width=True,height=calculated_height)
     
     # =========================
     # Tablas de descubrimientos
@@ -1521,23 +1581,29 @@ with tab1:
         artists_table = artists_table.head(global_rows_to_show)
         
         st.markdown("### 🎤 New Artists")
-        display_aggrid(artists_table, container_id="grid_new_artists")
-
+        rows = len(artists_table)
+        calculated_height = (rows + 1) * 35 + 3
+        st.dataframe(artists_table,hide_index=True,use_container_width=True,height=calculated_height)
+        
     # ---------------- Tracks ----------------
     if len(new_tracks) > 0:
         tracks_table = format_first_listen_table(new_tracks, "track")
         tracks_table = tracks_table.head(global_rows_to_show)
         
         st.markdown("### 🎵 New Tracks")
-        display_aggrid(tracks_table, container_id="grid_new_tracks")
+        rows = len(tracks_table)
+        calculated_height = (rows + 1) * 35 + 3
+        st.dataframe(tracks_table, hide_index=True, use_container_width=True, height=calculated_height)
 
     # ---------------- Albums ----------------
     if len(new_albums) > 0:
-        albums_table = format_first_listen_table(new_albums, "album")
+        albums_table = format_first_listen_table(new_albums, "album_clean")
         albums_table = albums_table.head(global_rows_to_show)
         
         st.markdown("### 💿 New Albums")
-        display_aggrid(albums_table, container_id="grid_new_albums")
+        rows = len(albums_table)
+        calculated_height = (rows + 1) * 35 + 3
+        st.dataframe(albums_table, hide_index=True, use_container_width=True, height=calculated_height)
 
     # ---------------- Genres ----------------
     if len(new_genres) > 0:
@@ -1545,7 +1611,9 @@ with tab1:
         genres_table = genres_table.head(global_rows_to_show)
         
         st.markdown("### 🎼 New Genres")
-        display_aggrid(genres_table, container_id="grid_new_genres")
+        rows = len(genres_table)
+        calculated_height = (rows + 1) * 35 + 3
+        st.dataframe(genres_table, hide_index=True, use_container_width=True, height=calculated_height)
 
     # ---------------- Decades ----------------
     if len(new_decades) > 0:
@@ -1563,7 +1631,7 @@ with tab1:
             .head(global_rows_to_show)
 
         st.markdown("### 🗓️ New Decades")
-        display_aggrid(decades_table, container_id="grid_new_decades")
+        st.dataframe(decades_table, hide_index=True)
     # --------------------------
     # Gráficas de minutos y plays
     # --------------------------
@@ -1704,7 +1772,8 @@ with tab2:
     )
     tracks_summary["Artist"] = tracks_summary["artist"].fillna("Unknown")
     tracks_summary = tracks_summary[["Track", "Artist", "First Listen", "Minutes", "Minutes%", "Plays", "Plays%"]].head(global_rows_to_show)
-    display_aggrid(tracks_summary, container_id="grid_tracks")
+    calculated_height = (len(tracks_summary) + 1) * 35 + 3
+    st.dataframe(tracks_summary, hide_index=True, use_container_width=True,height=calculated_height)
 
     # =========================
     # ARTISTS
@@ -1743,11 +1812,15 @@ with tab2:
 
     artists_summary = summarize(df_fd, "artist").rename(columns={"artist": "Artist"})
     artists_summary = add_share_columns(artists_summary)
-    artist_first_listen = df.groupby("artist")["datetime"].min().reset_index()
+    # Usamos df con el mismo title-case que df_fd para que el merge no falle por casing
+    _df_afl = df.copy()
+    _df_afl["artist"] = _df_afl["artist"].astype(str).str.title().str.strip()
+    artist_first_listen = _df_afl.groupby("artist")["datetime"].min().reset_index()
     artist_first_listen["First Listen"] = artist_first_listen["datetime"].dt.tz_convert(LOCAL_TZ).dt.strftime("%d/%m/%Y %H:%M:%S")
     artists_summary = artists_summary.merge(artist_first_listen, left_on="Artist", right_on="artist", how="left")
     artists_summary = artists_summary[["Artist", "First Listen", "Minutes", "Minutes%", "Plays", "Plays%"]].head(global_rows_to_show)
-    display_aggrid(artists_summary, container_id="grid_artists")
+    calculated_height = (len(artists_summary) + 1) * 35 + 3
+    st.dataframe(artists_summary, hide_index=True, use_container_width=True, height=calculated_height)
 
     ## =========================
     # ALBUMS (CORREGIDO PARA USAR LA COLUMNA LIMPIA)
@@ -1801,7 +1874,8 @@ with tab2:
     albums_summary.rename(columns={"artist": "Artist"}, inplace=True)
     albums_summary = albums_summary[["Album", "Artist", "First Listen", "Minutes", "Minutes%", "Plays", "Plays%"]].head(global_rows_to_show)
     
-    display_aggrid(albums_summary, container_id="grid_albums")
+    calculated_height = (len(albums_summary) + 1) * 35 + 3
+    st.dataframe(albums_summary, hide_index=True, use_container_width=True, height=calculated_height)
 
     # =========================
     # GENRES
@@ -2577,4 +2651,3 @@ with tab10:
             pass
         fig = px.line(sh_df, x="Period", y="Shannon", title="Artist diversity (Shannon index)")
         st.plotly_chart(fig, use_container_width=True)
-
