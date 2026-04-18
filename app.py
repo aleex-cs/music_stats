@@ -1949,7 +1949,8 @@ with tab2:
         genre_first_listen["First Listen"] = genre_first_listen["datetime"].dt.tz_convert(LOCAL_TZ).dt.strftime("%d/%m/%Y %H:%M:%S")
         genres_summary = genres_summary.merge(genre_first_listen, left_on="Genre", right_on="genre_single", how="left")
         genres_summary = genres_summary[["Genre", "First Listen", "Minutes", "Minutes%", "Plays", "Plays%"]].head(global_rows_to_show)
-        display_aggrid(genres_summary, container_id="grid_genres")
+        st.dataframe(genres_summary, hide_index=True, use_container_width=True, height=(len(genres_summary) + 1) * 35 + 3)
+        
     else:
         st.write("No hay datos de géneros en el rango/turno seleccionado.")
 
@@ -2009,7 +2010,7 @@ with tab2:
     decade_first_listen["First Listen"] = decade_first_listen["datetime"].dt.tz_convert(LOCAL_TZ).dt.strftime("%d/%m/%Y %H:%M:%S")
     decades_summary = decades_summary.merge(decade_first_listen, left_on="Decade", right_on="decade", how="left")
     decades_summary = decades_summary[["Decade", "First Listen", "Minutes", "Minutes%", "Plays", "Plays%"]].sort_values("Minutes", ascending=False).head(global_rows_to_show)
-    display_aggrid(decades_summary, container_id="grid_decades")
+    st.dataframe(decades_summary, hide_index=True, use_container_width=True, height=(len(decades_summary) + 1) * 35 + 3)
     
 # =========================
 # TAB 3 - Time Patterns
@@ -2247,10 +2248,8 @@ with tab4:
     longest_session = sessions.loc[sessions["length"].idxmax()]
 
     sessions_to_show = sessions.drop(columns=["last_duration"])
-    display_aggrid(
-        sessions_to_show.reset_index(drop=True).sort_values("length", ascending=False).head(global_rows_to_show),
-        container_id="grid_sessions"
-    )
+
+    st.dataframe(sessions_to_show.reset_index(drop=True).sort_values("length", ascending=False).head(global_rows_to_show), hide_index=True, use_container_width=True, height=(len(sessions_to_show.head(global_rows_to_show)) + 1) * 35 + 3)
     # =========================
     # Track Listening Evolution — afecta a TODOS los filtros globales
     # =========================
