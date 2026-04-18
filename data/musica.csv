@@ -139,15 +139,15 @@
 08.-My Eyes Have Seen You.flac;My Eyes Have Seen You;The Doors;Strange Days;8;Rock;1967;14767
 09.-I Can't See Your Face In My Mind.flac;I Can't See Your Face In My Mind;The Doors;Strange Days;9;Rock;1967;20642
 10.-When The Music's Over.flac;When The Music's Over;The Doors;Strange Days;10;Rock;1967;65992
-A1 Tu Frialdad.flac;;Triana;Un encuentro {SP Repress};;;04/02/2013;26403
-A2 A Través Del Aire.flac;;Triana;Un encuentro {SP Repress};;;04/02/2013;37069
-A3 Cae Fina La Lluvia.flac;;Triana;Un encuentro {SP Repress};;;04/02/2013;19866
-A4 Un Nido En Mi Ventana.flac;;Triana;Un encuentro {SP Repress};;;;20868
-B1 Aroma Fresco.flac;;Triana;Un encuentro {SP Repress};;;04/02/2013;15704
-B2 Un Extraño Más.flac;;Triana;Un encuentro {SP Repress};;;04/02/2013;18326
-B3 Encuentro fugaz.flac;;Triana;Un encuentro {SP Repress};;;05/02/2013;31712
-B4 Caudaloso río.flac;;Triana;Un encuentro {SP Repress};;;04/02/2013;24112
-B5 Fin.flac;;Triana;Un encuentro {SP Repress};;;;10864
+A1 Tu Frialdad.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;26403
+A2 A Través Del Aire.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;37069
+A3 Cae Fina La Lluvia.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;19866
+A4 Un Nido En Mi Ventana.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;;20868
+B1 Aroma Fresco.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;15704
+B2 Un Extraño Más.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;18326
+B3 Encuentro fugaz.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;05/02/2013;31712
+B4 Caudaloso río.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;24112
+B5 Fin.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;;10864
 01. Dire Straits - Tunnel Of Love.flac;Tunnel Of Love;Dire Straits;Making Movies (Australia Maxicut);1;Rock;1980;49239
 02. Dire Straits - Romeo And Juliet.flac;Romeo And Juliet;Dire Straits;Making Movies (Australia Maxicut);2;Rock;1980;36541
 03. Dire Straits - Skateaway.flac;Skateaway;Dire Straits;Making Movies (Australia Maxicut);3;Rock;1980;39798
@@ -202,14 +202,14 @@ B5 Fin.flac;;Triana;Un encuentro {SP Repress};;;;10864
 04. Tercer movimiento_ Lo de dentro.flac;Tercer movimiento: Lo de dentro;Extremoduro;La ley innata;4;Rock;2008;45875
 05. Cuarto movimiento_ La realidad.flac;Cuarto movimiento: La realidad;Extremoduro;La ley innata;5;Rock;2008;35157
 06. Coda flamenca (otra realidad).flac;Coda flamenca (otra realidad);Extremoduro;La ley innata;6;Rock;2008;36511
-A1 Hijos Del Agobio.flac;;Triana;Hijos del agobio {Original SP};;;16/04/2013;3232
-A2 Rumor.flac;;Triana;Hijos del agobio {Original SP};;;16/04/2013;20403
-A3 Sentimiento De Amor.flac;;Triana;Hijos del agobio {Original SP};;;16/04/2013;33357
-A4 Recuerdos De Triana.flac;;Triana;Hijos del agobio {Original SP};;;;17257
-B1 Ya Está Bien.flac;;Triana;Hijos del agobio {Original SP};;;16/04/2013;1943
-B2 Necesito.flac;;Triana;Hijos del agobio {Original SP};;;16/04/2013;2441
-B3 Sr. Troncoso.flac;;Triana;Hijos del agobio {Original SP};;;16/04/2013;21846
-B4 Del Crepúsculo Lento Nacerá El Rocío.flac;;Triana;Hijos del agobio {Original SP};;;;35098
+A1 Hijos Del Agobio.flac;;Triana;Hijos del agobio {Original SP};;Rock Andaluz/Rock progresivo;16/04/2013;3232
+A2 Rumor.flac;;Triana;Hijos del agobio {Original SP};;Rock Andaluz/Rock progresivo;16/04/2013;20403
+A3 Sentimiento De Amor.flac;;Triana;Hijos del agobio {Original SP};;Rock Andaluz/Rock progresivo;16/04/2013;33357
+A4 Recuerdos De Triana.flac;;Triana;Hijos del agobio {Original SP};;Rock Andaluz/Rock progresivo;;17257
+B1 Ya Está Bien.flac;;Triana;Hijos del agobio {Original SP};;Rock Andaluz/Rock progresivo;16/04/2013;1943
+B2 Necesito.flac;;Triana;Hijos del agobio {Original SP};;Rock Andaluz/Rock progresivo;16/04/2013;2441
+B3 Sr. Troncoso.flac;;Triana;Hijos del agobio {Original SP};;Rock Andaluz/Rock progresivo;16/04/2013;21846
+B4 Del Crepúsculo Lento Nacerá El Rocío.flac;;Triana;Hijos del agobio {Original SP};;Rock Andaluz/Rock progresivo;;35098
 Modulos - Variaciones.flac;Adios al ayer;Modulos;Variaciones;2;Pop;1997;226384
 01 - Tu calorro.flac;Tu calorro;Estopa;Estopa;1;Rumba Rock;1999;19063
 02 - La raja de tu falda.flac;La raja de tu falda;Estopa;Estopa;2;Rumba Rock;1999;20283
@@ -356,7 +356,7 @@ Modulos - Variaciones.flac;Adios al ayer;Modulos;Variaciones;2;Pop;1997;226384
 12. La carrera.flac;La carrera;Extremoduro;Agila;12;Rock;1996;13597
 13. Me estoy quitando.flac;Me estoy quitando;Extremoduro;Agila;13;Rock;1996;13611
 14. Sucede (nueva mezcla 2004).flac;Sucede (nueva mezcla 2004);Extremoduro;Agila;14;Rock;1996;18821
-01. Pedrá.flac;Pedrá;Extremoduro;Pedrá;1;;1995;176919
+01. Pedrá.flac;Pedrá;Extremoduro;Pedrá;1;Hard rock/Rock progresivo;1995;176919
 01. El duende del parque.flac;El duende del parque;Extremoduro;¿Dónde están mis amigos?;1;Rock;1993;26248
 02. No me calientes, que me hundo.flac;No me calientes, que me hundo;Extremoduro;¿Dónde están mis amigos?;2;Rock;1993;17275
 03. Sin dios ni amo.flac;Sin dios ni amo;Extremoduro;¿Dónde están mis amigos?;3;Rock;1993;23813
@@ -373,18 +373,18 @@ Modulos - Variaciones.flac;Adios al ayer;Modulos;Variaciones;2;Pop;1997;226384
 14. El duende del parque (versión 2004).flac;El duende del parque (versión 2004);Extremoduro;¿Dónde están mis amigos?;14;Rock;1993;25696
 15. Bribribibl (versión 2004)i.flac;Bribribibl (versión 2004)i;Extremoduro;¿Dónde están mis amigos?;15;Rock;1993;19972
 16. Historias prohibidas (versión 2004).flac;Historias prohibidas (versión 2004);Extremoduro;¿Dónde están mis amigos?;16;Rock;1993;14644
-01. Sol de invierno.flac;Sol de invierno;Extremoduro;Deltoya;1;;1992;2904
-02. De acero.flac;De acero;Extremoduro;Deltoya;2;;1992;22473
-03. Última generación.flac;Última generación;Extremoduro;Deltoya;3;;1992;17933
-04. Lucha contigo.flac;Lucha contigo;Extremoduro;Deltoya;4;;1992;23947
-05. Con un latido del reloj.flac;Con un latido del reloj;Extremoduro;Deltoya;5;;1992;22436
-06. Bulerías de la sangre caliente.flac;Bulerías de la sangre caliente;Extremoduro;Deltoya;6;;1992;23144
-07. Deltoya.flac;Deltoya;Extremoduro;Deltoya;7;;1992;34153
-08. Relación convencional.flac;Relación convencional;Extremoduro;Deltoya;8;;1992;18149
-09. Volando solo.flac;Volando solo;Extremoduro;Deltoya;9;;1992;21387
-10. Ama, ama, ama y ensancha el alma.flac;Ama, ama, ama y ensancha el alma;Extremoduro;Deltoya;10;;1992;15407
-11. Papel secante.flac;Papel secante;Extremoduro;Deltoya;11;;1992;29773
-12. Estado policial.flac;Estado policial;Extremoduro;Deltoya;12;;1992;24587
+01. Sol de invierno.flac;Sol de invierno;Extremoduro;Deltoya;1;Hard rock;1992;2904
+02. De acero.flac;De acero;Extremoduro;Deltoya;2;Hard rock;1992;22473
+03. Última generación.flac;Última generación;Extremoduro;Deltoya;3;Hard rock;1992;17933
+04. Lucha contigo.flac;Lucha contigo;Extremoduro;Deltoya;4;Hard rock;1992;23947
+05. Con un latido del reloj.flac;Con un latido del reloj;Extremoduro;Deltoya;5;Hard rock;1992;22436
+06. Bulerías de la sangre caliente.flac;Bulerías de la sangre caliente;Extremoduro;Deltoya;6;Hard rock;1992;23144
+07. Deltoya.flac;Deltoya;Extremoduro;Deltoya;7;Hard rock;1992;34153
+08. Relación convencional.flac;Relación convencional;Extremoduro;Deltoya;8;Hard rock;1992;18149
+09. Volando solo.flac;Volando solo;Extremoduro;Deltoya;9;Hard rock;1992;21387
+10. Ama, ama, ama y ensancha el alma.flac;Ama, ama, ama y ensancha el alma;Extremoduro;Deltoya;10;Hard rock;1992;15407
+11. Papel secante.flac;Papel secante;Extremoduro;Deltoya;11;Hard rock;1992;29773
+12. Estado policial.flac;Estado policial;Extremoduro;Deltoya;12;Hard rock;1992;24587
 01. Tu corazón.flac;Tu corazón;Extremoduro;Somos unos animales;1;Rock;1991;28985
 02. La canción de los oficios.flac;La canción de los oficios;Extremoduro;Somos unos animales;2;Rock;1991;2322
 03. Quemando tus recuerdos.flac;Quemando tus recuerdos;Extremoduro;Somos unos animales;3;Rock;1991;35099
@@ -488,17 +488,17 @@ Modulos - Exitos Originales.flac;Adiуs Al Ayer;Modulos;Exitos Originales;2;Symp
 08.-Mercedes Benz.flac;Mercedes Benz;Janis Joplin;Pearl;8;Rock;1971;11027
 09.-Trust Me.flac;Trust Me;Janis Joplin;Pearl;9;Rock;1971;20125
 10.-Get It While You Can.flac;Get It While You Can;Janis Joplin;Pearl;10;Rock;1971;20748
-01 Intro - Stronger Than Me.flac;Intro / Stronger Than Me;Amy Winehouse;Frank;1;Soul;;23452
-02 You Sent Me Flying.flac;You Sent Me Flying;Amy Winehouse;Frank;2;Soul;;41072
-03 Fuck Me Pumps.flac;Fuck Me Pumps;Amy Winehouse;Frank;3;Soul;;20025
-04 I Heard Love Is Blind - Teo Licks.flac;I Heard Love Is Blind / Teo Licks;Amy Winehouse;Frank;4;Soul;;13044
-05 (There Is) No Greater Love.flac;(There Is) No Greater Love;Amy Winehouse;Frank;5;Soul;;16793
-06 In My Bed.flac;In My Bed;Amy Winehouse;Frank;6;Soul;;3170
-07 Take The Box.flac;Take The Box;Amy Winehouse;Frank;7;Soul;;2002
-08 October Song.flac;October Song;Amy Winehouse;Frank;8;Soul;;20487
-09 What Is It About Men.flac;What Is It About Men;Amy Winehouse;Frank;9;Soul;;20957
-10 Help Yourself.flac;Help Yourself;Amy Winehouse;Frank;10;Soul;;30107
-11 Amy Amy Amy - Outro - Moody's Mood For Love.flac;Amy Amy Amy / Outro / Moody's Mood For Love;Amy Winehouse;Frank;11;Soul;;66341
+01 Intro - Stronger Than Me.flac;Intro / Stronger Than Me;Amy Winehouse;Frank;1;Soul;2003;23452
+02 You Sent Me Flying.flac;You Sent Me Flying;Amy Winehouse;Frank;2;Soul;2004;41072
+03 Fuck Me Pumps.flac;Fuck Me Pumps;Amy Winehouse;Frank;3;Soul;2005;20025
+04 I Heard Love Is Blind - Teo Licks.flac;I Heard Love Is Blind / Teo Licks;Amy Winehouse;Frank;4;Soul;2006;13044
+05 (There Is) No Greater Love.flac;(There Is) No Greater Love;Amy Winehouse;Frank;5;Soul;2007;16793
+06 In My Bed.flac;In My Bed;Amy Winehouse;Frank;6;Soul;2008;3170
+07 Take The Box.flac;Take The Box;Amy Winehouse;Frank;7;Soul;2009;2002
+08 October Song.flac;October Song;Amy Winehouse;Frank;8;Soul;2010;20487
+09 What Is It About Men.flac;What Is It About Men;Amy Winehouse;Frank;9;Soul;2011;20957
+10 Help Yourself.flac;Help Yourself;Amy Winehouse;Frank;10;Soul;2012;30107
+11 Amy Amy Amy - Outro - Moody's Mood For Love.flac;Amy Amy Amy / Outro / Moody's Mood For Love;Amy Winehouse;Frank;11;Soul;2013;66341
 01. Big Brother & The Holding Company & Janis Joplin - Combination of the Two (Album Version).flac;Combination of the Two (Album Version);Big Brother & The Holding Company & Janis Joplin;Cheap Thrills;1;Rock;1968;34745
 02. Big Brother & The Holding Company & Janis Joplin - I Need a Man to Love (Album Version).flac;I Need a Man to Love (Album Version);Big Brother & The Holding Company & Janis Joplin;Cheap Thrills;2;Rock;1968;29506
 03. Janis Joplin & Big Brother & The Holding Company - Summertime (Album Version).flac;Summertime (Album Version);Janis Joplin & Big Brother & The Holding Company;Cheap Thrills;3;Rock;1968;2384
@@ -726,13 +726,13 @@ B5 - Rumbo A La Fiesta (Bulerias).flac;Rumbo A La Fiesta (Bulerias);Sabicas;Flam
 10 - El Tren.mp3;El Tren;Leño;Vivo'83;10;Classic Rock/Hard Rock;1983;37236
 11 - Maneras De Vivir.mp3;Maneras De Vivir;Leño;Vivo'83;11;Classic Rock/Hard Rock;1983;27799
 12 - Este Madrid.mp3;Este Madrid;Leño;Vivo'83;12;Classic Rock/Hard Rock;1983;45363
-1 - Castigo.mp3;Castigo;Leño;Leño;1;Rock;;2500
-2 - El Oportunista.mp3;El oportunista;Leño;Leño;2;Rock;;2500
-3 - El Tren.mp3;El tren;Leño;Leño;3;Rock;;2500
-4 - Este Madrid.mp3;Este Madrid;Leño;Leño;4;Rock;;2500
-5 - La Nana.mp3;La nana;Leño;Leño;5;Rock;;2500
-6 - Sodoma Y Chabola.mp3;Sodoma y chabola;Leño;Leño;6;Rock;;2500
-7 - Se Acabo!!!.mp3;Se acabó;Leño;Leño;7;Rock;;15491
+1 - Castigo.mp3;Castigo;Leño;Leño;1;Rock;1979;2500
+2 - El Oportunista.mp3;El oportunista;Leño;Leño;2;Rock;1979;2500
+3 - El Tren.mp3;El tren;Leño;Leño;3;Rock;1979;2500
+4 - Este Madrid.mp3;Este Madrid;Leño;Leño;4;Rock;1979;2500
+5 - La Nana.mp3;La nana;Leño;Leño;5;Rock;1979;2500
+6 - Sodoma Y Chabola.mp3;Sodoma y chabola;Leño;Leño;6;Rock;1979;2500
+7 - Se Acabo!!!.mp3;Se acabó;Leño;Leño;7;Rock;1979;15491
 01 - Insisto.mp3;Insisto;Leño;Más Madera;;Classic Rock/Hard Rock;1980;1970
 02 - Donde Esta La Salvacion.mp3;¿Dónde Está La Salvación?;Leño;Más Madera;;Classic Rock/Hard Rock;1980;2380
 03 - Sin Solucion.mp3;Sin Solución;Leño;Más Madera;;Classic Rock/Hard Rock;1980;1850
@@ -752,36 +752,36 @@ B5 - Rumbo A La Fiesta (Bulerias).flac;Rumbo A La Fiesta (Bulerias);Sabicas;Flam
 6 - Entre Las Cejas.mp3;Entre Las Cejas;Leño;¡Corre, Corre!;;Classic Rock/Hard Rock;1982;22057
 7 - No Lo Entiendo.mp3;No Lo Entiendo;Leño;¡Corre, Corre!;;Classic Rock/Hard Rock;1982;21116
 8 - Que Desilusion.mp3;¡Qué Desilusión!;Leño;¡Corre, Corre!;;Classic Rock/Hard Rock;1982;22431
-01- Agradecido-2011.flac;Agradecido;Rosendo;Loco por incordiar;1;Rock;2011;27295
-02- Corazon-2011.flac;Corazon;Rosendo;Loco por incordiar;2;Rock;2011;21837
-03- ...Y dale-2011.flac;...Y dale;Rosendo;Loco por incordiar;3;Rock;2011;27863
-04- Callejones-2011.flac;Callejones;Rosendo;Loco por incordiar;4;Rock;2011;29777
-05- Loco por incordiar-2011.flac;Loco por incordiar;Rosendo;Loco por incordiar;5;Rock;2011;21573
-06- Me gusta así-2011.flac;Me gusta así;Rosendo;Loco por incordiar;6;Rock;2011;23803
-07- Pan de higo-2011.flac;Pan de higo;Rosendo;Loco por incordiar;7;Rock;2011;1870
-08- Crucifixion-2011.flac;Crucifixion;Rosendo;Loco por incordiar;8;Rock;2011;20307
-09- Buenas noches-2011.flac;Buenas noches;Rosendo;Loco por incordiar;9;Rock;2011;14035
-01- Bajo cuerda-2011.flac;Bajo cuerda;Rosendo;Jugar al gua;1;Rock;2011;25431
-02- Manifiesta deprimente-2011.flac;Manifiesta deprimente;Rosendo;Jugar al gua;2;Rock;2011;1590
-03- Nada especial-2011.flac;Nada especial;Rosendo;Jugar al gua;3;Rock;2011;2470
-04- Jugar al gua-2011.flac;Jugar al gua;Rosendo;Jugar al gua;4;Rock;2011;19696
-05- Sumision-2011.flac;Sumision;Rosendo;Jugar al gua;5;Rock;2011;1920
-06- Del pulmon-2011.flac;Del pulmon;Rosendo;Jugar al gua;6;Rock;2011;2540
-07- Flojos de pantalon-2011.flac;Flojos de pantalon;Rosendo;Jugar al gua;7;Rock;2011;27304
-08- Cosita-2011.flac;Cosita;Rosendo;Jugar al gua;8;Rock;2011;1740
-09- Voluntad pasiva-2011.flac;Voluntad pasiva;Rosendo;Jugar al gua;9;Rock;2011;26137
-01 Buongiorno.flac;Buongiorno;99 Posse;Corto Circuito;1;Miscellaneous;;30235
-02 Corto Circuito.flac;Corto Circuito;99 Posse;Corto Circuito;2;Miscellaneous;;31429
-03 Lettera Al Presidente.flac;Lettera Al Presidente;99 Posse;Corto Circuito;4;Miscellaneous;;26912
-03 Me Siente-.flac;Me Siente?;99 Posse;Corto Circuito;3;Miscellaneous;;25515
-04 Quello Che.flac;Quello Che;99 Posse;Corto Circuito;5;Miscellaneous;;25276
-05 Era Na Vota.flac;Era Una Volta;99 Posse;Corto Circuito;6;Miscellaneous;;30025
-06 Vulesse.flac;Vulesse;99 Posse;Corto Circuito;7;Miscellaneous;;31415
-07 Focolaio.flac;Focolaio;99 Posse;Corto Circuito;8;Miscellaneous;;23072
-08 Bon Voyage.flac;Bon Voyage;99 Posse;Corto Circuito;9;Miscellaneous;;31129
-09 Nell' Era Della Confusione Semiotica.flac;Nell'era Della Confusione Semiotica;99 Posse;Corto Circuito;10;Miscellaneous;;28345
-10 Siente O Fank.flac;Sient' O Fank;99 Posse;Corto Circuito;11;Miscellaneous;;20815
-11 Pagherete Caro.flac;Pagherete Caro (Pezzo Contro La Lega);99 Posse;Corto Circuito;12;Miscellaneous;;65964
+01- Agradecido-2011.flac;Agradecido;Rosendo;Loco por incordiar;1;Rock;1985;27295
+02- Corazon-2011.flac;Corazon;Rosendo;Loco por incordiar;2;Rock;1985;21837
+03- ...Y dale-2011.flac;...Y dale;Rosendo;Loco por incordiar;3;Rock;1985;27863
+04- Callejones-2011.flac;Callejones;Rosendo;Loco por incordiar;4;Rock;1985;29777
+05- Loco por incordiar-2011.flac;Loco por incordiar;Rosendo;Loco por incordiar;5;Rock;1985;21573
+06- Me gusta así-2011.flac;Me gusta así;Rosendo;Loco por incordiar;6;Rock;1985;23803
+07- Pan de higo-2011.flac;Pan de higo;Rosendo;Loco por incordiar;7;Rock;1985;1870
+08- Crucifixion-2011.flac;Crucifixion;Rosendo;Loco por incordiar;8;Rock;1985;20307
+09- Buenas noches-2011.flac;Buenas noches;Rosendo;Loco por incordiar;9;Rock;1985;14035
+01- Bajo cuerda-2011.flac;Bajo cuerda;Rosendo;Jugar al gua;1;Rock;1988;25431
+02- Manifiesta deprimente-2011.flac;Manifiesta deprimente;Rosendo;Jugar al gua;2;Rock;1988;1590
+03- Nada especial-2011.flac;Nada especial;Rosendo;Jugar al gua;3;Rock;1988;2470
+04- Jugar al gua-2011.flac;Jugar al gua;Rosendo;Jugar al gua;4;Rock;1988;19696
+05- Sumision-2011.flac;Sumision;Rosendo;Jugar al gua;5;Rock;1988;1920
+06- Del pulmon-2011.flac;Del pulmon;Rosendo;Jugar al gua;6;Rock;1988;2540
+07- Flojos de pantalon-2011.flac;Flojos de pantalon;Rosendo;Jugar al gua;7;Rock;1988;27304
+08- Cosita-2011.flac;Cosita;Rosendo;Jugar al gua;8;Rock;1988;1740
+09- Voluntad pasiva-2011.flac;Voluntad pasiva;Rosendo;Jugar al gua;9;Rock;1988;26137
+01 Buongiorno.flac;Buongiorno;99 Posse;Corto Circuito;1;Hip hop;1998;30235
+02 Corto Circuito.flac;Corto Circuito;99 Posse;Corto Circuito;2;Hip hop;1998;31429
+03 Lettera Al Presidente.flac;Lettera Al Presidente;99 Posse;Corto Circuito;4;Hip hop;1998;26912
+03 Me Siente-.flac;Me Siente?;99 Posse;Corto Circuito;3;Hip hop;1998;25515
+04 Quello Che.flac;Quello Che;99 Posse;Corto Circuito;5;Hip hop;1998;25276
+05 Era Na Vota.flac;Era Una Volta;99 Posse;Corto Circuito;6;Hip hop;1998;30025
+06 Vulesse.flac;Vulesse;99 Posse;Corto Circuito;7;Hip hop;1998;31415
+07 Focolaio.flac;Focolaio;99 Posse;Corto Circuito;8;Hip hop;1998;23072
+08 Bon Voyage.flac;Bon Voyage;99 Posse;Corto Circuito;9;Hip hop;1998;31129
+09 Nell' Era Della Confusione Semiotica.flac;Nell'era Della Confusione Semiotica;99 Posse;Corto Circuito;10;Hip hop;1998;28345
+10 Siente O Fank.flac;Sient' O Fank;99 Posse;Corto Circuito;11;Hip hop;1998;20815
+11 Pagherete Caro.flac;Pagherete Caro (Pezzo Contro La Lega);99 Posse;Corto Circuito;12;Hip hop;1998;65964
 01 Non Stop.flac;Non Stop;The Stranglers;La Folie;1;New Wave;1981;14983
 02 Everybody Loves You When You're Dead.flac;Everybody Loves You When You're Dead;The Stranglers;La Folie;2;New Wave;1981;16297
 03 Tramp.flac;Tramp;The Stranglers;La Folie;3;New Wave;1981;18563
@@ -975,10 +975,10 @@ B5 - Rumbo A La Fiesta (Bulerias).flac;Rumbo A La Fiesta (Bulerias);Sabicas;Flam
 08 Arena Hash - Volar Volar.flac;Volar Volar;Arena Hash;Ah Ah Ah;8;rock;1990;18743
 09 Arena Hash - A Ese Infierno No Voy A Volver.flac;A Ese Infierno No Voy A Volver;Arena Hash;Ah Ah Ah;9;rock;1990;20651
 10 Arena Hash - Cómo Te Va Mi Amor.flac;Cómo Te Va Mi Amor;Arena Hash;Ah Ah Ah;10;rock;1990;3346
-Is This The Life We Really Want (A) (v2).flac;;;;;;;63613
-Is This The Life We Really Want (B) (v2).flac;;;;;;;72008
-Is This The Life We Really Want (C) (v2).flac;;;;;;;107606
-Is This The Life We Really Want (D) (v2).flac;;;;;;;87598
+Is This The Life We Really Want (A) (v2).flac;;;;;Rock/Progressive rock;2017;63613
+Is This The Life We Really Want (B) (v2).flac;;;;;Rock/Progressive rock;2017;72008
+Is This The Life We Really Want (C) (v2).flac;;;;;Rock/Progressive rock;2017;107606
+Is This The Life We Really Want (D) (v2).flac;;;;;Rock/Progressive rock;2017;87598
 01 - It Won't Always Be Like This.flac;It Won't Always Be Like This;Inhaler;It Won't Always Be Like This;1;Alternative;09/07/2021;24491
 02 - My Honest Face.flac;My Honest Face;Inhaler;It Won't Always Be Like This;2;Alternative;09/07/2021;27267
 03 - Slide Out The Window.flac;Slide Out The Window;Inhaler;It Won't Always Be Like This;3;Alternative;09/07/2021;27585
@@ -1091,14 +1091,14 @@ Is This The Life We Really Want (D) (v2).flac;;;;;;;87598
 13. Rainbow Trip (2016 Mix).flac;Rainbow Trip (2016 Mix);Riverside;Eye Of The Soundscape;13;Progressive Rock;2016;38005
 14. Eye Of The Soundscape.flac;Eye Of The Soundscape;Riverside;Eye Of The Soundscape;14;Progressive Rock;2016;68995
 15. Story of My Dream.flac;Story of My Dream;Riverside;Riverside 20 - The Shorts & The Longs;15;Progressive Rock;2021;34773
-01 - Well, You Know.flac;Well, You Know (Bueno Tú Ya Sabes);Smash;We Come to Smash This Time;1;Latino;1971;18103
-02 - First Movement.flac;First Movement (Primer Movimiento);Smash;We Come to Smash This Time;2;Latino;1971;21732
-03 - Behind the Stars.flac;Behind The Stars (Detrás De Las Estrellas);Smash;We Come to Smash This Time;3;Latino;1971;24605
-04 - We Come to Smash This Time.flac;We Come To Smash This Time (Esta Vez Venimos A Golpear);Smash;We Come to Smash This Time;4;Latino;1971;19757
-05 - My Funny Girl.flac;My Funny Girl (Mi Graciosa Muchacha);Smash;We Come to Smash This Time;5;Latino;1971;15183
-06 - Don't Be Sad Baby.flac;Don't Be Sad Baby (No Estés Triste Pequeña);Smash;We Come to Smash This Time;6;Latino;1971;17568
-07 - Fail Safe.flac;Fail Safe;Smash;We Come to Smash This Time;7;Latino;1971;62992
-08 - Goodbye.flac;Goodbye (Adiós);Smash;We Come to Smash This Time;8;Latino;1971;7705
+01 - Well, You Know.flac;Well, You Know (Bueno Tú Ya Sabes);Smash;We Come to Smash This Time;1;Rock psicodélico/Blues rock/Rock andaluz;1971;18103
+02 - First Movement.flac;First Movement (Primer Movimiento);Smash;We Come to Smash This Time;2;Rock psicodélico/Blues rock/Rock andaluz;1971;21732
+03 - Behind the Stars.flac;Behind The Stars (Detrás De Las Estrellas);Smash;We Come to Smash This Time;3;Rock psicodélico/Blues rock/Rock andaluz;1971;24605
+04 - We Come to Smash This Time.flac;We Come To Smash This Time (Esta Vez Venimos A Golpear);Smash;We Come to Smash This Time;4;Rock psicodélico/Blues rock/Rock andaluz;1971;19757
+05 - My Funny Girl.flac;My Funny Girl (Mi Graciosa Muchacha);Smash;We Come to Smash This Time;5;Rock psicodélico/Blues rock/Rock andaluz;1971;15183
+06 - Don't Be Sad Baby.flac;Don't Be Sad Baby (No Estés Triste Pequeña);Smash;We Come to Smash This Time;6;Rock psicodélico/Blues rock/Rock andaluz;1971;17568
+07 - Fail Safe.flac;Fail Safe;Smash;We Come to Smash This Time;7;Rock psicodélico/Blues rock/Rock andaluz;1971;62992
+08 - Goodbye.flac;Goodbye (Adiós);Smash;We Come to Smash This Time;8;Rock psicodélico/Blues rock/Rock andaluz;1971;7705
 01 - Distorted Angels.flac;Distorted Angels;Archive;Axiom;1;Trip-Hop;2014;20296
 02 - Axiom.flac;Axiom;Archive;Axiom;2;Trip-Hop;2014;59997
 03 - Baptism.flac;Baptism;Archive;Axiom;3;Trip-Hop;2014;30219
@@ -1146,17 +1146,17 @@ THE GATHERING - How To Measure A Planet - side D.flac;;;;;;;172414
 12 - El loco del parque.flac;El loco del parque;La Fuga;Mira;12;Rock;01/01/1998;29792
 Airconditioning.flac;;;;;;;271907
 Phantasmagoria.flac;;;;;;;227924
-0101 - Buscando en la basura.flac;Buscando en la basura;La Fuga;Negociando gasolina;1;Jota;2005;20884
-0102 - El manual.flac;El manual;La Fuga;Negociando gasolina;2;Jota;2005;22384
-0103 - Mendigo.flac;Mendigo;La Fuga;Negociando gasolina;3;Jota;2005;20401
-0104 - Baja por diversión.flac;Baja por diversión;La Fuga;Negociando gasolina;4;Jota;2005;21808
-0105 - Las olas.flac;Las olas;La Fuga;Negociando gasolina;5;Jota;2005;22575
-0106 - Gigante.flac;Gigante;La Fuga;Negociando gasolina;6;Jota;2005;19523
-0107 - Amor de contenedor.flac;Amor de contenedor;La Fuga;Negociando gasolina;7;Jota;2005;2184
-0108 - Abril.flac;Abril;La Fuga;Negociando gasolina;8;Jota;2005;23652
-0109 - Al amanecer.flac;Al amanecer;La Fuga;Negociando gasolina;9;Jota;2005;23909
-0110 - Luna de miel.flac;Luna de miel;La Fuga;Negociando gasolina;10;Jota;2005;23504
-0111 - Heroina.flac;Heroina;La Fuga;Negociando gasolina;11;Jota;2005;25943
+0101 - Buscando en la basura.flac;Buscando en la basura;La Fuga;Negociando gasolina;1;Rock;2005;20884
+0102 - El manual.flac;El manual;La Fuga;Negociando gasolina;2;Rock;2005;22384
+0103 - Mendigo.flac;Mendigo;La Fuga;Negociando gasolina;3;Rock;2005;20401
+0104 - Baja por diversión.flac;Baja por diversión;La Fuga;Negociando gasolina;4;Rock;2005;21808
+0105 - Las olas.flac;Las olas;La Fuga;Negociando gasolina;5;Rock;2005;22575
+0106 - Gigante.flac;Gigante;La Fuga;Negociando gasolina;6;Rock;2005;19523
+0107 - Amor de contenedor.flac;Amor de contenedor;La Fuga;Negociando gasolina;7;Rock;2005;2184
+0108 - Abril.flac;Abril;La Fuga;Negociando gasolina;8;Rock;2005;23652
+0109 - Al amanecer.flac;Al amanecer;La Fuga;Negociando gasolina;9;Rock;2005;23909
+0110 - Luna de miel.flac;Luna de miel;La Fuga;Negociando gasolina;10;Rock;2005;23504
+0111 - Heroina.flac;Heroina;La Fuga;Negociando gasolina;11;Rock;2005;25943
 01 - Richter 7.5.flac;Richter 7.5;Desakato;Con el viento de cara;1;Punk Rock;01/01/2008;22561
 02 - Los mineros.flac;Los mineros;Desakato;Con el viento de cara;2;Punk Rock;01/01/2008;2602
 03 - Tu disfraz.flac;Tu disfraz;Desakato;Con el viento de cara;3;Punk Rock;01/01/2008;23308
@@ -1175,16 +1175,16 @@ Phantasmagoria.flac;;;;;;;227924
 (04) [Roy Harper] Bank of the Dead.flac;Bank of the Dead;Roy Harper;Lifemask;4;Rock;1972;19143
 (05) [Roy Harper] South Africa.flac;South Africa;Roy Harper;Lifemask;5;Rock;1972;24678
 (06) [Roy Harper] The Lord's Prayer (a) Poem (b) Modal Song Parts i To iv (c) Front Song (d) Mi....flac;The Lord's Prayer (a) Poem (b) Modal Song Parts i To iv (c) Front Song (d) Mi...;Roy Harper;Lifemask;6;Rock;1972;137722
-Robe - Se nos lleva el aire - 01 - El hombre pájaro.flac;El hombre pájaro;Robe;Se nos lleva el aire;1;;15/12/2023;3810
-Robe - Se nos lleva el aire - 02 - Viajando por el interior.flac;Viajando por el interior;Robe;Se nos lleva el aire;2;;15/12/2023;4150
-Robe - Se nos lleva el aire - 03 - Nada que perder.flac;Nada que perder;Robe;Se nos lleva el aire;3;;15/12/2023;3700
-Robe - Se nos lleva el aire - 04 - A la orilla del río.flac;A la orilla del río;Robe;Se nos lleva el aire;4;;15/12/2023;2400
-Robe - Se nos lleva el aire - 05 - El poder del arte.flac;El poder del arte;Robe;Se nos lleva el aire;5;;15/12/2023;5490
-Robe - Se nos lleva el aire - 06 - Haz que tiemble el suelo.flac;Haz que tiemble el suelo;Robe;Se nos lleva el aire;6;;15/12/2023;3190
-Robe - Se nos lleva el aire - 07 - Puntos suspensivos.flac;Puntos suspensivos;Robe;Se nos lleva el aire;7;;15/12/2023;35219
-Robe - Se nos lleva el aire - 08 - Ininteligible.flac;Ininteligible;Robe;Se nos lleva el aire;8;;15/12/2023;4090
-Robe - Se nos lleva el aire - 09 - Adiós, cielo azul, llegó la tormenta.flac;Adiós, cielo azul, llegó la tormenta;Robe;Se nos lleva el aire;9;;15/12/2023;2720
-Robe - Se nos lleva el aire - 10 - Esto no está pasando.flac;Esto no está pasando;Robe;Se nos lleva el aire;10;;15/12/2023;16403
+Robe - Se nos lleva el aire - 01 - El hombre pájaro.flac;El hombre pájaro;Robe;Se nos lleva el aire;1;Rock progresivo;15/12/2023;3810
+Robe - Se nos lleva el aire - 02 - Viajando por el interior.flac;Viajando por el interior;Robe;Se nos lleva el aire;2;Rock progresivo;15/12/2023;4150
+Robe - Se nos lleva el aire - 03 - Nada que perder.flac;Nada que perder;Robe;Se nos lleva el aire;3;Rock progresivo;15/12/2023;3700
+Robe - Se nos lleva el aire - 04 - A la orilla del río.flac;A la orilla del río;Robe;Se nos lleva el aire;4;Rock progresivo;15/12/2023;2400
+Robe - Se nos lleva el aire - 05 - El poder del arte.flac;El poder del arte;Robe;Se nos lleva el aire;5;Rock progresivo;15/12/2023;5490
+Robe - Se nos lleva el aire - 06 - Haz que tiemble el suelo.flac;Haz que tiemble el suelo;Robe;Se nos lleva el aire;6;Rock progresivo;15/12/2023;3190
+Robe - Se nos lleva el aire - 07 - Puntos suspensivos.flac;Puntos suspensivos;Robe;Se nos lleva el aire;7;Rock progresivo;15/12/2023;35219
+Robe - Se nos lleva el aire - 08 - Ininteligible.flac;Ininteligible;Robe;Se nos lleva el aire;8;Rock progresivo;15/12/2023;4090
+Robe - Se nos lleva el aire - 09 - Adiós, cielo azul, llegó la tormenta.flac;Adiós, cielo azul, llegó la tormenta;Robe;Se nos lleva el aire;9;Rock progresivo;15/12/2023;2720
+Robe - Se nos lleva el aire - 10 - Esto no está pasando.flac;Esto no está pasando;Robe;Se nos lleva el aire;10;Rock progresivo;15/12/2023;16403
 01 A Hard Day's Night.mp3;A Hard Day's Night;The Beatles;A Hard Day's Night;;Pop/Rock;1964;1542
 02 I Should Have Known Better.mp3;I Should Have Known Better;The Beatles;A Hard Day's Night;;Pop/Rock;1964;16308
 03 If I Fell.mp3;If I Fell;The Beatles;A Hard Day's Night;;Pop/Rock;1964;13947
@@ -1212,31 +1212,32 @@ Robe - Se nos lleva el aire - 10 - Esto no está pasando.flac;Esto no está pasa
 12 I Don't Want To Spoil The Party.mp3;I Don't Want To Spoil The Party;The Beatles;Beatles For Sale;;Pop/Rock;1964;15447
 13 What You're Doing.mp3;What You're Doing;The Beatles;Beatles For Sale;;Pop/Rock;1964;15004
 14 Everybody's Trying To Be My Baby.mp3;Everybody's Trying To Be My Baby;The Beatles;Beatles For Sale;;Pop/Rock;1964;1460
-01 Help!.mp3;Help!;The Beatles;Help!;;Pop/Rock;1965;13956
-02 The Night Before.mp3;The Night Before;The Beatles;Help!;;Pop/Rock;1965;15493
-03 You've Got To Hide Your Love Away.mp3;You've Got To Hide Your Love Away;The Beatles;Help!;;Pop/Rock;1965;12912
-04 I Need You.mp3;I Need You;The Beatles;Help!;;Pop/Rock;1965;14879
-05 Another Girl.mp3;Another Girl;The Beatles;Help!;;Pop/Rock;1965;12536
-06 You're Going To Lose That Girl.mp3;You're Going To Lose That Girl;The Beatles;Help!;;Pop/Rock;1965;13867
-07 Ticket To Ride.mp3;Ticket To Ride;The Beatles;Help!;;Pop/Rock;1965;18968
-08 Act Naturally.mp3;Act Naturally;The Beatles;Help!;;Pop/Rock;1965;15037
-09 It's Only Love.mp3;It's Only Love;The Beatles;Help!;;Pop/Rock;1965;11648
-10 You Like Me Too Much.mp3;You Like Me Too Much;The Beatles;Help!;;Pop/Rock;1965;15687
-11 Tell Me What You See.mp3;Tell Me What You See;The Beatles;Help!;;Pop/Rock;1965;15799
-13 Yesterday.mp3;Yesterday;The Beatles;Help!;;Pop/Rock;1965;12567
-14 Dizzy Miss Lizzy.mp3;Dizzy Miss Lizzy;The Beatles;Help!;;Pop/Rock;1965;17651
-01 Two Of Us.mp3;Two Of Us;The Beatles;Let It Be;;Pop/Rock;1970;21681
-02 Dig A Pony.mp3;Dig A Pony;The Beatles;Let It Be;;Pop/Rock;1970;2350
-03 Across The Universe.mp3;Across The Universe;The Beatles;Let It Be;;Pop/Rock;1970;22813
-04 I Me Mine.mp3;I Me Mine;The Beatles;Let It Be;;Pop/Rock;1970;14559
-05 Dig It.mp3;Dig It;The Beatles;Let It Be;;Pop/Rock;1970;5047
-06 Let It Be.mp3;Let It Be;The Beatles;Let It Be;;Pop/Rock;1970;24303
-07 Maggie Mae.mp3;Maggie Mae;The Beatles;Let It Be;;Pop/Rock;1970;4004
-08 I've Got A Feeling.mp3;I've Got A Feeling;The Beatles;Let It Be;;Pop/Rock;1970;21756
-09 One After 909.mp3;One After 909;The Beatles;Let It Be;;Pop/Rock;1970;17396
-10 The Long And Winding Road.mp3;The Long And Winding Road;The Beatles;Let It Be;;Pop/Rock;1970;21819
-11 For You Blue.mp3;For You Blue;The Beatles;Let It Be;;Pop/Rock;1970;15221
-12 Get Back.mp3;Get Back;The Beatles;Let It Be;;Pop/Rock;1970;18939
+01 Help!.mp3;Help!;The Beatles;Help!;1;Pop/Rock;1965;13956
+02 The Night Before.mp3;The Night Before;The Beatles;Help!;2;Pop/Rock;1965;15493
+03 You've Got To Hide Your Love Away.mp3;You've Got To Hide Your Love Away;The Beatles;Help!;3;Pop/Rock;1965;12912
+04 I Need You.mp3;I Need You;The Beatles;Help!;4;Pop/Rock;1965;14879
+05 Another Girl.mp3;Another Girl;The Beatles;Help!;5;Pop/Rock;1965;12536
+06 You're Going To Lose That Girl.mp3;You're Going To Lose That Girl;The Beatles;Help!;6;Pop/Rock;1965;13867
+07 Ticket To Ride.mp3;Ticket To Ride;The Beatles;Help!;7;Pop/Rock;1965;18968
+08 Act Naturally.mp3;Act Naturally;The Beatles;Help!;8;Pop/Rock;1965;15037
+09 It's Only Love.mp3;It's Only Love;The Beatles;Help!;9;Pop/Rock;1965;11648
+10 You Like Me Too Much.mp3;You Like Me Too Much;The Beatles;Help!;10;Pop/Rock;1965;15687
+11 Tell Me What You See.mp3;Tell Me What You See;The Beatles;Help!;11;Pop/Rock;1965;15799
+12 I've Just Seen A Face;I've Just Seen A Face;The Beatles;Help!;12;Pop/Rock;1965;12500
+13 Yesterday.mp3;Yesterday;The Beatles;Help!;13;Pop/Rock;1965;12567
+14 Dizzy Miss Lizzy.mp3;Dizzy Miss Lizzy;The Beatles;Help!;14;Pop/Rock;1965;17651
+01 Two Of Us.mp3;Two Of Us;The Beatles;Let It Be;1;Pop/Rock;1970;21681
+02 Dig A Pony.mp3;Dig A Pony;The Beatles;Let It Be;2;Pop/Rock;1970;2350
+03 Across The Universe.mp3;Across The Universe;The Beatles;Let It Be;3;Pop/Rock;1970;22813
+04 I Me Mine.mp3;I Me Mine;The Beatles;Let It Be;4;Pop/Rock;1970;14559
+05 Dig It.mp3;Dig It;The Beatles;Let It Be;5;Pop/Rock;1970;5047
+06 Let It Be.mp3;Let It Be;The Beatles;Let It Be;6;Pop/Rock;1970;24303
+07 Maggie Mae.mp3;Maggie Mae;The Beatles;Let It Be;7;Pop/Rock;1970;4004
+08 I've Got A Feeling.mp3;I've Got A Feeling;The Beatles;Let It Be;8;Pop/Rock;1970;21756
+09 One After 909.mp3;One After 909;The Beatles;Let It Be;9;Pop/Rock;1970;17396
+10 The Long And Winding Road.mp3;The Long And Winding Road;The Beatles;Let It Be;10;Pop/Rock;1970;21819
+11 For You Blue.mp3;For You Blue;The Beatles;Let It Be;11;Pop/Rock;1970;15221
+12 Get Back.mp3;Get Back;The Beatles;Let It Be;12;Pop/Rock;1970;18939
 01 I Saw Her Standing There.mp3;I Saw Her Standing There;The Beatles;Please Please Me;;Pop/Rock;1963;17395
 02 Misery.mp3;Misery;The Beatles;Please Please Me;;Pop/Rock;1963;10855
 03 Anna (Go To Him).mp3;Anna (Go To Him);The Beatles;Please Please Me;;Pop/Rock;1963;17713
@@ -1414,18 +1415,18 @@ Robe - Se nos lleva el aire - 10 - Esto no está pasando.flac;Esto no está pasa
 10 - Francesca.flac;Francesca;Roy Harper;Flat Baroque And Berserk;10;Rock;1970;8127
 11 - Song Of The Ages.flac;Song Of The Ages;Roy Harper;Flat Baroque And Berserk;11;Rock;1970;23464
 12 - Hell's Angels.flac;Hell's Angels;Roy Harper;Flat Baroque And Berserk;12;Rock;1970;46553
-01. Forbidden Fruit.flac;Forbidden Fruit;Roy Harper;Valentine;1;;1974;15389
-02. Male Chauvinist Pig Blues.flac;Male Chauvinist Pig Blues;Roy Harper;Valentine;2;;1974;21704
-03. I'll See You Again.flac;I'll See You Again;Roy Harper;Valentine;3;;1974;29836
-04. Twelve Hours Of Sunset.flac;Twelve Hours Of Sunset;Roy Harper;Valentine;4;;1974;30657
-05. Acapulco Gold.flac;Acapulco Gold;Roy Harper;Valentine;5;;1974;24155
-06. Commune.flac;Commune;Roy Harper;Valentine;6;;1974;27767
-07. Magic Woman (Liberation Reshuffle).flac;Magic Woman (Liberation Reshuffle);Roy Harper;Valentine;7;;1974;39667
-08. Che.flac;Che;Roy Harper;Valentine;8;;1974;18382
-10. Forever.flac;Forever;Roy Harper;Valentine;10;;1974;23721
-11. Home (Studio).flac;Home (Studio);Roy Harper;Valentine;11;;1974;1887
-12. Too Many Movies.flac;Too Many Movies;Roy Harper;Valentine;12;;1974;39789
-13. Home.flac;Home;Roy Harper;Valentine;13;;1974;37044
+01. Forbidden Fruit.flac;Forbidden Fruit;Roy Harper;Valentine;1;Fol rock/progressive rock/folk baroque;1974;15389
+02. Male Chauvinist Pig Blues.flac;Male Chauvinist Pig Blues;Roy Harper;Valentine;2;Fol rock/progressive rock/folk baroque;1974;21704
+03. I'll See You Again.flac;I'll See You Again;Roy Harper;Valentine;3;Fol rock/progressive rock/folk baroque;1974;29836
+04. Twelve Hours Of Sunset.flac;Twelve Hours Of Sunset;Roy Harper;Valentine;4;Fol rock/progressive rock/folk baroque;1974;30657
+05. Acapulco Gold.flac;Acapulco Gold;Roy Harper;Valentine;5;Fol rock/progressive rock/folk baroque;1974;24155
+06. Commune.flac;Commune;Roy Harper;Valentine;6;Fol rock/progressive rock/folk baroque;1974;27767
+07. Magic Woman (Liberation Reshuffle).flac;Magic Woman (Liberation Reshuffle);Roy Harper;Valentine;7;Fol rock/progressive rock/folk baroque;1974;39667
+08. Che.flac;Che;Roy Harper;Valentine;8;Fol rock/progressive rock/folk baroque;1974;18382
+10. Forever.flac;Forever;Roy Harper;Valentine;10;Fol rock/progressive rock/folk baroque;1974;23721
+11. Home (Studio).flac;Home (Studio);Roy Harper;Valentine;11;Fol rock/progressive rock/folk baroque;1974;1887
+12. Too Many Movies.flac;Too Many Movies;Roy Harper;Valentine;12;Fol rock/progressive rock/folk baroque;1974;39789
+13. Home.flac;Home;Roy Harper;Valentine;13;Fol rock/progressive rock/folk baroque;1974;37044
 01 Sergio Corbucci Is Dead.flac;Sergio Corbucci Is Dead;Kreator;Hate Über Alles;1;Thrash Metal;2022;5830
 02 Hate Über Alles.flac;Hate Über Alles;Kreator;Hate Über Alles;2;Thrash Metal;2022;22869
 03 Killer Of Jesus.flac;Killer Of Jesus;Kreator;Hate Über Alles;3;Thrash Metal;2022;24501
@@ -1513,30 +1514,30 @@ Sabicas  - Rock Encounter.flac;;Sabicas - Rock Encounter;Rock Encounter With Joe
 18 - Entre Las Cejas.mp3;Entre Las Cejas;Leño;Maneras De Vivir (Todos Los Grandes Exitos);18;Classic Rock/Hard Rock;1983;2217
 19 - Que Desilusion.mp3;¡Qué Desilusión!;Leño;Maneras De Vivir (Todos Los Grandes Exitos);19;Classic Rock/Hard Rock;1983;22403
 20 - Que Tire La Toalla.mp3;¡Que Tire La Toalla!;Leño;Maneras De Vivir (Todos Los Grandes Exitos);20;Classic Rock/Hard Rock;1983;24883
-01- Masculino singular-2011.flac;Masculino singular;Rosendo;Veo,veo...mamoneo;1;Rock;2011;24843
-02- Que te acompanye la suerte-2011.flac;Que te acompanye la suerte;Rosendo;Veo,veo...mamoneo;2;Rock;2011;23429
-03- Quincalla,o no-2011.flac;Quincalla,o no;Rosendo;Veo,veo...mamoneo;3;Rock;2011;2500
-04- Para nada-2011.flac;Para nada;Rosendo;Veo,veo...mamoneo;4;Rock;2011;25263
-05- Sufrido-2011.flac;Sufrido;Rosendo;Veo,veo...mamoneo;5;Rock;2011;23917
-06- Para cuando desatino-2011.flac;Para cuando desatino;Rosendo;Veo,veo...mamoneo;6;Rock;2011;18292
-07- Veo,veo mamoneo-2011.flac;Veo,veo mamoneo;Rosendo;Veo,veo...mamoneo;7;Rock;2011;21516
-08- Entre dientes-2011.flac;Entre dientes;Rosendo;Veo,veo...mamoneo;8;Rock;2011;25863
-09- Ven y ve-2011.flac;Ven y ve;Rosendo;Veo,veo...mamoneo;9;Rock;2011;27179
-10- Todo lo que sigue-2011.flac;Todo lo que sigue;Rosendo;Veo,veo...mamoneo;10;Rock;2011;18936
-01-I'd Tell You But.flac;I'd Tell You But;Anti-Flag;For Blood And Empire;1;;2006;13299
-02-The Press Corpse.flac;The Press Corpse;Anti-Flag;For Blood And Empire;2;;2006;20398
-03-Emigre.flac;Emigre;Anti-Flag;For Blood And Empire;3;;2006;1810
-04-The Project For A New American Century.flac;The Project For A New American Century;Anti-Flag;For Blood And Empire;4;;2006;19996
-05-Hymn For The Dead.flac;Hymn For The Dead;Anti-Flag;For Blood And Empire;5;;2006;22101
-06-This Is The End (For You My Friend).flac;This Is The End (For You My Friend);Anti-Flag;For Blood And Empire;6;;2006;19101
-07-1 Trillion Dollar$.flac;1 Trillion Dollar$;Anti-Flag;For Blood And Empire;7;;2006;14999
-08-State Funeral.flac;State Funeral;Anti-Flag;For Blood And Empire;8;;2006;12303
-09-Confessions Of An Economic Hit Man.flac;Confessions Of An Economic Hit Man;Anti-Flag;For Blood And Empire;9;;2006;16399
-10-War Sucks, Let's Party!.flac;War Sucks, Let's Party!;Anti-Flag;For Blood And Empire;10;;2006;13802
-11-The W.T.O. Kills Farmers.flac;The W.T.O. Kills Farmers;Anti-Flag;For Blood And Empire;11;;2006;21397
-12-Cities Burn.flac;Cities Burn;Anti-Flag;For Blood And Empire;12;;2006;18298
-13-Depleted Uranium Is A War Crime.flac;Depleted Uranium Is A War Crime;Anti-Flag;For Blood And Empire;13;;2006;24799
-14-Marc Defiant (demo).flac;Marc Defiant (demo);Anti-Flag;For Blood And Empire;14;;2006;6621
+01- Masculino singular-2011.flac;Masculino singular;Rosendo;Veo,veo...mamoneo;1;Rock;2002;24843
+02- Que te acompanye la suerte-2011.flac;Que te acompanye la suerte;Rosendo;Veo,veo...mamoneo;2;Rock;2002;23429
+03- Quincalla,o no-2011.flac;Quincalla,o no;Rosendo;Veo,veo...mamoneo;3;Rock;2002;2500
+04- Para nada-2011.flac;Para nada;Rosendo;Veo,veo...mamoneo;4;Rock;2002;25263
+05- Sufrido-2011.flac;Sufrido;Rosendo;Veo,veo...mamoneo;5;Rock;2002;23917
+06- Para cuando desatino-2011.flac;Para cuando desatino;Rosendo;Veo,veo...mamoneo;6;Rock;2002;18292
+07- Veo,veo mamoneo-2011.flac;Veo,veo mamoneo;Rosendo;Veo,veo...mamoneo;7;Rock;2002;21516
+08- Entre dientes-2011.flac;Entre dientes;Rosendo;Veo,veo...mamoneo;8;Rock;2002;25863
+09- Ven y ve-2011.flac;Ven y ve;Rosendo;Veo,veo...mamoneo;9;Rock;2002;27179
+10- Todo lo que sigue-2011.flac;Todo lo que sigue;Rosendo;Veo,veo...mamoneo;10;Rock;2002;18936
+01-I'd Tell You But.flac;I'd Tell You But;Anti-Flag;For Blood And Empire;1;Punk rock;2006;13299
+02-The Press Corpse.flac;The Press Corpse;Anti-Flag;For Blood And Empire;2;Punk rock;2006;20398
+03-Emigre.flac;Emigre;Anti-Flag;For Blood And Empire;3;Punk rock;2006;1810
+04-The Project For A New American Century.flac;The Project For A New American Century;Anti-Flag;For Blood And Empire;4;Punk rock;2006;19996
+05-Hymn For The Dead.flac;Hymn For The Dead;Anti-Flag;For Blood And Empire;5;Punk rock;2006;22101
+06-This Is The End (For You My Friend).flac;This Is The End (For You My Friend);Anti-Flag;For Blood And Empire;6;Punk rock;2006;19101
+07-1 Trillion Dollar$.flac;1 Trillion Dollar$;Anti-Flag;For Blood And Empire;7;Punk rock;2006;14999
+08-State Funeral.flac;State Funeral;Anti-Flag;For Blood And Empire;8;Punk rock;2006;12303
+09-Confessions Of An Economic Hit Man.flac;Confessions Of An Economic Hit Man;Anti-Flag;For Blood And Empire;9;Punk rock;2006;16399
+10-War Sucks, Let's Party!.flac;War Sucks, Let's Party!;Anti-Flag;For Blood And Empire;10;Punk rock;2006;13802
+11-The W.T.O. Kills Farmers.flac;The W.T.O. Kills Farmers;Anti-Flag;For Blood And Empire;11;Punk rock;2006;21397
+12-Cities Burn.flac;Cities Burn;Anti-Flag;For Blood And Empire;12;Punk rock;2006;18298
+13-Depleted Uranium Is A War Crime.flac;Depleted Uranium Is A War Crime;Anti-Flag;For Blood And Empire;13;Punk rock;2006;24799
+14-Marc Defiant (demo).flac;Marc Defiant (demo);Anti-Flag;For Blood And Empire;14;Punk rock;2006;6621
 01 - Advice From Christmas Past.flac;Advice From Christmas Past;Dead Kennedys;Plastic Surgery Disasters (SHM-CD Japan TECI-26494);1;Punk;1982;5527
 02 - Government Flu.flac;Government Flu;Dead Kennedys;Plastic Surgery Disasters (SHM-CD Japan TECI-26494);2;Punk;1982;12407
 03 - Terminal Preppie.flac;Terminal Preppie;Dead Kennedys;Plastic Surgery Disasters (SHM-CD Japan TECI-26494);3;Punk;1982;9027
@@ -1728,18 +1729,18 @@ Sabicas  - Rock Encounter.flac;;Sabicas - Rock Encounter;Rock Encounter With Joe
 12 - Three Wishes.flac;Three Wishes;Roger Waters;Amused to Death;12;Progressive Rock;1992;41497
 13 - It's a Miracle.flac;It's a Miracle;Roger Waters;Amused to Death;13;Progressive Rock;1992;50583
 14 - Amused to Death.flac;Amused to Death;Roger Waters;Amused to Death;14;Progressive Rock;1992;54753
-01. Elbow.flac;Elbow;King Gizzard & the Lizard Wizard;12 Bar Bruise;;;2012;15988
-02. Muckraker.flac;Muckraker;King Gizzard & the Lizard Wizard;12 Bar Bruise;;;2012;1804
-03. Nein.flac;Nein;King Gizzard & the Lizard Wizard;12 Bar Bruise;;;2012;1720
-04. 12 Bar Bruise.flac;12 Bar Bruise;King Gizzard & the Lizard Wizard;12 Bar Bruise;;;2012;22725
-05. Garage Liddiard.flac;Garage Liddiard;King Gizzard & the Lizard Wizard;12 Bar Bruise;;;2012;14937
-06. Sam Cherry's Last Shot.flac;Sam Cherry's Last Shot;King Gizzard & the Lizard Wizard;12 Bar Bruise;;;2012;16883
-07. High Hopes Low.flac;High Hopes Low;King Gizzard & the Lizard Wizard;12 Bar Bruise;;;2012;22589
-08. Cut Throat Boogie.flac;Cut Throat Boogie;King Gizzard & the Lizard Wizard;12 Bar Bruise;;;2012;17003
-09. Bloody Ripper.flac;Bloody Ripper;King Gizzard & the Lizard Wizard;12 Bar Bruise;;;2012;13339
-10. Uh Oh, I Called Mum.flac;Uh Oh, I Called Mum;King Gizzard & the Lizard Wizard;12 Bar Bruise;;;2012;15791
-11. Sea Of Trees.flac;Sea Of Trees;King Gizzard & the Lizard Wizard;12 Bar Bruise;;;2012;19459
-12. Footy Footy.flac;Footy Footy;King Gizzard & the Lizard Wizard;12 Bar Bruise;;;2012;11936
+01. Elbow.flac;Elbow;King Gizzard & the Lizard Wizard;12 Bar Bruise;1;Garage rock/Acid rock;2012;15988
+02. Muckraker.flac;Muckraker;King Gizzard & the Lizard Wizard;12 Bar Bruise;2;Garage rock/Acid rock;2012;1804
+03. Nein.flac;Nein;King Gizzard & the Lizard Wizard;12 Bar Bruise;3;Garage rock/Acid rock;2012;1720
+04. 12 Bar Bruise.flac;12 Bar Bruise;King Gizzard & the Lizard Wizard;12 Bar Bruise;4;Garage rock/Acid rock;2012;22725
+05. Garage Liddiard.flac;Garage Liddiard;King Gizzard & the Lizard Wizard;12 Bar Bruise;5;Garage rock/Acid rock;2012;14937
+06. Sam Cherry's Last Shot.flac;Sam Cherry's Last Shot;King Gizzard & the Lizard Wizard;12 Bar Bruise;6;Garage rock/Acid rock;2012;16883
+07. High Hopes Low.flac;High Hopes Low;King Gizzard & the Lizard Wizard;12 Bar Bruise;7;Garage rock/Acid rock;2012;22589
+08. Cut Throat Boogie.flac;Cut Throat Boogie;King Gizzard & the Lizard Wizard;12 Bar Bruise;8;Garage rock/Acid rock;2012;17003
+09. Bloody Ripper.flac;Bloody Ripper;King Gizzard & the Lizard Wizard;12 Bar Bruise;9;Garage rock/Acid rock;2012;13339
+10. Uh Oh, I Called Mum.flac;Uh Oh, I Called Mum;King Gizzard & the Lizard Wizard;12 Bar Bruise;10;Garage rock/Acid rock;2012;15791
+11. Sea Of Trees.flac;Sea Of Trees;King Gizzard & the Lizard Wizard;12 Bar Bruise;11;Garage rock/Acid rock;2012;19459
+12. Footy Footy.flac;Footy Footy;King Gizzard & the Lizard Wizard;12 Bar Bruise;12;Garage rock/Acid rock;2012;11936
 01 At Long Last....flac;At Long Last...;The Future Kings of England;The Future Kings of England;1;Rock;2005;6168
 02 10：66.flac;0,4625;The Future Kings of England;The Future Kings of England;2;Rock;2005;46611
 03 Humber Doucy Lane.flac;Humber Doucy Lane;The Future Kings of England;The Future Kings of England;3;Rock;2005;53527
@@ -2207,8 +2208,8 @@ Thin Lizzy - Jailbreak - 04 - Romeo and the Lonely Girl.flac;Romeo And The Lonel
 Thin Lizzy - Jailbreak - 03 - Running Back.flac;Running Back;Thin Lizzy;Jailbreak;3;Hard Rock,Blues Rock;1976;19284
 Thin Lizzy - Jailbreak - 02 - Angel From the Coast.flac;Angel From The Coast;Thin Lizzy;Jailbreak;2;Hard Rock,Blues Rock;1976;18419
 Thin Lizzy - Jailbreak - 01 - Jailbreak.flac;Jailbreak (Album Version);Thin Lizzy;Jailbreak;1;Hard Rock,Blues Rock;1976;2406
-06. Returned.flac;Returned;Airbag;Disconnected;6;Pop, Rock, Rock progressif;2016-06-10;31052
-05. Disconnected.flac;Disconnected;Airbag;Disconnected;5;Pop, Rock, Rock progressif;2016-06-10;7898
+06. Returned.flac;Returned;Airbag;Disconnected;6;Pop, Rock, Rock progressif;10/06/2016;31052
+05. Disconnected.flac;Disconnected;Airbag;Disconnected;5;Pop, Rock, Rock progressif;10/06/2016;7898
 10 - David Bowie - Memory Of A Free Festival.flac;Memory Of A Free Festival;David Bowie;Space Oddity;10;Folk Rock,Psychedelic rock;1969;44077
 09 - David Bowie - God Knows I'm Good.flac;God Knows I'm Good;David Bowie;Space Oddity;9;Folk Rock,Psychedelic rock;1969;19723
 08 - David Bowie - Conversation Piece.flac;Conversation Piece;David Bowie;Space Oddity;8;Folk Rock,Psychedelic rock;1969;19124
@@ -2219,10 +2220,10 @@ Thin Lizzy - Jailbreak - 01 - Jailbreak.flac;Jailbreak (Album Version);Thin Lizz
 03 - David Bowie - Letter To Hermione.flac;Letter To Hermione;David Bowie;Space Oddity;3;Folk Rock,Psychedelic rock;1969;15372
 02 - David Bowie - Unwashed And Somewhat Slightly Dazed.flac;Unwashed And Somewhat Slightly Dazed;David Bowie;Space Oddity;2;Folk Rock,Psychedelic rock;1969;3792
 01 - David Bowie - Space Oddity.flac;Space Oddity;David Bowie;Space Oddity;1;Folk Rock,Psychedelic rock;1969;32093
-04. Sleepwalker.flac;Sleepwalker;Airbag;Disconnected;4;Pop, Rock, Rock progressif;2016-06-10;42504
-03. Slave.flac;Slave;Airbag;Disconnected;3;Pop, Rock, Rock progressif;2016-06-10;51919
-02. Broken.flac;Broken;Airbag;Disconnected;2;Pop, Rock, Rock progressif;2016-06-10;42764
-Beck - Sea Change - 11 - Little One.flac;Little One;Beck;Sea Change;11;AlternRock;2014;26672
+04. Sleepwalker.flac;Sleepwalker;Airbag;Disconnected;4;Pop, Rock, Rock progressif;10/06/2016;42504
+03. Slave.flac;Slave;Airbag;Disconnected;3;Pop, Rock, Rock progressif;10/06/2016;51919
+02. Broken.flac;Broken;Airbag;Disconnected;2;Pop, Rock, Rock progressif;10/06/2016;42764
+Beck - Sea Change - 11 - Little One.flac;Little One;Beck;Sea Change;11;AlternRock;2002;26672
 Beck - Sea Change - 12 - Side of the Road.flac;Side Of The Road;Beck;Sea Change;12;AlternRock;2002;20348
 Beck - Sea Change - 10 - Sunday Sun.flac;Sunday Sun;Beck;Sea Change;10;AlternRock;2002;28426
 Beck - Sea Change - 09 - Already Dead.flac;Already Dead;Beck;Sea Change;9;AlternRock;2002;17879
@@ -2234,7 +2235,7 @@ Beck - Sea Change - 04 - Lonesome Tears.flac;Lonesome Tears;Beck;Sea Change;4;Al
 Beck - Sea Change - 03 - Guess I’m Doing Fine.flac;Guess I'm Doing Fine;Beck;Sea Change;3;AlternRock;2002;28912
 Beck - Sea Change - 02 - Paper Tiger.flac;Paper Tiger;Beck;Sea Change;2;AlternRock;2002;27528
 Beck - Sea Change - 01 - The Golden Age.flac;The Golden Age;Beck;Sea Change;1;AlternRock;2002;27621
-01. Killer.flac;Killer;Airbag;Disconnected;1;Pop, Rock, Rock progressif;2016-06-10;55816
+01. Killer.flac;Killer;Airbag;Disconnected;1;Pop, Rock, Rock progressif;10/06/2016;55816
 20 - Wreck on the Highway.flac;Wreck on the Highway;Bruce Springsteen;The River;20;Rock;1980;23456
 19 - Drive All Night.flac;Drive All Night;Bruce Springsteen;The River;19;Rock;1980;50673
 18 - The Price You Pay.flac;The Price You Pay;Bruce Springsteen;The River;18;Rock;1980;32689
@@ -2283,13 +2284,13 @@ Beck - Sea Change - 01 - The Golden Age.flac;The Golden Age;Beck;Sea Change;1;Al
 03. Sur l'autoroute.flac;Sur l'autoroute;Miles Davis;L'ascenseur pour l'échafaud (Lift to the Scaffold) [Original Motion Picture Soundtrack];3;Jazz;1958;13775
 02. L'assassinat de carala.flac;L'assassinat de carala;Miles Davis;L'ascenseur pour l'échafaud (Lift to the Scaffold) [Original Motion Picture Soundtrack];2;Jazz;1958;13125
 01. Générique.flac;Générique;Miles Davis;L'ascenseur pour l'échafaud (Lift to the Scaffold) [Original Motion Picture Soundtrack];1;Jazz;1958;16688
-09 - Mentira y verdad.flac;Mentira y verdad;Fito & Fitipaldis;El monte de los aullidos;9;Rock And Roll;2025-10-24;21277
-06 - La noche más perfecta.flac;La noche más perfecta;Fito & Fitipaldis;El monte de los aullidos;6;Rock And Roll;2025-10-24;28461
-01 - Los cuervos se lo pasan bien.flac;Los cuervos se lo pasan bien;Fito & Fitipaldis;El monte de los aullidos;1;Rock And Roll;2025-10-24;26495
-03 - Volverá el espanto.flac;Volverá el espanto;Fito & Fitipaldis;El monte de los aullidos;3;Rock And Roll;2025-10-24;19832
-04 - Como un ataúd.flac;Como un ataúd;Fito & Fitipaldis;El monte de los aullidos;4;Rock And Roll;2025-10-24;1860
-08 - Una maldita suerte.flac;Una maldita suerte;Fito & Fitipaldis;El monte de los aullidos;8;Rock And Roll;2025-10-24;19591
-05 - A contraluz.flac;A contraluz;Fito & Fitipaldis;El monte de los aullidos;5;Rock And Roll;2025-10-24;26184
-07 - Marea imparable.flac;Marea imparable;Fito & Fitipaldis;El monte de los aullidos;7;Rock And Roll;2025-10-24;22696
-02 - El monte de los aullidos.flac;El monte de los aullidos;Fito & Fitipaldis;El monte de los aullidos;2;Rock And Roll;2025-10-24;30097
-10 - Ardi.flac;Ardi;Fito & Fitipaldis;El monte de los aullidos;10;Rock And Roll;2025-10-24;19621
+09 - Mentira y verdad.flac;Mentira y verdad;Fito & Fitipaldis;El monte de los aullidos;9;Rock And Roll;24/10/2025;21277
+06 - La noche más perfecta.flac;La noche más perfecta;Fito & Fitipaldis;El monte de los aullidos;6;Rock And Roll;24/10/2025;28461
+01 - Los cuervos se lo pasan bien.flac;Los cuervos se lo pasan bien;Fito & Fitipaldis;El monte de los aullidos;1;Rock And Roll;24/10/2025;26495
+03 - Volverá el espanto.flac;Volverá el espanto;Fito & Fitipaldis;El monte de los aullidos;3;Rock And Roll;24/10/2025;19832
+04 - Como un ataúd.flac;Como un ataúd;Fito & Fitipaldis;El monte de los aullidos;4;Rock And Roll;24/10/2025;1860
+08 - Una maldita suerte.flac;Una maldita suerte;Fito & Fitipaldis;El monte de los aullidos;8;Rock And Roll;24/10/2025;19591
+05 - A contraluz.flac;A contraluz;Fito & Fitipaldis;El monte de los aullidos;5;Rock And Roll;24/10/2025;26184
+07 - Marea imparable.flac;Marea imparable;Fito & Fitipaldis;El monte de los aullidos;7;Rock And Roll;24/10/2025;22696
+02 - El monte de los aullidos.flac;El monte de los aullidos;Fito & Fitipaldis;El monte de los aullidos;2;Rock And Roll;24/10/2025;30097
+10 - Ardi.flac;Ardi;Fito & Fitipaldis;El monte de los aullidos;10;Rock And Roll;24/10/2025;19621
