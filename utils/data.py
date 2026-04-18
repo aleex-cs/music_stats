@@ -33,27 +33,34 @@ def is_youtube_track(track: str, artist: str = "") -> bool:
 
 @st.cache_data
 def load_data():
-    if not os.path.exists(DATA_PATH):
-        st.error(f"No se encuentra el archivo: {DATA_PATH}")
-        return pd.DataFrame()
-    
     import io as _io
-    try:
-        # El CSV de Last.fm envuelve cada fila en comillas externas ("...").
-        # Hay que limpiarlas antes de parsear para que pandas lea los datos correctamente.
-        with open(DATA_PATH, "r", encoding="utf-8-sig", errors="replace") as _f:
-            raw_lines = _f.readlines()
+    raw_content = None
 
-        clean_lines = [raw_lines[0]]  # cabecera sin tocar
+    if not os.path.exists(DATA_PATH):
+        st.info("👋 ¡Bienvenido! No hemos encontrado tu historial localmente.")
+        uploaded_file = st.file_uploader("Sube tu archivo aleex_cs.csv para empezar", type=["csv"])
+        if uploaded_file is not None:
+            raw_content = uploaded_file.getvalue().decode("utf-8-sig", errors="replace")
+        else:
+            st.stop()
+    else:
+        with open(DATA_PATH, "r", encoding="utf-8-sig", errors="replace") as _f:
+            raw_content = _f.read()
+
+    try:
+        raw_lines = raw_content.splitlines()
+        clean_lines = [raw_lines[0]]
         for _line in raw_lines[1:]:
             _s = _line.strip()
+            # Limpieza agresiva: quitar comillas externas y des-escapar internas
             if _s.startswith('"') and _s.endswith('"'):
                 _s = _s[1:-1].replace('""', '"')
             clean_lines.append(_s + "\n")
 
-        scrobbles = pd.read_csv(_io.StringIO("".join(clean_lines)), on_bad_lines="skip")
+        # Usamos engine='python' y sep=',' explícito para evitar fallos de detección
+        scrobbles = pd.read_csv(_io.StringIO("".join(clean_lines)), sep=",", on_bad_lines="skip", engine='python')
     except Exception as e:
-        st.error(f"Error loading CSV: {e}")
+        st.error(f"Error parseando el CSV: {e}")
         return pd.DataFrame()
 
     scrobbles.columns = scrobbles.columns.str.strip()
