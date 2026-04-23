@@ -1,5 +1,7 @@
 # Music Stats Dashboard | Tablero de Estadisticas Musicales
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://musicstats.streamlit.app/)
+
 ## Overview
 
 Music Stats Dashboard is a professional analytics application designed to provide deep insights into music listening habits. Built with Streamlit and Python, it transforms raw listening history into interactive visualizations, detailed rankings, and behavioral patterns. The platform supports multi-language interfaces and offers a modular architecture for comprehensive music data exploration.
