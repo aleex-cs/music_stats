@@ -228,3 +228,10 @@ get_tracks_full.py
 get_tracks_soulseek.py
 .gemini/
 *.log
+
+# Data files to keep local only
+data/musica_metadata.csv
+data/musica_metadata_full.csv
+data/musica_metadata2.csv
+data/scrobbles.csv
+data/missing_from_metadata.csv
