@@ -235,3 +235,5 @@ data/musica_metadata_full.csv
 data/musica_metadata2.csv
 data/scrobbles.csv
 data/missing_from_metadata.csv
+data/durations.csv
+full_dataframe_export.csv
