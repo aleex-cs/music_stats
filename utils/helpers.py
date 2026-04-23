@@ -91,6 +91,29 @@ def normalize_genre_name(g: str) -> str:
 
     return EQUIV.get(s, s)
 
+def get_genre_group(genre):
+    if pd.isna(genre):
+        return "Unknown"
+    g = str(genre).lower()
+    
+    # Metal before Rock because many metal genres contain 'rock' or are subgenres
+    if "metal" in g: return "Metal"
+    if "punk" in g: return "Punk"
+    if "rock" in g: return "Rock"
+    if "pop" in g: return "Pop"
+    if "jazz" in g: return "Jazz"
+    if "blues" in g: return "Blues"
+    if "folk" in g: return "Folk"
+    if "country" in g: return "Country"
+    if "classical" in g: return "Classical"
+    if any(x in g for x in ["hip hop", "rap", "trap"]): return "Hip Hop / Rap"
+    if any(x in g for x in ["electronic", "techno", "house", "trance", "dance", "synth"]): return "Electronic"
+    if "soul" in g or "r&b" in g: return "Soul / R&B"
+    if "reggae" in g: return "Reggae"
+    if "latin" in g or "salsa" in g or "reggaeton" in g: return "Latin"
+    
+    return genre.title() if isinstance(genre, str) else "Unknown"
+
 def top_genre_by_minutes_full_credit(group):
     if group.empty or "genre" not in group.columns or "duration" not in group.columns:
         return None
@@ -121,6 +144,15 @@ def get_decade(y):
         return f"{decade_start}s"
     except:
         return None
+
+def format_period(p):
+    if hasattr(p, "to_timestamp"): # Period object
+        if hasattr(p, "freqstr"):
+            if "W" in p.freqstr: return f"W{p.week} ({p.start_time.date()})"
+            if "M" in p.freqstr: return p.strftime("%b %Y")
+            if "A" in p.freqstr or "Y" in p.freqstr: return p.strftime("%Y")
+        return str(p)
+    return str(p)
 
 def format_first_listen_table(df_new, name_col, datetime_col="datetime"):
     df_out = df_new.copy()
@@ -179,15 +211,13 @@ def get_listening_summary(df, period="month"):
     df = df.copy()
 
     if period == "week":
-        df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("W").apply(lambda r: r.start_time.date())
+        df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("W")
     elif period == "day":
         df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.date
     elif period == "month":
-        df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("M").apply(lambda r: r.start_time.date())
+        df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("M")
     elif period == "year":
-        df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("Y").apply(lambda r: r.start_time.date())
-
-    df["Period"] = df["Period"].astype(str)
+        df["Period"] = df["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("Y")
 
     summary = df.groupby("Period").agg(
         Minutes=("duration", lambda x: round(x.sum()/60, 2)),
@@ -207,10 +237,11 @@ def get_listening_summary(df, period="month"):
     top_track = track_minutes.loc[idx, ["Period","track"]].rename(columns={"track":"Top Track"})
     summary = summary.merge(top_track, on="Period", how="left")
 
-    if "album" in df.columns:
-        album_minutes = df.groupby(["Period","album"])["duration"].sum().reset_index()
+    album_col = "album_clean" if "album_clean" in df.columns else "album"
+    if album_col in df.columns:
+        album_minutes = df.groupby(["Period", album_col])["duration"].sum().reset_index()
         idx = album_minutes.groupby("Period")["duration"].idxmax()
-        top_album = album_minutes.loc[idx, ["Period","album"]].rename(columns={"album":"Top Album"})
+        top_album = album_minutes.loc[idx, ["Period", album_col]].rename(columns={album_col: "Top Album"})
         summary = summary.merge(top_album, on="Period", how="left")
 
     temp = df.dropna(subset=["year_release"]).copy()
@@ -220,7 +251,8 @@ def get_listening_summary(df, period="month"):
     top_decade = decade_minutes.loc[idx, ["Period","decade"]].rename(columns={"decade":"Top Decade"})
     summary = summary.merge(top_decade, on="Period", how="left")
 
-    return summary.sort_values("Period")
+    summary = summary.sort_values("Period")
+    return summary
 
 def summarize(df, col):
     return (
@@ -333,27 +365,27 @@ def get_quick_range(preset: str, tz_name: str = "Europe/Madrid"):
     def at_end_of_day(d):
         return tz.localize(datetime(d.year, d.month, d.day, 23, 59, 59, 999999))
 
-    if preset == "Último día": return now - timedelta(days=1), now
-    if preset == "Última semana": return now - timedelta(days=7), now
-    if preset == "Último mes": return now - timedelta(days=30), now
-    if preset == "Últimos 3 meses": return now - timedelta(days=90), now
-    if preset == "Últimos 6 meses": return now - timedelta(days=180), now
-    if preset == "YTD (año en curso)": return tz.localize(datetime(today.year, 1, 1, 0, 0, 0)), now
-    if preset == "Último año": return now - timedelta(days=365), now
-    if preset == "Todo": return tz.localize(datetime(1970, 1, 1, 0, 0, 0)), now
+    if preset in ["Último día", "Last Day"]: return now - timedelta(days=1), now
+    if preset in ["Última semana", "Last Week"]: return now - timedelta(days=7), now
+    if preset in ["Último mes", "Last Month"]: return now - timedelta(days=30), now
+    if preset in ["Últimos 3 meses", "Last 3 Months"]: return now - timedelta(days=90), now
+    if preset in ["Últimos 6 meses", "Last 6 Months"]: return now - timedelta(days=180), now
+    if preset in ["YTD (año en curso)", "YTD (Year to Date)"]: return tz.localize(datetime(today.year, 1, 1, 0, 0, 0)), now
+    if preset in ["Último año", "Last Year"]: return now - timedelta(days=365), now
+    if preset in ["Todo", "All"]: return tz.localize(datetime(1970, 1, 1, 0, 0, 0)), now
 
-    if preset == "Último día natural":
+    if preset in ["Último día natural", "Last Natural Day"]:
         ayer = today - timedelta(days=1)
         return at_start_of_day(ayer), at_end_of_day(ayer)
 
-    if preset == "Última semana natural":
+    if preset in ["Última semana natural", "Last Natural Week"]:
         weekday = today.weekday()
         start_this_week = today - timedelta(days=weekday)
         start_last_week = start_this_week - timedelta(days=7)
         end_last_week = start_this_week - timedelta(days=1)
         return at_start_of_day(start_last_week), at_end_of_day(end_last_week)
 
-    if preset == "Último mes natural":
+    if preset in ["Último mes natural", "Last Natural Month"]:
         year = today.year
         month = today.month
         if month == 1:
@@ -374,15 +406,15 @@ def add_period_column(df_in: pd.DataFrame, period: str, tz_name: str) -> pd.Data
         return df_out
 
     if period == "week":
-        df_out["Period"] = df_out["datetime"].dt.tz_convert(tz_name).dt.to_period("W").apply(lambda r: r.start_time.date())
+        df_out["Period"] = df_out["datetime"].dt.tz_convert(tz_name).dt.to_period("W")
     elif period == "day":
         df_out["Period"] = df_out["datetime"].dt.tz_convert(tz_name).dt.date
     elif period == "month":
-        df_out["Period"] = df_out["datetime"].dt.tz_convert(tz_name).dt.to_period("M").apply(lambda r: r.start_time.date())
+        df_out["Period"] = df_out["datetime"].dt.tz_convert(tz_name).dt.to_period("M")
     elif period == "year":
-        df_out["Period"] = df_out["datetime"].dt.tz_convert(tz_name).dt.to_period("Y").apply(lambda r: r.start_time.date())
+        df_out["Period"] = df_out["datetime"].dt.tz_convert(tz_name).dt.to_period("Y")
     else:
-        df_out["Period"] = df_out["datetime"].dt.tz_convert(tz_name).dt.to_period("M").apply(lambda r: r.start_time.date())
+        df_out["Period"] = df_out["datetime"].dt.tz_convert(tz_name).dt.to_period("M")
     return df_out
 
 def calculate_sessions(df, max_gap_minutes=30):
@@ -406,3 +438,22 @@ def calculate_sessions(df, max_gap_minutes=30):
     session_stats["session_minutes"] = session_stats[["time_span", "total_duration_mins"]].max(axis=1)
     
     return session_stats
+
+def apply_top_n_others(df, column, n, use_others=True, others_label="Others", weight_col="duration"):
+    """
+    Groups items in a column into Top N and "Others" based on a weight column (usually duration).
+    """
+    if df.empty or column not in df.columns:
+        return df
+    
+    # Calculate totals per item
+    totals = df.groupby(column)[weight_col].sum()
+    top_items = totals.nlargest(n).index
+    
+    df_out = df.copy()
+    if use_others:
+        df_out.loc[~df_out[column].isin(top_items), column] = others_label
+    else:
+        df_out = df_out[df_out[column].isin(top_items)]
+        
+    return df_out

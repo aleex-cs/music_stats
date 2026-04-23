@@ -139,15 +139,15 @@
 08.-My Eyes Have Seen You.flac;My Eyes Have Seen You;The Doors;Strange Days;8;Rock;1967;14767
 09.-I Can't See Your Face In My Mind.flac;I Can't See Your Face In My Mind;The Doors;Strange Days;9;Rock;1967;20642
 10.-When The Music's Over.flac;When The Music's Over;The Doors;Strange Days;10;Rock;1967;65992
-A1 Tu Frialdad.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;26403
-A2 A Través Del Aire.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;37069
-A3 Cae Fina La Lluvia.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;19866
-A4 Un Nido En Mi Ventana.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;;20868
-B1 Aroma Fresco.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;15704
-B2 Un Extraño Más.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;18326
-B3 Encuentro fugaz.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;05/02/2013;31712
-B4 Caudaloso río.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;24112
-B5 Fin.flac;;Triana;Un encuentro {SP Repress};;Rock andaluz;;10864
+A1 Tu Frialdad.flac;Tu Frialdad;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;26403
+A2 A Través Del Aire.flac;A Través Del Aire;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;37069
+A3 Cae Fina La Lluvia.flac;Cae Fina La Lluvia;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;19866
+A4 Un Nido En Mi Ventana.flac;Un Nido En Mi Ventana;Triana;Un encuentro {SP Repress};;Rock andaluz;;20868
+B1 Aroma Fresco.flac;Aroma Fresco;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;15704
+B2 Un Extraño Más.flac;Un Extraño Más;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;18326
+B3 Encuentro fugaz.flac;Encuentro fugaz;Triana;Un encuentro {SP Repress};;Rock andaluz;05/02/2013;31712
+B4 Caudaloso río.flac;Caudaloso río;Triana;Un encuentro {SP Repress};;Rock andaluz;04/02/2013;24112
+B5 Fin.flac;Fin;Triana;Un encuentro {SP Repress};;Rock andaluz;;10864
 01. Dire Straits - Tunnel Of Love.flac;Tunnel Of Love;Dire Straits;Making Movies (Australia Maxicut);1;Rock;1980;49239
 02. Dire Straits - Romeo And Juliet.flac;Romeo And Juliet;Dire Straits;Making Movies (Australia Maxicut);2;Rock;1980;36541
 03. Dire Straits - Skateaway.flac;Skateaway;Dire Straits;Making Movies (Australia Maxicut);3;Rock;1980;39798
@@ -942,7 +942,7 @@ B5 - Rumbo A La Fiesta (Bulerias).flac;Rumbo A La Fiesta (Bulerias);Sabicas;Flam
 12 - Aquel Atardecer (Remastered 2016).flac;Aquel Atardecer (Remastered 2016);Nino Bravo;Te Quiero, Te Quiero (Remastered 2016);12;Baroque rock,Pop,Balada,Pop español;1970;17301
 12 - Hoy Soy Feliz (Remastered 2016).flac;Hoy Soy Feliz (Remastered 2016);Nino Bravo;Nino Bravo (Remastered 2016);12;Baroque rock,Pop,Balada,Pop español;1971;19446
 01 - The Post War Dream.flac;The Post War Dream;Pink Floyd;The Final Cut;1;Progressive Rock;1983;17354
-02 - our Possible Pasts.flac;Our Possible Pasts;Pink Floyd;The Final Cut;2;Progressive Rock;1983;27005
+02 - Your Possible Pasts.flac;Your Possible Pasts;Pink Floyd;The Final Cut;2;Progressive Rock;1983;27005
 03 - One Of The Few.flac;One Of The Few;Pink Floyd;The Final Cut;3;Progressive Rock;1983;7989
 04 - When The Tigers Broke Free.flac;When The Tigers Broke Free;Pink Floyd;The Final Cut;4;Progressive Rock;1983;19133
 05 - The Hero's Return.flac;The Hero's Return;Pink Floyd;The Final Cut;5;Progressive Rock;1983;16281
@@ -1290,7 +1290,7 @@ Robe - Se nos lleva el aire - 10 - Esto no está pasando.flac;Esto no está pasa
 04 Getting Better.mp3;Getting Better;The Beatles;Sgt. Pepper's Lonely Hearts Club Band;;Pop/Rock;1967;16812
 05 Fixing A Hole.mp3;Fixing A Hole;The Beatles;Sgt. Pepper's Lonely Hearts Club Band;;Pop/Rock;1967;15683
 06 She's Leaving Home.mp3;She's Leaving Home;The Beatles;Sgt. Pepper's Lonely Hearts Club Band;;Pop/Rock;1967;21516
-07 Being For The Benefit Of Mr Kite.mp3;Being For The Benefit Of Mr Kite;The Beatles;Sgt. Pepper's Lonely Hearts Club Band;;Pop/Rock;1967;15753
+07 Being For The Benefit Of Mr. Kite!.mp3;Being For The Benefit Of Mr. Kite!;The Beatles;Sgt. Pepper's Lonely Hearts Club Band;;Pop/Rock;1967;15753
 08 Within You Without You.mp3;Within You Without You;The Beatles;Sgt. Pepper's Lonely Hearts Club Band;;Pop/Rock;1967;30467
 09 When I'm Sixty-Four.mp3;When I'm Sixty-Four;The Beatles;Sgt. Pepper's Lonely Hearts Club Band;;Pop/Rock;1967;15767
 10 Lovely Rita.mp3;Lovely Rita;The Beatles;Sgt. Pepper's Lonely Hearts Club Band;;Pop/Rock;1967;16209
@@ -2273,7 +2273,7 @@ Beck - Sea Change - 01 - The Golden Age.flac;The Golden Age;Beck;Sea Change;1;Al
 04. SA PRODIGIEUX HERMITAGE.flac;SA PRODIGIEUX HERMITAGE;Dale Cooper Quartet;Metamanoir;4;electronic,jazz;2011;3585
 03. MA INSAISISSABLE ABRI.flac;MA INSAISISSABLE ABRI;Dale Cooper Quartet;Metamanoir;3;electronic,jazz;2011;33724
 02. EUX EXQUIS ACROSTOLE.flac;EUX EXQUIS ACROSTOLE;Dale Cooper Quartet;Metamanoir;2;electronic,jazz;2011;67549
-01. UNE PETIT CELLIER.flac;UNE PETIT CELLIER;Dale Cooper Quartet;Metamanoir;1;electronic,jazz;2011;32397
+01. UNE PETIT CELLIER.flac;Une petit cellier;Dale Cooper Quartet;Metamanoir;1;electronic,jazz;2011;32397
 10. Chez le photographe du motel.flac;Chez le photographe du motel;Miles Davis;L'ascenseur pour l'échafaud (Lift to the Scaffold) [Original Motion Picture Soundtrack];10;Jazz;1958;23375
 09. Au bar du petit bac.flac;Au bar du petit bac;Miles Davis;L'ascenseur pour l'échafaud (Lift to the Scaffold) [Original Motion Picture Soundtrack];9;Jazz;1958;17386
 08. Visite du vigile.flac;Visite du vigile;Miles Davis;L'ascenseur pour l'échafaud (Lift to the Scaffold) [Original Motion Picture Soundtrack];8;Jazz;1958;12325
@@ -2294,3 +2294,33 @@ Beck - Sea Change - 01 - The Golden Age.flac;The Golden Age;Beck;Sea Change;1;Al
 07 - Marea imparable.flac;Marea imparable;Fito & Fitipaldis;El monte de los aullidos;7;Rock And Roll;24/10/2025;22696
 02 - El monte de los aullidos.flac;El monte de los aullidos;Fito & Fitipaldis;El monte de los aullidos;2;Rock And Roll;24/10/2025;30097
 10 - Ardi.flac;Ardi;Fito & Fitipaldis;El monte de los aullidos;10;Rock And Roll;24/10/2025;19621
+01 Let There Be More Light.flac;Let There Be More Light;Pink Floyd;A Saucerful Of Secrets (RSD Mono);1;Psychedelic Rock;1968;33046
+02 Remember a Day.flac;Remember A Day;Pink Floyd;A Saucerful Of Secrets (RSD Mono);2;Psychedelic Rock;1968;2681
+03 Set the Controls for the Heart of the Sun.flac;Set The Controls For The Heart Of The Sun;Pink Floyd;A Saucerful Of Secrets (RSD Mono);3;Psychedelic Rock;1968;34164
+04 Corporal Clegg.flac;Corporal Clegg;Pink Floyd;A Saucerful Of Secrets (RSD Mono);4;Psychedelic Rock;1968;24889
+05 A Saucerful of Secrets.flac;A Saucerful Of Secrets;Pink Floyd;A Saucerful Of Secrets (RSD Mono);5;Psychedelic Rock;1968;71971
+06 See‐Saw.flac;See-Saw;Pink Floyd;A Saucerful Of Secrets (RSD Mono);6;Psychedelic Rock;1968;27662
+07 Jugband Blues.flac;Jugband Blues;Pink Floyd;A Saucerful Of Secrets (RSD Mono);7;Psychedelic Rock;1968;18946
+01 - Cirrus Minor.flac;Cirrus Minor;Pink Floyd;More;1;Acid Rock;1969;3182
+02 - The Nile Song.flac;The Nile Song;Pink Floyd;More;2;Acid Rock;1969;20693
+03 - Crying Song.flac;Crying Song;Pink Floyd;More;3;Acid Rock;1969;21369
+04 - Up The Khyber.flac;Up The Khyber;Pink Floyd;More;4;Acid Rock;1969;13271
+05 - Green Is The Colour.flac;Green Is The Colour;Pink Floyd;More;5;Acid Rock;1969;17869
+06 - Cymbaline.flac;Cymbaline;Pink Floyd;More;6;Acid Rock;1969;29031
+07 - Party Sequence.flac;Party Sequence;Pink Floyd;More;7;Acid Rock;1969;6709
+08 - Main Theme.flac;Main Theme;Pink Floyd;More;8;Acid Rock;1969;3280
+09 - Ibiza Bar.flac;Ibiza Bar;Pink Floyd;More;9;Acid Rock;1969;19913
+10 - More Blues.flac;More Blues;Pink Floyd;More;10;Acid Rock;1969;1326
+11 - Quicksilver.flac;Quicksilver;Pink Floyd;More;11;Acid Rock;1969;43364
+12 - A Spanish Piece.flac;A Spanish Piece;Pink Floyd;More;12;Acid Rock;1969;6509
+13 - Dramatic Theme.flac;Dramatic Theme;Pink Floyd;More;13;Acid Rock;1969;13513
+01-01 Arnold Layne.flac;Arnold Layne;Pink Floyd;The Early Singles;1;Rock;1992;1766
+01-02 Candy and a Currant Bun.flac;Candy and a Currant Bun;Pink Floyd;The Early Singles;2;Rock;1992;16807
+01-03 See Emily Play.flac;See Emily Play;Pink Floyd;The Early Singles;3;Rock;1992;17687
+01-04 Scarecrow.flac;Scarecrow;Pink Floyd;The Early Singles;4;Rock;1992;13211
+01-05 Apples and Oranges.flac;Apples and Oranges;Pink Floyd;The Early Singles;5;Rock;1992;18853
+01-06 Paint Box.flac;Paint Box;Pink Floyd;The Early Singles;6;Rock;1992;22913
+01-07 It Would Be So Nice.flac;It Would Be So Nice;Pink Floyd;The Early Singles;7;Rock;1992;22707
+01-08 Julia Dream.flac;Julia Dream;Pink Floyd;The Early Singles;8;Rock;1992;15513
+01-09 Point Me at the Sky.flac;Point Me at the Sky;Pink Floyd;The Early Singles;9;Rock;1992;2204
+01-10 Careful With That Axe, Eugene.flac;Careful With That Axe, Eugene;Pink Floyd;The Early Singles;10;Rock;1992;34629

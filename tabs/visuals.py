@@ -2,11 +2,14 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
-from utils.helpers import apply_time_filter
+from utils.helpers import apply_time_filter, apply_top_n_others, get_genre_group
 
-def render_visuals(df, df_genre, global_start, global_end, global_time_filter):
-    st.markdown("<h1 style='text-align: center; color: #1DB954; font-size: 3.5rem;'>Visual Insights 📊</h1>", unsafe_allow_html=True)
-    st.markdown("<h4 style='text-align: center; color: #b3b3b3;'>Beautiful and deep visual explorations of your music data</h4>", unsafe_allow_html=True)
+from utils.localization import get_text
+
+def render_visuals(df, df_genre, global_start, global_end, global_time_filter, 
+                   n_decades, n_genres, n_artists, n_albums, n_tracks, use_others, lang="en"):
+    st.markdown(f"<h1 style='text-align: center; color: #FF4B4B; font-size: 3.5rem;'>{get_text('tabs.galaxy', lang)} 🪐</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h4 style='text-align: center; color: #b3b3b3;'>{get_text('visuals.subtitle', lang)}</h4>", unsafe_allow_html=True)
     st.write("---")
 
     # Filter data
@@ -26,27 +29,27 @@ def render_visuals(df, df_genre, global_start, global_end, global_time_filter):
 
     # 1. Ring selection and order — 4 selectboxes, one per position
     options_map = {
-        "Década": "decade",
-        "Género": "genre_single",
-        "Artista": "artist",
-        "Álbum": "album_clean",
-        "Canción": "track",
-        "(ninguno)": None,
+        "Decade": "decade",
+        "Genre": "genre_single",
+        "Artist": "artist",
+        "Album": "album_clean",
+        "Track": "track",
+        "(none)": None,
     }
     labels = list(options_map.keys())
 
-    st.markdown("**🔧 Configura los anillos** (de exterior → interior):")
+    st.markdown("**🔧 Configure the rings** (outer → inner):")
     col1, col2, col3, col4, col5 = st.columns(5)
     with col1:
-        r1 = st.selectbox("🔵 Anillo 1", labels, index=0, key="ring1")
+        r1 = st.selectbox("🔵 Ring 1", labels, index=0, key="ring1")
     with col2:
-        r2 = st.selectbox("🟢 Anillo 2", labels, index=1, key="ring2")
+        r2 = st.selectbox("🟢 Ring 2", labels, index=1, key="ring2")
     with col3:
-        r3 = st.selectbox("🟡 Anillo 3", labels, index=2, key="ring3")
+        r3 = st.selectbox("🟡 Ring 3", labels, index=2, key="ring3")
     with col4:
-        r4 = st.selectbox("🔴 Anillo 4", labels, index=3, key="ring4")
+        r4 = st.selectbox("🔴 Ring 4", labels, index=3, key="ring4")
     with col5:
-        r5 = st.selectbox("🟣 Anillo 5", labels, index=4, key="ring5")
+        r5 = st.selectbox("🟣 Ring 5", labels, index=4, key="ring5")
 
     # Build path ignoring "(ninguno)" and duplicates
     seen = set()
@@ -63,20 +66,28 @@ def render_visuals(df, df_genre, global_start, global_end, global_time_filter):
     # We need a clean dataframe based on the selected path
     df_sun = df_gen.dropna(subset=sun_path)
     
-    # Filter top genres only if genre is in the path
-    if "genre_single" in sun_path:
-        top_genres = df_sun.groupby("genre_single")["duration"].sum().nlargest(15).index
-        df_sun = df_sun[df_sun["genre_single"].isin(top_genres)]
-    
-    # Filter out small artists to keep chart clean
-    artist_totals = df_sun.groupby("artist")["duration"].sum() / 60.0
-    top_artists = artist_totals[artist_totals > 10].index
-    df_sun = df_sun[df_sun["artist"].isin(top_artists)]
+    # Apply filters based on the selected path
+    others_labels = {
+        "decade": "Other Decades",
+        "genre_single": "Other Genres",
+        "artist": "Other Artists",
+        "album_clean": "Other Albums",
+        "track": "Other Tracks"
+    }
+    limits_map = {
+        "decade": n_decades,
+        "genre_single": n_genres,
+        "artist": n_artists,
+        "album_clean": n_albums,
+        "track": n_tracks
+    }
 
-    # If track ring is active, limit to top 300 most listened tracks to avoid freezing
-    if "track" in sun_path:
-        top_tracks = df_sun.groupby("track")["duration"].sum().nlargest(300).index
-        df_sun = df_sun[df_sun["track"].isin(top_tracks)]
+    for col in sun_path:
+        df_sun = apply_top_n_others(
+            df_sun, col, limits_map[col], 
+            use_others=use_others, 
+            others_label=others_labels[col]
+        )
     
     sun_data = df_sun.groupby(sun_path)["duration"].sum().reset_index()
     sun_data["minutes"] = sun_data["duration"] / 60.0
@@ -107,32 +118,18 @@ def render_visuals(df, df_genre, global_start, global_end, global_time_filter):
 
     st.write("<br><hr>", unsafe_allow_html=True)
 
-    # --- Inspector de Unknowns ---
-    with st.expander("🔍 Investigar datos 'Unknown' (¿Por qué salen así?)"):
-        st.markdown("### 🕵️‍♂️ Análisis de canciones sin clasificar")
-        st.write("El gráfico muestra 'Unknown' cuando no hay una coincidencia exacta entre tu historial y la base de datos de géneros.")
-        
-        unknown_data = df_gen[df_gen["genre_single"] == "Unknown"].copy()
-        
-        if not unknown_data.empty:
-            summary_unknown = unknown_data.groupby(["artist", "track"]).size().reset_index(name="Escuchas")
-            summary_unknown = summary_unknown.sort_values("Escuchas", ascending=False).head(50)
-            
-            st.dataframe(summary_unknown, use_container_width=True)
-            st.info("💡 Consejo: Si ves que el artista o la canción están en tu base de datos pero aquí salen como Unknown, revisa si hay diferencias en tildes, mayúsculas o caracteres especiales en el archivo `musica.csv`.")
-        else:
-            st.success("¡Increíble! No tienes ninguna canción sin clasificar en este periodo.")
-
-    st.write("<br><hr>", unsafe_allow_html=True)
-
     # --- 2. STREAMGRAPH (Genre Evolution) ---
     st.markdown("### 🌊 Genre Flow (Streamgraph)")
     st.markdown("Observe the waves of your top genres flowing over time.")
     
-    # Group by month and top 7 genres
+    # Group by month and top genres
+    group_genres = st.checkbox("Group related genres (e.g. Hard Rock -> Rock)", value=False)
+    
     df_stream = df_gen.copy()
-    top_7_genres = df_stream.groupby("genre_single")["duration"].sum().nlargest(7).index
-    df_stream = df_stream[df_stream["genre_single"].isin(top_7_genres)]
+    if group_genres:
+        df_stream["genre_single"] = df_stream["genre_single"].apply(get_genre_group)
+    
+    df_stream = apply_top_n_others(df_stream, "genre_single", n_genres, use_others=use_others, others_label="Other Genres")
     
     df_stream["month"] = df_stream["datetime"].dt.to_period("M").dt.to_timestamp()
     stream_data = df_stream.groupby(["month", "genre_single"])["duration"].sum().reset_index()
@@ -171,21 +168,32 @@ def render_visuals(df, df_genre, global_start, global_end, global_time_filter):
     
     # We want a single dominant genre per artist for the treemap to avoid duplicates
     artist_durations = df_filtered.groupby("artist")["duration"].sum().reset_index()
-    top_50_artists = artist_durations.nlargest(50, "duration")
+    # Apply artist limit
+    top_artist_names = artist_durations.nlargest(n_artists, "duration")["artist"]
     
-    if not top_50_artists.empty:
-        # Find dominant genre for each top artist
-        artist_dominant_genre = df_gen[df_gen["artist"].isin(top_50_artists["artist"])] \
+    if not top_artist_names.empty:
+        # If use_others is True, we keep everyone but label them "Other Artists"
+        # However, for Treemap, showing everyone might be too much.
+        # Let's respect the limit and only show "Others" if enabled.
+        df_tree_base = df_filtered.copy()
+        if use_others:
+            df_tree_base.loc[~df_tree_base["artist"].isin(top_artist_names), "artist"] = "Other Artists"
+        else:
+            df_tree_base = df_tree_base[df_tree_base["artist"].isin(top_artist_names)]
+        
+        # Find dominant genre for each artist (including "Other Artists")
+        artist_dominant_genre = df_gen[df_gen["artist"].isin(df_tree_base["artist"].unique())] \
             .groupby(["artist", "genre_single"])["duration"].sum() \
             .reset_index() \
             .sort_values("duration", ascending=False) \
             .drop_duplicates(subset=["artist"], keep="first")
         
-        # Now get data at the artist-album level for these top artists
-        # Filter out rows where album_clean is missing or too small to matter
-        tree_data = df_filtered[df_filtered["artist"].isin(top_50_artists["artist"])] \
-            .groupby(["artist", "album_clean"])["duration"].sum() \
-            .reset_index()
+        # Now get data at the artist-album-track level
+        tree_data = df_tree_base.groupby(["artist", "album_clean", "track"])["duration"].sum().reset_index()
+        
+        # Apply album limit per artist or globally? 
+        # Usually globally is easier to manage with the existing tool.
+        tree_data = apply_top_n_others(tree_data, "album_clean", n_albums, use_others=use_others, others_label="Other Albums")
         
         # Merge the dominant genre back in
         tree_data = tree_data.merge(artist_dominant_genre[["artist", "genre_single"]], on="artist", how="left")
@@ -197,11 +205,11 @@ def render_visuals(df, df_genre, global_start, global_end, global_time_filter):
         
         fig_tree = px.treemap(
             tree_data,
-            path=["genre_single", "artist", "album_clean"],
+            path=["genre_single", "artist", "album_clean", "track"],
             values="minutes",
             color="genre_single",
             color_discrete_sequence=px.colors.qualitative.Vivid,
-            maxdepth=4 # Ensure it tries to show all 3 levels (Genre -> Artist -> Album)
+            maxdepth=4 # Ensure it tries to show all levels (Genre -> Artist -> Album -> Track)
         )
         fig_tree.update_traces(
             root_color="rgba(0,0,0,0)",

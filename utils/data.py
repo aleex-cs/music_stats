@@ -156,13 +156,28 @@ def load_data():
 
     def normalize_album_full(name):
         if pd.isna(name) or str(name).lower() in ["nan", "unknown album", ""]: return "Unknown Album"
-        clean = re.sub(r'[\(\[].*?(Disc|Remaster|Edition|Maxicut|Deluxe|Live|Explicit).*?[\)\]]', '', str(name), flags=re.IGNORECASE)
+        
+        s = str(name)
+        # 1. Remove content inside brackets/parens that mentions Discs, CDs, or common junk
+        # We use a more aggressive pattern to catch [Disc 2], (Remastered), etc.
+        s = re.sub(r'\s*[\(\[].*?(Disc|CD|Remaster|Edition|Maxicut|Deluxe|Live|Explicit|Anniversary|Expanded|Bonus|Digital|Recording|Session|Remastered).*?[\)\]]', '', s, flags=re.IGNORECASE)
+        
+        # 2. Remove trailing "Disc 1", "CD 1", etc. even without brackets, including those preceded by - or :
+        s = re.sub(r'\s+[-:]?\s*(Disc|CD|Vol|Volume|Part|Pt)\s*\d+\s*$', '', s, flags=re.IGNORECASE)
+        
+        # 3. Trim and collapse whitespace
+        clean = " ".join(s.split()).strip()
+        
+        # 4. Manual overrides for complex cases
         EQUIV = {
-            "The Wall [Disc 1]": "The Wall", "The Wall [Disc 2]": "The Wall",
-            "Ummagumma [Studio Album] [Disc 1]": "Ummagumma", "Ummagumma [Live Album] [Disc 2]": "Ummagumma",
-            "Making Movies (Australia Maxicut)": "Making Movies", "Love (Disc 1)": "Love", "Love (Disc 2)": "Love"
+            "Ummagumma [Studio Album]": "Ummagumma",
+            "Ummagumma [Live Album]": "Ummagumma",
+            "The Wall [Disc 1]": "The Wall",
+            "The Wall [Disc 2]": "The Wall",
+            "Love (Disc 1)": "Love",
+            "Love (Disc 2)": "Love"
         }
-        return " ".join(EQUIV.get(clean.strip(), clean.strip()).split())
+        return EQUIV.get(clean, clean)
 
     if "album_musica" in df.columns:
         df["album_clean"] = df["album"].fillna(df["album_musica"]).apply(normalize_album_full)
@@ -178,6 +193,7 @@ def load_data():
 
 @st.cache_data
 def get_processed_data():
+    # Cache buster to ensure album grouping is re-applied: 2026-04-23 12:05
     df = load_data()
     df = df[df["artist"] != "_NON_MUSIC_"].copy()
 

@@ -76,20 +76,25 @@ def render_github_heatmap(df, start_date, end_date, period_filter):
         labels=dict(x="Week", y="Weekday", color="Minutes"),
         x=pivot_table.columns,
         y=["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-        color_continuous_scale=["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
+        color_continuous_scale=["#0d1b2a", "#3b1c5a", "#b52a3a", "#ff6e48", "#ffe04b"],
         title="Activity Heatmap (GitHub Style)"
     )
     
     fig.update_layout(
         xaxis=dict(showgrid=False, showticklabels=False),
         yaxis=dict(showgrid=False, autorange="reversed"),
-        plot_bgcolor="#0d1117",
-        paper_bgcolor="#0d1117"
+        margin=dict(t=50, l=10, r=10, b=10)
     )
+    fig.update_xaxes(side="top")
     fig.update_traces(xgap=3, ygap=3)
     st.plotly_chart(fig, use_container_width=True)
 
-def render_time_patterns(df, global_start, global_end, global_time_filter):
+from utils.localization import get_text
+
+def render_time_patterns(df, global_start, global_end, global_time_filter, lang="en"):
+    st.markdown(f"<h1 style='text-align: center; color: #FF4B4B; font-size: 3.5rem;'>{get_text('tabs.rhythms', lang)} 📅</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h4 style='text-align: center; color: #b3b3b3;'>{get_text('time_patterns.subtitle', lang)}</h4>", unsafe_allow_html=True)
+    st.write("---")
     # CLOCK CHART — Listening Time by Hour (Radial)
     df_clock = df[(df["datetime"] >= global_start) & (df["datetime"] <= global_end)]
     df_clock = apply_time_filter(df_clock, global_time_filter).copy()

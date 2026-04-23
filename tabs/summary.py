@@ -4,10 +4,11 @@ from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 from utils.helpers import (
     apply_time_filter, get_listening_summary, LOCAL_TZ, 
-    longest_streak, format_first_listen_table
+    longest_streak, format_first_listen_table, format_period
 )
+from utils.localization import get_text
 
-def render_summary(df, df_genre, global_start, global_end, global_time_filter, global_period, global_rows_to_show):
+def render_summary(df, df_genre, global_start, global_end, global_time_filter, global_period, global_rows_to_show, lang="en"):
     df_filtered = df[(df["datetime"] >= global_start) & (df["datetime"] <= global_end)]
     df_filtered = apply_time_filter(df_filtered, global_time_filter)
 
@@ -27,7 +28,10 @@ def render_summary(df, df_genre, global_start, global_end, global_time_filter, g
     delta_minutes = round(total_minutes - prev_minutes, 2)
     delta_plays = total_plays - prev_plays
 
-    st.markdown("### Resumen del Periodo")
+    st.markdown(f"<h1 style='text-align: center; color: #FF4B4B; font-size: 3.5rem;'>{get_text('tabs.summary', lang)} 📈</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h4 style='text-align: center; color: #b3b3b3;'>{get_text('home.subtitle', lang)}</h4>", unsafe_allow_html=True)
+    st.write("---")
+
     col1, col2, col3 = st.columns(3)
     col1.metric("Total Minutes", f"{total_minutes} min", delta=f"{delta_minutes} min" if total_minutes > 0 or prev_minutes > 0 else None)
     col2.metric("Total Plays", total_plays, delta=delta_plays if total_plays > 0 or prev_plays > 0 else None)
@@ -45,15 +49,13 @@ def render_summary(df, df_genre, global_start, global_end, global_time_filter, g
     df_gf = apply_time_filter(df_gf, global_time_filter).copy()
 
     if global_period == "week":
-        df_gf["Period"] = df_gf["datetime"].dt.to_period("W").apply(lambda r: r.start_time.tz_localize(LOCAL_TZ).date())
+        df_gf["Period"] = df_gf["datetime"].dt.to_period("W")
     elif global_period == "day":
         df_gf["Period"] = df_gf["datetime"].dt.tz_convert(LOCAL_TZ).dt.date
     elif global_period == "month":
-        df_gf["Period"] = df_gf["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("M").apply(lambda r: r.start_time.date())
+        df_gf["Period"] = df_gf["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("M")
     elif global_period == "year":
-        df_gf["Period"] = df_gf["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("Y").apply(lambda r: r.start_time.date())
-
-    df_gf["Period"] = df_gf["Period"].astype(str)
+        df_gf["Period"] = df_gf["datetime"].dt.tz_convert(LOCAL_TZ).dt.to_period("Y")
 
     genre_per_period = (
         df_gf.groupby(["Period", "genre_single"])["duration"].sum().reset_index()
@@ -64,6 +66,7 @@ def render_summary(df, df_genre, global_start, global_end, global_time_filter, g
             genre_per_period.loc[idx, ["Period", "genre_single"]]
             .rename(columns={"genre_single": "Top Genre"})
         )
+        
         summary_full = summary_full.drop(columns=["Top Genre"], errors="ignore") \
                                 .merge(top_genre_by_period, on="Period", how="left")
 
@@ -202,10 +205,12 @@ def render_summary(df, df_genre, global_start, global_end, global_time_filter, g
 
         st.metric("Artist diversity index", round(diversity,3))
         
-        summary_table = summary_full.sort_values("Period", ascending=False).head(global_rows_to_show)
-        rows = len(summary_table)
+        summary_display = summary_full.sort_values("Period", ascending=False).head(global_rows_to_show).copy()
+        summary_display["Period"] = summary_display["Period"].apply(format_period)
+        
+        rows = len(summary_display)
         calculated_height = (rows + 1) * 35 + 3
-        st.dataframe(summary_table,hide_index=True,use_container_width=True,height=calculated_height)
+        st.dataframe(summary_display, hide_index=True, use_container_width=True, height=calculated_height)
         
         st.markdown("## New Discoveries")
 
@@ -239,12 +244,15 @@ def render_summary(df, df_genre, global_start, global_end, global_time_filter, g
             st.dataframe(decades_table, hide_index=True)
 
         fig = make_subplots(specs=[[{"secondary_y": True}]])
+        chart_data = summary_full.sort_values("Period")
+        x_labels = chart_data["Period"].apply(format_period)
+        
         fig.add_trace(
-            go.Scatter(x=summary_full["Period"], y=summary_full["Minutes"], mode="lines+markers", name="Minutes", line=dict(color="#1f77b4")),
+            go.Scatter(x=x_labels, y=chart_data["Minutes"], mode="lines+markers", name="Minutes", line=dict(color="#1f77b4")),
             secondary_y=False
         )
         fig.add_trace(
-            go.Scatter(x=summary_full["Period"], y=summary_full["Plays"], mode="lines+markers", name="Plays", line=dict(color="#ff7f0e")),
+            go.Scatter(x=x_labels, y=chart_data["Plays"], mode="lines+markers", name="Plays", line=dict(color="#ff7f0e")),
             secondary_y=True
         )
         fig.update_layout(title_text="Minutos y Reproducciones en el Tiempo", legend_title_text="Métrica")

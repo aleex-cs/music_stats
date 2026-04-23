@@ -6,7 +6,12 @@ from utils.helpers import (
     split_genres, LOCAL_TZ
 )
 
-def render_data_viewer(df, df_genre, global_start, global_end, global_time_filter, global_rows_to_show):
+from utils.localization import get_text
+
+def render_data_viewer(df, df_genre, global_start, global_end, global_time_filter, global_rows_to_show, lang="en"):
+    st.markdown(f"<h1 style='text-align: center; color: #FF4B4B; font-size: 3.5rem;'>{get_text('tabs.rankings', lang)} 🏆</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h4 style='text-align: center; color: #b3b3b3;'>{get_text('data_viewer.subtitle', lang)}</h4>", unsafe_allow_html=True)
+    st.write("---")
     df_fd = df[(df["datetime"] >= global_start) & (df["datetime"] <= global_end)]
     df_fd = apply_time_filter(df_fd, global_time_filter).copy()
 

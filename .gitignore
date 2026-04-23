@@ -220,3 +220,11 @@ __pycache__/
 *.pyc
 diag_csv.py
 prueba.py
+missing_durations.csv
+missing_genres.csv
+scratch/
+diff_missing.py
+get_tracks_full.py
+get_tracks_soulseek.py
+.gemini/
+*.log

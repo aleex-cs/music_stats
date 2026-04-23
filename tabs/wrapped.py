@@ -27,9 +27,11 @@ def cover_picker_ui(artist, album, key):
                     save_override(query_key, res["url"])
                     st.rerun()
 
-def render_wrapped(df, df_genre, global_start, global_end, global_time_filter):
-    st.markdown("<h1 style='text-align: center; color: #1DB954; font-size: 4rem; font-weight: 800; margin-bottom: 0;'>Your Music Wrapped</h1>", unsafe_allow_html=True)
-    st.markdown("<h4 style='text-align: center; color: #b3b3b3; margin-top: 0;'>A visual summary of your listening habits</h4>", unsafe_allow_html=True)
+from utils.localization import get_text
+
+def render_wrapped(df, df_genre, global_start, global_end, global_time_filter, lang="en"):
+    st.markdown(f"<h1 style='text-align: center; color: #FF4B4B; font-size: 4rem; font-weight: 800; margin-bottom: 0;'>{get_text('tabs.flashback', lang)} 🎁</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h4 style='text-align: center; color: #b3b3b3; margin-top: 0;'>{get_text('wrapped.subtitle', lang)}</h4>", unsafe_allow_html=True)
     st.write("---")
 
     df_filtered = df[(df["datetime"] >= global_start) & (df["datetime"] <= global_end)]

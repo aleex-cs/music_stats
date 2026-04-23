@@ -1,9 +1,14 @@
 import streamlit as st
 import pandas as pd
-from utils.helpers import apply_time_filter, add_period_column, LOCAL_TZ
+from utils.helpers import apply_time_filter, add_period_column, LOCAL_TZ, format_period
 from utils.ui import build_evolution_figure
 
-def render_behavior(df, df_genre, global_start, global_end, global_time_filter, global_period, global_rows_to_show, global_top_n):
+from utils.localization import get_text
+
+def render_behavior(df, df_genre, global_start, global_end, global_time_filter, global_period, global_rows_to_show, global_top_n, lang="en"):
+    st.markdown(f"<h1 style='text-align: center; color: #FF4B4B; font-size: 3.5rem;'>{get_text('tabs.dna', lang)} 🧠</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h4 style='text-align: center; color: #b3b3b3;'>{get_text('behavior.subtitle', lang)}</h4>", unsafe_allow_html=True)
+    st.write("---")
     df_filtered = df[(df["datetime"] >= global_start) & (df["datetime"] <= global_end)]
     df_filtered = apply_time_filter(df_filtered, global_time_filter)
 
@@ -89,6 +94,8 @@ def render_behavior(df, df_genre, global_start, global_end, global_time_filter, 
             .rename(columns={"track": "Track"})
         )
         summary_tracks["Minutes"] = summary_tracks["duration"] / 60.0
+        summary_tracks = summary_tracks.sort_values("Period")
+        summary_tracks["Period"] = summary_tracks["Period"].apply(format_period).astype(str)
 
         x_title = {"day":"Day","week":"Week (start date)","month":"Month","year":"Year"}.get(global_period, "Period")
         fig_tracks = build_evolution_figure(summary_tracks, list(top_tracks), "Track",
@@ -96,7 +103,7 @@ def render_behavior(df, df_genre, global_start, global_end, global_time_filter, 
                                             x_title)
         st.plotly_chart(fig_tracks, use_container_width=True)
     else:
-        st.info("No hay datos de tracks para el rango/periodo/turno seleccionados.")
+        st.info("No track data for the selected range/period/shift.")
 
     # Artist Listening Evolution
     df_artist_ev = df[(df["datetime"] >= global_start) & (df["datetime"] <= global_end)]
@@ -122,6 +129,8 @@ def render_behavior(df, df_genre, global_start, global_end, global_time_filter, 
             .rename(columns={"artist": "Artist"})
         )
         summary_artists["Minutes"] = summary_artists["duration"] / 60.0
+        summary_artists = summary_artists.sort_values("Period")
+        summary_artists["Period"] = summary_artists["Period"].apply(format_period).astype(str)
 
         x_title = {"day":"Day","week":"Week (start date)","month":"Month","year":"Year"}.get(global_period, "Period")
         fig_artists = build_evolution_figure(
@@ -134,32 +143,34 @@ def render_behavior(df, df_genre, global_start, global_end, global_time_filter, 
 
         st.plotly_chart(fig_artists, use_container_width=True)
     else:
-        st.info("No hay datos de artistas para el rango/periodo/turno seleccionados.")
+        st.info("No artist data for the selected range/period/shift.")
 
     # Album Listening Evolution
     df_album_ev = df[(df["datetime"] >= global_start) & (df["datetime"] <= global_end)]
     df_album_ev = apply_time_filter(df_album_ev, global_time_filter).copy()
-    df_album_ev = df_album_ev[df_album_ev["album"].notna()]
+    df_album_ev = df_album_ev[df_album_ev["album_clean"].notna()]
 
     if not df_album_ev.empty:
         df_album_ev = add_period_column(df_album_ev, global_period, LOCAL_TZ)
 
         top_albums = (
-            df_album_ev.groupby("album")["duration"]
+            df_album_ev.groupby("album_clean")["duration"]
             .sum()
             .sort_values(ascending=False)
             .head(global_top_n)
             .index
         )
-        df_album_ev = df_album_ev[df_album_ev["album"].isin(top_albums)].copy()
+        df_album_ev = df_album_ev[df_album_ev["album_clean"].isin(top_albums)].copy()
 
         summary_albums = (
-            df_album_ev.groupby(["Period", "album"])["duration"]
+            df_album_ev.groupby(["Period", "album_clean"])["duration"]
             .sum()
             .reset_index()
-            .rename(columns={"album": "Album"})
+            .rename(columns={"album_clean": "Album"})
         )
         summary_albums["Minutes"] = summary_albums["duration"] / 60.0
+        summary_albums = summary_albums.sort_values("Period")
+        summary_albums["Period"] = summary_albums["Period"].apply(format_period).astype(str)
 
         x_title = {"day":"Day","week":"Week (start date)","month":"Month","year":"Year"}.get(global_period, "Period")
         fig_albums = build_evolution_figure(summary_albums, list(top_albums), "Album",
@@ -167,7 +178,7 @@ def render_behavior(df, df_genre, global_start, global_end, global_time_filter, 
                                             x_title)
         st.plotly_chart(fig_albums, use_container_width=True)
     else:
-        st.info("No hay datos de álbumes para el rango/periodo/turno seleccionados.")
+        st.info("No album data for the selected range/period/shift.")
 
     # Genre Listening Evolution
     df_gen_ev = df_genre[(df_genre["datetime"] >= global_start) & (df_genre["datetime"] <= global_end)]
@@ -193,6 +204,8 @@ def render_behavior(df, df_genre, global_start, global_end, global_time_filter, 
             .rename(columns={"genre_single": "Genre"})
         )
         summary_genres["Minutes"] = summary_genres["duration"] / 60.0
+        summary_genres = summary_genres.sort_values("Period")
+        summary_genres["Period"] = summary_genres["Period"].apply(format_period).astype(str)
 
         x_title = {"day":"Day","week":"Week (start date)","month":"Month","year":"Year"}.get(global_period, "Period")
         fig_genres = build_evolution_figure(summary_genres, list(top_genres), "Genre",
@@ -200,7 +213,7 @@ def render_behavior(df, df_genre, global_start, global_end, global_time_filter, 
                                             x_title)
         st.plotly_chart(fig_genres, use_container_width=True)
     else:
-        st.info("No hay datos de géneros para el rango/periodo/turno seleccionados.")
+        st.info("No genre data for the selected range/period/shift.")
 
     df_month = df_filtered.copy()
     df_month["month"] = df_month["datetime"].dt.to_period("M")
