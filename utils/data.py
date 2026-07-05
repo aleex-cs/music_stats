@@ -48,17 +48,16 @@ def load_data():
             raw_content = _f.read()
 
     try:
-        raw_lines = raw_content.splitlines()
-        clean_lines = [raw_lines[0]]
-        for _line in raw_lines[1:]:
-            _s = _line.strip()
-            # Limpieza agresiva: quitar comillas externas y des-escapar internas
-            if _s.startswith('"') and _s.endswith('"'):
-                _s = _s[1:-1].replace('""', '"')
-            clean_lines.append(_s + "\n")
-
-        # Usamos engine='python' y sep=',' explícito para evitar fallos de detección
-        scrobbles = pd.read_csv(_io.StringIO("".join(clean_lines)), sep=",", on_bad_lines="skip", engine='python')
+        # Dejamos que Pandas maneje el CSV nativamente, ya que detecta 
+        # las comillas perfectas y el encoding utf-8-sig elimina el BOM.
+        scrobbles = pd.read_csv(
+            DATA_PATH, 
+            sep=",", 
+            quotechar='"', 
+            on_bad_lines="skip", 
+            engine='python',
+            encoding="utf-8-sig"
+        )
     except Exception as e:
         st.error(f"Error parseando el CSV: {e}")
         return pd.DataFrame()

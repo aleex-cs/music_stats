@@ -160,8 +160,8 @@ def format_first_listen_table(df_new, name_col, datetime_col="datetime"):
     if pd.api.types.is_datetime64_any_dtype(df_out[datetime_col]):
         df_out[datetime_col] = df_out[datetime_col].dt.tz_convert(LOCAL_TZ)
 
-    df_out = df_out.sort_values(datetime_col, ascending=True)
-    df_out["First Listen"] = df_out[datetime_col].dt.strftime("%d/%m/%Y %H:%M:%S")
+    df_out = df_out.sort_values(datetime_col, ascending=False)
+    df_out["First Listen"] = df_out[datetime_col].dt.strftime("%Y-%m-%d %H:%M:%S")
     df_out = df_out[[name_col, "First Listen"]]
     df_out.columns = df_out.columns.str.title()
 

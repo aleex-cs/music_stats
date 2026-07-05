@@ -247,10 +247,10 @@ def display_aggrid(df_summary, container_id: str):
     )
     st.markdown('</div>', unsafe_allow_html=True)
 
-def build_evolution_figure(summary_df: pd.DataFrame, top_labels: list, label_col: str, title: str, x_title: str):
+def build_evolution_figure(summary_df: pd.DataFrame, top_labels: list, label_col: str, title: str, x_title: str, x_order: list = None):
     fig = go.Figure()
     colors = px.colors.qualitative.Safe
-    summary_df = summary_df.sort_values("Period")
+    # ❌ Quita esta línea: summary_df = summary_df.sort_values("Period")
 
     for i, label in enumerate(top_labels):
         df_line = summary_df[summary_df[label_col] == label]
@@ -264,10 +264,15 @@ def build_evolution_figure(summary_df: pd.DataFrame, top_labels: list, label_col
             hovertemplate="%{y:.2f} min<extra>%{fullData.name}</extra>"
         ))
 
+    xaxis_config = dict(title=x_title)
+    if x_order:
+        xaxis_config["categoryorder"] = "array"
+        xaxis_config["categoryarray"] = x_order
+
     fig.update_layout(
         template="plotly_dark",
         title=title,
-        xaxis_title=x_title,
+        xaxis=xaxis_config,
         yaxis_title="Minutes",
         hovermode="x unified",
     )

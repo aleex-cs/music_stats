@@ -237,8 +237,8 @@ def render_summary(df, df_genre, global_start, global_end, global_time_filter, g
         if len(new_decades) > 0:
             decades_table = new_decades.copy()
             decades_table["first_listen"] = decades_table["first_listen"].dt.tz_convert(LOCAL_TZ)
-            decades_table = decades_table.sort_values("first_listen", ascending=True)
-            decades_table["First Listen"] = decades_table["first_listen"].dt.strftime("%d/%m/%Y %H:%M:%S")
+            decades_table = decades_table.sort_values("first_listen", ascending=False)
+            decades_table["First Listen"] = decades_table["first_listen"].dt.strftime("%Y-%m-%d %H:%M:%S")
             decades_table = decades_table[["decade", "First Listen"]].head(global_rows_to_show)
             st.markdown("### 🗓️ New Decades")
             st.dataframe(decades_table, hide_index=True)
